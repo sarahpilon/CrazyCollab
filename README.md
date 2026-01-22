@@ -1,5 +1,3 @@
-# Tab 1
-
 #### **Crazy Collab** 
 
 #### **1\. Team info**
