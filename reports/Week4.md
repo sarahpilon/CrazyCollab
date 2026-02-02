@@ -1,21 +1,41 @@
 # Week 4 Progress Report
 ## Team Report
-1. **Last Week's Goals:**  
+1. **This Week's Planned Goals:**  
     1. Finalized project requirements and use cases within fleshed-out living doc; estimate 2 days  
     2. Assist in finishing Figma wireframe draft, finish 3 days     
     3. Finish making a PlantUML diagram of class architecture diagram by Wednesday 
-(What we did, what we learned, what worked, where did we have trouble) We have continued to flesh out the living doc with design choices, and we pitched our project as a presentation containing all the features and characteristics we desire for our final product.  
-(Plans and goals for the next week, as well as long term goals)
+2. **Team Progress and Issues:**  
+wasd
+3. **Next Week's Planned Goals:**  
+    1. wasd
 ## Team Contributions
 ### Sarah Pilon
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Planned Goals:**
+     1. 
+2. **Progress and Issues:**
+     1. 
+     2. 
+     3.  
+     4. 
+3. **Next Week's Planned Goals:**  
+     1. 
 ### Ella Wilkinson
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Planned Goals:**
+   1. 
+2. **Progress and Issues:**
+   1. 
+   2. 
+   3. 
+   4. 
+3. **Next Week's Planned Goals:**
+   1. 
 ### Dylan Knapp
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Planned Goals:**  
+    1. 
+2. **Progress and Issues:**  
+    1. 
+    2. 
+    3. 
+    4. 
+3. **Next Week's Planned Goals:**  
+    1. 
