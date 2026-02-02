@@ -28,7 +28,7 @@ We have created our living document and started to flesh our details for our pro
    2. Determined brand colorscheme with WCAG 2.2 compliant contrast levels  
 5. **Next Week's Planned Goals:**  
   i.   Complete UI wireframes on Figma
-  ii.  Begin developing UI, hosting on OSU public html servers
+  ii. Begin developing UI, hosting on OSU public html servers
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
     1. N/A First week
