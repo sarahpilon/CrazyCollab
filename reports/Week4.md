@@ -24,16 +24,14 @@ We have started focusing on the design of our software as we continue making des
      2. Fully complete designs on Figma, finish in 3 days
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
-   1. w
-   2. a
+   1. Complete UI wireframes
 2. **Progress and Issues:**  
-   1. w
-   2. a
-   3. s
-   4. d
+   1. Examined cases of good UI interfaces
+   2. Researched WCAG 2.2 guidelines to be compliant
+   3. Improved time management around other commitments to focus on UI
+   4. Had time constraints with important midterms
 3. **Next Week's Planned Goals:**  
-   1. w
-   2. a
+   1. Implement UI on OSU's public html hosting, finish in 4 days
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
     1. Pick a project architecture and layout most of the software design and structure, finish in 5 days
