@@ -12,25 +12,29 @@ We have started focusing on the design of our software as we continue making des
     3. Begin skeleton code and commits to codebase to prepare for mid-term project presentation, finish in 5 days
 ## Team Contributions
 ### Sarah Pilon
-1. **This Week's Planned Goals:**
-     1. 
-2. **Progress and Issues:**
-     1. 
-     2. 
-     3.  
-     4. 
+1. **This Week's Planned Goals:**  
+     1. w
+     2. a
+2. **Progress and Issues:**  
+     1. w
+     2. a
+     3. s
+     4. d
 3. **Next Week's Planned Goals:**  
-     1. 
+     1. w
+     2. a
 ### Ella Wilkinson
-1. **This Week's Planned Goals:**
-   1. 
-2. **Progress and Issues:**
-   1. 
-   2. 
-   3. 
-   4. 
-3. **Next Week's Planned Goals:**
-   1. 
+1. **This Week's Planned Goals:**  
+   1. w
+   2. a
+2. **Progress and Issues:**  
+   1. w
+   2. a
+   3. s
+   4. d
+3. **Next Week's Planned Goals:**  
+   1. w
+   2. a
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
     1. Pick a project architecture and layout most of the software design and structure, finish in 5 days
