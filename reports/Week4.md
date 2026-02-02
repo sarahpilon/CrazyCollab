@@ -13,16 +13,15 @@ We have started focusing on the design of our software as we continue making des
 ## Team Contributions
 ### Sarah Pilon
 1. **This Week's Planned Goals:**  
-     1. w
-     2. a
-2. **Progress and Issues:**  
-     1. w
-     2. a
-     3. s
-     4. d
-3. **Next Week's Planned Goals:**  
-     1. w
-     2. a
+     1. Complete use cases and requirements document
+2. **Progress and Issues:**
+     1. Completed the use cases and requirements document  
+     2. Began constructing logic for class architecture diagram  
+     3. Allocating the weekend to work on the assignment worked  
+     4. Struggled with finding time with midterms to work on assignment  
+4. **Next Week's Planned Goals:**  
+     1. Finish making a PlantUML diagram of class architecture diagram by Wednesday
+     2. Fully complete designs on Figma, finish in 3 days
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
    1. w
