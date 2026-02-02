@@ -33,11 +33,11 @@ We have started focusing on the design of our software as we continue making des
    1. 
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
-    1. 
+    1. Pick a project architecture and layout most of the software design and structure, finish in 5 days
 2. **Progress and Issues:**  
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Decided on a client-server architecture for the software and worked out design specifications
+    2. Continually adding little by little helps achieve weekly goals
+    3. Past experience will be able to aid in design of the software
+    4. Had less time to work on goals due to working hours and other projects. Additionally, the code base needs to be started soon or else the project will be behind schedule
 3. **Next Week's Planned Goals:**  
-    1. 
+    1. Begin skeleton code and commits to codebase to prepare for mid-term project presentation, finish in 5 days
