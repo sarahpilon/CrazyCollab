@@ -2,19 +2,27 @@ Helpful page for writing github markdown files: https://docs.github.com/en/get-s
 Report naming convention: YYYYMMDD.md (Date when report is submitted) (Due by end of each week)
 # Week X Progress Report
 ## Team Report
-(Goals from last week)  
-(What we did, what we learned, what worked, where did we have trouble)  
-(Plans and goals for the next week, as well as long term goals)
+1. **This Week's Goals:**  
+2. **Team Progress and issues:**  
+3. **Next Week's Goals:**  
+  i.   
+  ii. 
 ## Team Contributions
 ### Sarah Pilon
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Goals:**  
+2. **Team Progress and issues:**  
+3. **Next Week's Goals:**  
+  i.   
+  ii. 
 ### Ella Wilkinson
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Goals:**  
+2. **Team Progress and issues:**  
+3. **Next Week's Goals:**  
+  i.   
+  ii. 
 ### Dylan Knapp
-(Goals from last week)  
-(What youd did, what you learned, what worked, where did you have trouble)  
-(Plans and goals for the next week)
+1. **This Week's Goals:**  
+2. **Team Progress and issues:**  
+3. **Next Week's Goals:**  
+  i.   
+  ii. 
