@@ -21,11 +21,14 @@ We have created our living document and started to flesh our details for our pro
      1. Assist in finishing Figma wireframe draft, finish 3 days     
      2. Finish making a PlantUML diagram of class architecture diagram by Wednesday
 ### Ella Wilkinson
-1. **This Week's Planned Goals:**  
-2. **Progress and Issues:**  
-3. **Next Week's Planned Goals:**  
-  i.   
-  ii. 
+1. **This Week's Planned Goals:**
+   1.  N/A First week
+3. **Progress and Issues:**
+   1. Began brainstorming UI wireframes for availability input and schedule view
+   2. Determined brand colorscheme with WCAG 2.2 compliant contrast levels  
+5. **Next Week's Planned Goals:**  
+  i.   Complete UI wireframes on Figma
+  ii.  Begin developing UI, hosting on OSU public html servers
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
     1. N/A First week
