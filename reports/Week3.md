@@ -12,14 +12,12 @@ We have created our living document and started to flesh our details for our pro
 ### Sarah Pilon
 1. **This Week's Planned Goals:**
      1. N/A First week
-3. **Progress and Issues:**
-     1. Completed the use cases and requirements document  
-     2. Began constructing logic for class architecture diagram  
-     3. Allocating the weekend to work on the assignment worked  
-     4. Struggled with finding time with midterms to work on assignment  
+3. **Progress and Issues:**  
+     1. Worked on finding style sheets for our group to follow
+     2. Allocating the weekend to work on the assignment worked  
+     3. Struggled with understanding where to begin on the project  
 4. **Next Week's Planned Goals:**  
-     1. Assist in finishing Figma wireframe draft, finish 3 days     
-     2. Finish making a PlantUML diagram of class architecture diagram by Wednesday
+     1. Complete use cases and requirements document     
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**
    1.  N/A First week
