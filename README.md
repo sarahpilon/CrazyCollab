@@ -116,89 +116,89 @@ The time constraint we must work within is the greatest risk factor we face in t
 * User Login System (mongodb)  
 * Database to hold user data and available times (mongodb)
 
-  1. ***Risk assessment***
+***Risk assessment***
 
-      ***Unrealistic Timeline and Falling Behind***
+  ***Unrealistic Timeline and Falling Behind***
 
-      *Likelihood:* **Medium**
+  *Likelihood:* **Medium**
 
-      *Impact:* **High**
+  *Impact:* **High**
 
-      *Evidence:* As college students with other classes, jobs and responsibilities, we are naturally very busy. It is likely that there will be moments where other coursework, or life, gets in the way of us staying on schedule. Falling behind schedule regularly means we are unable to hit milestone goals and deadlines, and thus we are always playing catch-up. If this does occur, more stress and crunch will be added on top of everything else causing this issue to occur in the first place.
+  *Evidence:* As college students with other classes, jobs and responsibilities, we are naturally very busy. It is likely that there will be moments where other coursework, or life, gets in the way of us staying on schedule. Falling behind schedule regularly means we are unable to hit milestone goals and deadlines, and thus we are always playing catch-up. If this does occur, more stress and crunch will be added on top of everything else causing this issue to occur in the first place.
 
-      *Plan:* Create a detailed schedule and provide lots of opportunities for check-ups and updates. 
+  *Plan:* Create a detailed schedule and provide lots of opportunities for check-ups and updates. 
 
-      *Plan for detection:* If we stick to the schedule and closely analyze our progress along it, we can adequately monitor when and if we are starting to slip. If we miss a majority of deadlines in one week, we know our timeline needs to be updated and our work needs to be re-prioritized.
+  *Plan for detection:* If we stick to the schedule and closely analyze our progress along it, we can adequately monitor when and if we are starting to slip. If we miss a majority of deadlines in one week, we know our timeline needs to be updated and our work needs to be re-prioritized.
 
-      *Mitigation plan:* We plan to communicate with our professor, and realign our goals and figure out if we have to cut a feature to fit the timeline, or if we could put more hands on deck for one week to catch up. 
+  *Mitigation plan:* We plan to communicate with our professor, and realign our goals and figure out if we have to cut a feature to fit the timeline, or if we could put more hands on deck for one week to catch up. 
 
-      
+  
 
-      **Miscommunicated functionality**
+  **Miscommunicated functionality**
 
-      *Likelihood:* **Low**
+  *Likelihood:* **Low**
 
-      *Impact:* **Medium**
+  *Impact:* **Medium**
 
-      *Evidence:* When designing the UI, there was some confusion on how we wanted the website to function. The impact did not seem to be too high, however that is because the issue was caught early. If the issue happened later then it would have a bigger impact.
+  *Evidence:* When designing the UI, there was some confusion on how we wanted the website to function. The impact did not seem to be too high, however that is because the issue was caught early. If the issue happened later then it would have a bigger impact.
 
-      *Plan:* Sarah’s role as support allows her to ensure both the frontend and backend remain in the know, and there is no miscommunication.  
+  *Plan:* Sarah’s role as support allows her to ensure both the frontend and backend remain in the know, and there is no miscommunication.  
 
-      *Plan for detection:* If the miscommunication falls through the cracks, the team will also during their weekly meetings discuss their understanding of the implementation.
+  *Plan for detection:* If the miscommunication falls through the cracks, the team will also during their weekly meetings discuss their understanding of the implementation.
 
-      *Mitigation plan:* If the issue makes it past all previous possible detections, the group will get onto a call, or meet up in person, and work on the part that was miscommunicated and come up with an universally agreed upon functionality.
+  *Mitigation plan:* If the issue makes it past all previous possible detections, the group will get onto a call, or meet up in person, and work on the part that was miscommunicated and come up with an universally agreed upon functionality.
 
-      
+  
 
-      **Website is not universally intuitive, and only we think it is intuitive**
+  **Website is not universally intuitive, and only we think it is intuitive**
 
-      *Likelihood:* **Low**
+  *Likelihood:* **Low**
 
-      *Impact:* **Medium**
+  *Impact:* **Medium**
 
-      *Evidence:* Previously, whenever designing a website our group, because we designed it, would view the design as intuitive. However, whenever we would have a test user or have a fringe user, they would be confused when navigating the website.
+  *Evidence:* Previously, whenever designing a website our group, because we designed it, would view the design as intuitive. However, whenever we would have a test user or have a fringe user, they would be confused when navigating the website.
 
-      *Plan:* Throughout the development, show our designs to many different users to test the UI on a variety of different users.
+  *Plan:* Throughout the development, show our designs to many different users to test the UI on a variety of different users.
 
-      *Plan for detection:* Have a variety of test users from different ranges test the program out whenever we add a new feature. If the user struggles with the new feature, we will rework the UI a bit to abide by their expectations or make it easier to understand.
+  *Plan for detection:* Have a variety of test users from different ranges test the program out whenever we add a new feature. If the user struggles with the new feature, we will rework the UI a bit to abide by their expectations or make it easier to understand.
 
-      *Mitigation plan:* By also having a FAQ section with video tutorials, the risk of a user not understanding how to use the website runs low.
+  *Mitigation plan:* By also having a FAQ section with video tutorials, the risk of a user not understanding how to use the website runs low.
 
-      
+  
 
-      ***Moving Website from locally hosted to publically hosted***
+  ***Moving Website from locally hosted to publically hosted***
 
-      *Likelihood:* **Low**
+  *Likelihood:* **Low**
 
-      *Impact:* **High**
+  *Impact:* **High**
 
-      *Evidence:* Since we are using node and will either utilize aws or the OSU webengr server, this process should be relatively simple and straightforward. However, if we are unable to make this transition, the functionality of our product will be ruined based on our design intentions.
+  *Evidence:* Since we are using node and will either utilize aws or the OSU webengr server, this process should be relatively simple and straightforward. However, if we are unable to make this transition, the functionality of our product will be ruined based on our design intentions.
 
-      *Plan:* We will rigorously test our application using node, ensuring that all components that are needed for an actual web application are present and that everything is connecting properly.
+  *Plan:* We will rigorously test our application using node, ensuring that all components that are needed for an actual web application are present and that everything is connecting properly.
 
-      *Plan for detection:* Regular testing our application on our choice of server throughout milestones in development will help us make sure that our application is properly functioning on a server. 
+  *Plan for detection:* Regular testing our application on our choice of server throughout milestones in development will help us make sure that our application is properly functioning on a server. 
 
-      *Mitigation plan:* We can search for another method of hosting, or go back through our code-base ensuring everything is as it should be. Adjusting to a new method of hosting shouldn’t be too difficult, so we always have that option.
+  *Mitigation plan:* We can search for another method of hosting, or go back through our code-base ensuring everything is as it should be. Adjusting to a new method of hosting shouldn’t be too difficult, so we always have that option.
 
-      
+  
 
-      ***Difficulty Learning and Implementing New APIs***
+  ***Difficulty Learning and Implementing New APIs***
 
-      *Likelihood:* **Medium**
+  *Likelihood:* **Medium**
 
-      *Impact:* **Medium**
+  *Impact:* **Medium**
 
-      *Evidence:* Our product will use several packages and APIs, many of which are new to one if not all team members. Additionally, not all browsers may support certain features of the API we are using, or perhaps they aren’t supported at all.
+  *Evidence:* Our product will use several packages and APIs, many of which are new to one if not all team members. Additionally, not all browsers may support certain features of the API we are using, or perhaps they aren’t supported at all.
 
-      Working out kinks and learning proper implementations of these APIs is likely going to be a challenge, and this can definitely cause a setback as more time is spent reading documentation and debugging. 
+  Working out kinks and learning proper implementations of these APIs is likely going to be a challenge, and this can definitely cause a setback as more time is spent reading documentation and debugging. 
 
-      *Plan:* Before implementing any API calls, ensure that the documentation has thoroughly been read and understood. From there, map out what the implementation will look like before moving onto coding.
+  *Plan:* Before implementing any API calls, ensure that the documentation has thoroughly been read and understood. From there, map out what the implementation will look like before moving onto coding.
 
-      *Plan for detection:* Slowly implement the APIs step by step and ensure there are no issues before proceeding. As soon as something begins to stop working properly or when we don’t understand what our code is doing, we must take a step back and re-group to ensure our implementation is proper.
+  *Plan for detection:* Slowly implement the APIs step by step and ensure there are no issues before proceeding. As soon as something begins to stop working properly or when we don’t understand what our code is doing, we must take a step back and re-group to ensure our implementation is proper.
 
-      *Mitigation plan:* Searching up tutorials or existing projects that utilize these APIs can help us see where we are going wrong and try to replicate those successes in our project.
+  *Mitigation plan:* Searching up tutorials or existing projects that utilize these APIs can help us see where we are going wrong and try to replicate those successes in our project.
 
-   2. ***Project Schedule***
+***Project Schedule***
 
 **Use Cases**  
 Set a universal definition for how a user will interact with the system, and what they would expect to see
@@ -327,9 +327,9 @@ Set up skeleton code that adheres to what the user would expect based off of bot
 - All previous milestones must be done  
 - Use Cases must be finalized and passed
 
-  3. ***Team Structure***
+***Team Structure***
 
-		**Dylan Knapp**  
+**Dylan Knapp**  
 Role: Main Backend developer  
 Responsibility: Most knowledge in code of program and implementation. Works mainly with JavaScript.
 
@@ -341,7 +341,7 @@ Responsibility: Ensures project stays on track, and goals are met. Flexible in h
 Role: Main Frontend developer  
 Responsibility: Most knowledge in finalized UI of program, and leads the team with UI design. Works mainly with HTML and CSS.
 
-4. ***Test Plan and bugs***  
+***Test Plan and bugs***  
      
    **Unit testing** \- Verify that individual functions behave correctly in isolation  
    Schedule input testing: Validate that inputs are accepted only in correct time formats. Ensure that start times \< end times. Make sure that empty/invalid input is handled.  
@@ -378,7 +378,7 @@ Responsibility: Most knowledge in finalized UI of program, and leads the team wi
    Reproduce bug, recording all steps  
    Fix with unit/integration tests
 
-   5. ***Documentation plan***  
+ ***Documentation plan***  
       Throughout our assignment, we will develop a readme for debugging, and develop a FAQ page. Most of the point of our UI is to be intuitive, but because our target audience is so vast, it will be good to have a FAQ page. The FAQ page will also provide screen recording guides for the main functionalities. On the FAQ page we will have a survey for any issues we don't expect for users to input their issues into.
 
 # Project Milestone-2
