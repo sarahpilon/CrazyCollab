@@ -1,6 +1,6 @@
-#### **Crazy Collab** 
+# Crazy Collab
 
-#### **1\. Team info**
+### **Team info**
 
 **Dylan Knapp**  
 Role: Main Backend developer
@@ -11,12 +11,12 @@ Role: Project lead
 **Ella Wilkinson**  
 Role: Main Frontend developer
 
-**Communication tools:**  
+### **Communication tools:**  
 \-Instant messaging group chat  
 \-Discord channel   
 \-Microsoft teams with GitHub plugin
 
-*Communication methods:*
+### **Communication methods:**
 
 * Discord → Quick chats.  
 * Teams → Meetings, project related matters.  
@@ -25,39 +25,36 @@ Role: Main Frontend developer
 * Teams → Meetings, project related matters.  
 * Github → Code.
 
-**Communication rules**:
+### **Communication rules**:
 
 * Be nice to each other  
 * Respect others' boundaries  
 * Safe Collaboration Environment: Everyone should feel comfortable contributing without fear of being judged or excluded.
 
-Team Commitment to Respecting Everyone’s Time
+### Team Commitment to Respecting Everyone’s Time
 
 * Give a one-day heads up if you can’t make a meeting  
 * Try not to go more than 10 minutes over meeting time  
 * Prompt Communication: Respond to group messages within 24hrs.  
 *  Everyone must work to get assignments done on time, or agree to take penalty for late work
 
-Team Commitment to Respecting Everyone’s Individual Differences
+### Team Commitment to Respecting Everyone’s Individual Differences
 
 *  No Prejudice or Discrimination   
 * Do not make people too uncomfortable if they are sending you a cue to stop  
 * Decision Making Inclusion: All voices are heard in decision making.
 
-Team Commitment to Upholding These Ground Rules
+### Team Commitment to Upholding These Ground Rules
 
 * Failure to uphold a rule more than 4 times will result in you getting considered for maybe getting kicked, and talking with the professor  
 * Conflicts should be addressed within the team in a respectful and private manner. If the issue persist, involve the professor
 
-## **Conflict Resolution Strategy**
+### **Conflict Resolution Strategy**
 
-**Initial Attempt:** Private discussion between concerned members involved in conflict.
-
-**Secondary Attempt:** If the issue cannot be resolved, mediation with the team leader and members involved in the conflict.
-
-**Tertiary Attempt:** If no improvement is shown, or if the issue affects the group's progress, the team leader will facilitate a respectful, structured discussion with the entire team. 
-
-**Final Attempt:** A member who has received three warnings without showing improvement will have their case escalated to the instructor for resolution.
+**Initial Attempt:** Private discussion between concerned members involved in conflict.  
+**Secondary Attempt:** If the issue cannot be resolved, mediation with the team leader and members involved in the conflict.  
+**Tertiary Attempt:** If no improvement is shown, or if the issue affects the group's progress, the team leader will facilitate a respectful, structured discussion with the entire team.  
+**Final Attempt:** A member who has received three warnings without showing improvement will have their case escalated to the instructor for resolution.  
 
 – Any conflict related discussions will be documented to ensure transparency and accountability.
 
@@ -73,37 +70,75 @@ Team Commitment to Upholding These Ground Rules
 [https://developers.google.com/workspace/calendar/api/guides/overview](https://developers.google.com/workspace/calendar/api/guides/overview)  
 [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/)
 
-**Abstract:**
+## **Abstract:**
 
 Our product is a web application that helps groups plan meetings based on overlapping availability in schedules. Individuals in a group, either remotely or locally, can input their available dates and times, adapting across timezones, and cross reference availability with other group members. From there, a group meeting/event can be scheduled and sent to google calendar for easier tracking and planning.
 
-**Goal:**
+### **Goal:**
 
 The goal of this product is to make scheduling for teams easier and more transparent. Visualizing the scheduling process will allow teams to seamlessly find open times to meet.
 
-**Current Practice**:
+### **Current Practice**:
 
 Students may approach setting a meeting time by comparing their varying school and work schedules, either verbally or via text messaging. This practice can make it difficult to visualize an open meeting time, as team members are stuck trying to decipher times from rough text. 
 
 Our product is not the first of its kind, with similar sites such as When2meet providing similar features that we promise. However, although When2meet is also conveniently a web application, it is very outdated and features an unfriendly UI. Our implementation will be very user friendly with its visual nature and ability to connect to google calendar for external scheduling.
 
-**Novelty:**
+### **Novelty:**
 
 Our approach saves the users schedule, which means they won’t have to retype their schedule when dealing with doing different group projects. Our approach also allows users to follow an intuitive UI, as current approaches either have a hard to visualize UI or relies on memorizing multiple student’s/friends/coworkers schedules. 
 
-**Effects:**
+### **Effects:**
 
 If our product works as intended, we believe many individuals can benefit from its ease of use and genuine helpfulness for planning group meetings. Students, co-workers, friends, and family can all utilize our product to plan their collective schedules.
 
-**Technical Approach:** 
+### **Technical Approach:** 
 
 We plan to implement our product as a web application, making it easily accessible to anyone with an internet connection. Within our application, we will integrate an understandable and easy to navigate UI to allow a seamless experience for users on any device using frameworks such as Bootstrap and Tailwind.
 
-**Risks:**
+## Risks:
 
-The time constraint we must work within is the greatest risk factor we face in the development of this project. With only 10 weeks to build our software, all the while interacting with new APIs and frameworks, we will have to ensure we adequately and efficiently block out our development timeline to help keep us on track and allow room for error and setbacks.
+### ***Unrealistic Timeline and Falling Behind***
+  **Likelihood:** Medium  
+  **Impact:** High  
+  **Evidence:** As college students with other classes, jobs and responsibilities, we are naturally very busy. It is likely that there will be moments where other coursework, or life, gets in the way of us staying on schedule. Falling behind schedule regularly means we are unable to hit milestone goals and deadlines, and thus we are always playing catch-up. If this does occur, more stress and crunch will be added on top of everything else causing this issue to occur in the first place.  
+  **Plan:** Create a detailed schedule and provide lots of opportunities for check-ups and updates.  
+  **Plan for detection:** If we stick to the schedule and closely analyze our progress along it, we can adequately monitor when and if we are starting to slip. If we miss a majority of deadlines in one week, we know our timeline needs to be updated and our work needs to be re-prioritized.  
+  **Mitigation plan:** We plan to communicate with our professor, and realign our goals and figure out if we have to cut a feature to fit the timeline, or if we could put more hands on deck for one week to catch up.  
 
-**Features:**
+  ### **Miscommunicated functionality**
+  **Likelihood:** Low  
+  **Impact:** Medium  
+  **Evidence:** When designing the UI, there was some confusion on how we wanted the website to function. The impact did not seem to be too high, however that is because the issue was caught early. If the issue happened later then it would have a bigger impact.  
+  **Plan:** Sarah’s role as support allows her to ensure both the frontend and backend remain in the know, and there is no miscommunication.  
+  **Plan for detection:** If the miscommunication falls through the cracks, the team will also during their weekly meetings discuss their understanding of the implementation.  
+  **Mitigation plan:** If the issue makes it past all previous possible detections, the group will get onto a call, or meet up in person, and work on the part that was miscommunicated and come up with an universally agreed upon functionality.  
+
+  ### **Website is not universally intuitive, and only we think it is intuitive**
+  **Likelihood:** Low  
+  **Impact:** Medium  
+  **Evidence:** Previously, whenever designing a website our group, because we designed it, would view the design as intuitive. However, whenever we would have a test user or have a fringe user, they would be confused when navigating the website.  
+  **Plan:** Throughout the development, show our designs to many different users to test the UI on a variety of different users.  
+  **Plan for detection:** Have a variety of test users from different ranges test the program out whenever we add a new feature. If the user struggles with the new feature, we will rework the UI a bit to abide by their expectations or make it easier to understand.  
+  **Mitigation plan:** By also having a FAQ section with video tutorials, the risk of a user not understanding how to use the website runs low.  
+
+  ### **Moving Website from locally hosted to publically hosted**
+  **Likelihood:** Low  
+  **Impact:** High  
+  **Evidence:** Since we are using node and will either utilize aws or the OSU webengr server, this process should be relatively simple and straightforward. However, if we are unable to make this transition, the functionality of our product will be ruined based on our design intentions.  
+  **Plan:** We will rigorously test our application using node, ensuring that all components that are needed for an actual web application are present and that everything is connecting properly.  
+  **Plan for detection:** Regular testing our application on our choice of server throughout milestones in development will help us make sure that our application is properly functioning on a server.  
+  **Mitigation plan:** We can search for another method of hosting, or go back through our code-base ensuring everything is as it should be. Adjusting to a new method of hosting shouldn’t be too difficult, so we always have that option.  
+
+  ### ***Difficulty Learning and Implementing New APIs***
+  **Likelihood:** Medium  
+  **Impact**: Medium  
+  **Evidence:** Our product will use several packages and APIs, many of which are new to one if not all team members. Additionally, not all browsers may support certain features of the API we are using, or perhaps they aren’t supported at all. Working out kinks and learning proper implementations of these APIs is likely going to be a challenge, and this can definitely cause a setback as more time is spent reading documentation and debugging.  
+  **Plan:** Before implementing any API calls, ensure that the documentation has thoroughly been read and understood. From there, map out what the implementation will look like before moving onto coding.  
+  **Plan for detection:** Slowly implement the APIs step by step and ensure there are no issues before proceeding. As soon as something begins to stop working properly or when we don’t understand what our code is doing, we must take a step back and re-group to ensure our implementation is proper.  
+  **Mitigation plan:** Searching up tutorials or existing projects that utilize these APIs can help us see where we are going wrong and try to replicate those successes in our project.  
+
+## **Features:**
 
 * Easy to Navigate UI  
 * WCAG 2.2 compliant accessibility standards  
@@ -115,88 +150,6 @@ The time constraint we must work within is the greatest risk factor we face in t
 
 * User Login System (mongodb)  
 * Database to hold user data and available times (mongodb)
-
-***Risk assessment***
-
-  ***Unrealistic Timeline and Falling Behind***
-
-  *Likelihood:* **Medium**
-
-  *Impact:* **High**
-
-  *Evidence:* As college students with other classes, jobs and responsibilities, we are naturally very busy. It is likely that there will be moments where other coursework, or life, gets in the way of us staying on schedule. Falling behind schedule regularly means we are unable to hit milestone goals and deadlines, and thus we are always playing catch-up. If this does occur, more stress and crunch will be added on top of everything else causing this issue to occur in the first place.
-
-  *Plan:* Create a detailed schedule and provide lots of opportunities for check-ups and updates. 
-
-  *Plan for detection:* If we stick to the schedule and closely analyze our progress along it, we can adequately monitor when and if we are starting to slip. If we miss a majority of deadlines in one week, we know our timeline needs to be updated and our work needs to be re-prioritized.
-
-  *Mitigation plan:* We plan to communicate with our professor, and realign our goals and figure out if we have to cut a feature to fit the timeline, or if we could put more hands on deck for one week to catch up. 
-
-  
-
-  **Miscommunicated functionality**
-
-  *Likelihood:* **Low**
-
-  *Impact:* **Medium**
-
-  *Evidence:* When designing the UI, there was some confusion on how we wanted the website to function. The impact did not seem to be too high, however that is because the issue was caught early. If the issue happened later then it would have a bigger impact.
-
-  *Plan:* Sarah’s role as support allows her to ensure both the frontend and backend remain in the know, and there is no miscommunication.  
-
-  *Plan for detection:* If the miscommunication falls through the cracks, the team will also during their weekly meetings discuss their understanding of the implementation.
-
-  *Mitigation plan:* If the issue makes it past all previous possible detections, the group will get onto a call, or meet up in person, and work on the part that was miscommunicated and come up with an universally agreed upon functionality.
-
-  
-
-  **Website is not universally intuitive, and only we think it is intuitive**
-
-  *Likelihood:* **Low**
-
-  *Impact:* **Medium**
-
-  *Evidence:* Previously, whenever designing a website our group, because we designed it, would view the design as intuitive. However, whenever we would have a test user or have a fringe user, they would be confused when navigating the website.
-
-  *Plan:* Throughout the development, show our designs to many different users to test the UI on a variety of different users.
-
-  *Plan for detection:* Have a variety of test users from different ranges test the program out whenever we add a new feature. If the user struggles with the new feature, we will rework the UI a bit to abide by their expectations or make it easier to understand.
-
-  *Mitigation plan:* By also having a FAQ section with video tutorials, the risk of a user not understanding how to use the website runs low.
-
-  
-
-  ***Moving Website from locally hosted to publically hosted***
-
-  *Likelihood:* **Low**
-
-  *Impact:* **High**
-
-  *Evidence:* Since we are using node and will either utilize aws or the OSU webengr server, this process should be relatively simple and straightforward. However, if we are unable to make this transition, the functionality of our product will be ruined based on our design intentions.
-
-  *Plan:* We will rigorously test our application using node, ensuring that all components that are needed for an actual web application are present and that everything is connecting properly.
-
-  *Plan for detection:* Regular testing our application on our choice of server throughout milestones in development will help us make sure that our application is properly functioning on a server. 
-
-  *Mitigation plan:* We can search for another method of hosting, or go back through our code-base ensuring everything is as it should be. Adjusting to a new method of hosting shouldn’t be too difficult, so we always have that option.
-
-  
-
-  ***Difficulty Learning and Implementing New APIs***
-
-  *Likelihood:* **Medium**
-
-  *Impact:* **Medium**
-
-  *Evidence:* Our product will use several packages and APIs, many of which are new to one if not all team members. Additionally, not all browsers may support certain features of the API we are using, or perhaps they aren’t supported at all.
-
-  Working out kinks and learning proper implementations of these APIs is likely going to be a challenge, and this can definitely cause a setback as more time is spent reading documentation and debugging. 
-
-  *Plan:* Before implementing any API calls, ensure that the documentation has thoroughly been read and understood. From there, map out what the implementation will look like before moving onto coding.
-
-  *Plan for detection:* Slowly implement the APIs step by step and ensure there are no issues before proceeding. As soon as something begins to stop working properly or when we don’t understand what our code is doing, we must take a step back and re-group to ensure our implementation is proper.
-
-  *Mitigation plan:* Searching up tutorials or existing projects that utilize these APIs can help us see where we are going wrong and try to replicate those successes in our project.
 
 ***Project Schedule***
 
@@ -716,7 +669,7 @@ Before final submission, external feedback will be used to identify bugs, access
 * Final documentation completed  
 * Final presentation prepared and delivered
 
-*** Project Deliverable 3***
+# Project Milestone-3
 # **Software Architecture**
 
 Our web application will utilize a **peer to peer** (P2P) system architecture in order to maximize scalability and overall ease of use for connecting multiple users and sharing data between them. 
