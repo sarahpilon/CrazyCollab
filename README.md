@@ -473,7 +473,7 @@ Packages:
 - **Bootstrap HTML:** Developer tools such as buttons, boxes, and fields  
 - **Tailwind CSS:** Providing utility classes and prefixes for developing UI
 
-## Model Component: Giga Poop
+## Model Component:
 
 The model component will connect to the MongoDB database to access user-specific data based on a required username and password, which gets passed through by a HTTP request routed by a route handler in the controller. Additionally, the model component will perform other operations based on HTTP requests, such as connecting to a session of other clients in a P2P network and making Google Calendar API calls. Most API calls will be contained in this component in order for the application to remain restful and organized.
 
