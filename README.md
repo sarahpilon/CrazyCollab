@@ -10,12 +10,16 @@ Our product is a web application that helps groups plan meetings based on overla
 * WCAG 2.2 compliant accessibility standards  
 * Able to adapt to different time zones   
 * Suggested Meeting times   
-* Connect with google calendar to set up meeting times automatically
+* Connect with google calendar to set up meeting times automatically  
+* Cached browser data with Web Storage API
 
 **Stretch Goals:**
 
-* User Login System (mongodb)  
-* Database to hold user data and available times (mongodb)
+* User Login System (MongoDB)  
+* Parser for .ics files, both importing and exporting (with ical.js)  
+* Database to hold user data and available times (mongodb)  
+* Adjustable UI and Font  
+* Support other calendar apps (Outlook, Apple)
 
 ## Goal
 
@@ -23,13 +27,19 @@ The goal of this product is to make scheduling for teams easier and more transpa
 
 ## Current Practice
 
-Students may approach setting a meeting time by comparing their varying school and work schedules, either verbally or via text messaging. This practice can make it difficult to visualize an open meeting time, as team members are stuck trying to decipher times from rough text. 
+Students may approach setting a meeting time by comparing their varying school and work schedules, either verbally or via text messaging. This practice can make it difficult to visualize and decipher an open and optimal meeting time, as team members are stuck trying to convey availability via back-and-forth messaging or unclear communication.
 
-Our product is not the first of its kind, with similar sites such as When2meet providing similar features that we promise. However, although When2meet is also conveniently a web application, it is very outdated and features an unfriendly UI. Our implementation will be very user friendly with its visual nature and ability to connect to google calendar for external scheduling.
+One of our main competitors with a foothold in this type of team scheduling is Microsoft with Outlook Calendar, which has many of the same features we wish to implement such as visualized schedule overlap and exporting the meeting time to your calendar. From our own experiences, and testimonies from peers, Outlook calendar isn’t widely known nor utilized by students, who are ultimately our target audience. Additionally, Outlook calendar (depending on courses or app settings) can automatically insert times for events like office hours, zoom meetings, or campus events. Many of these events may not impact one’s schedules, contrary to their depiction on Outlook. Additionally, Outlook assumes by default individuals are unavailable outside of business hours. If one were to use Outlook Calendar to set up a meeting, they’d have to ensure all the information regarding their schedule, and everyone else’s, is already inputted correctly, or they’d have to adjust it before creating an event/meeting time. This may be less of an issue for some in the professional world, but it may be much more problematic for students based on our explorations of this issue. Although OSU’s systems, and perhaps other schools’, are integrated with Microsoft’s services, we believe our implementation will provide a better experience.
+
+Existing web applications such as When2meet also provide similar features that we promise. However, it features an outdated and may feature inaccessible UI that doesn’t comply with WCAG standards. When2meet also allows 3rd party advertisements to be on their site that may be predatory and unfiltered, possibly leading users to visit or download harmful sites and media. Another competitor, Timeful, features a more modern UI than When2meet, and has almost all the features we plan to implement in ours. It also has many great reviews, and already has a strong presence online among those seeking these kinds of services. However, our team had difficulty with the interface on mobile devices, and it felt very clunky to navigate through. Additionally, there didn’t seem to be any method of preventing multiple meeting times being scheduled for an event, possibly introducing an issue where team members all schedule different times for their meetings with no way to communicate what one individual, or the group leader, already scheduled.
 
 ## Novelty
 
-Our approach saves the users schedule, which means they won’t have to retype their schedule when dealing with doing different group projects. Our approach also allows users to follow an intuitive UI, as current approaches either have a hard to visualize UI or relies on memorizing multiple student’s/friends/coworkers schedules. 
+Crazy Collab will have users input their availability in the form of a weekly schedule as soon as they log-on. A helpful, visual representation of a calendar week will serve as a visual and interactive way to plot out one’s schedule. Dates, times, and days of the week can all be configured to represent a user’s schedule, which will be used to cross reference with their group members. This availability will be saved if they log-in to their profile, meaning they will not need to re-enter their availability across different group settings. Unlike Outlook, our implementation will not be dependent on any pre-existing calendar set-up, although we hopefully plan to add this option for users who regularly use digital calendar apps, which makes our approach a more isolated and stream-lined experience that avoids the need to manage a digital calendar.
+
+Users can invite each other to sessions to participate in the scheduling of a meeting, and our UI will then clearly visualize each user’s schedules to illustrate overlap and openings, with the program automatically suggesting best meeting times. The visualized schedule will be designed to be easily readable, universally accessible, and friendly across different devices. From there, the session leader can pick a meeting time, allowing all users to export that time to their Google Calendar (and other supported calendars). 
+
+Our unique approach will take the best features of other implementations and condense them into a neat package that provides individuals with an easy experience for planning meeting times with others.
 
 ## Effects
 
@@ -37,7 +47,7 @@ If our product works as intended, we believe many individuals can benefit from i
 
 ## Technical Approach 
 
-We plan to implement our product as a web application, making it easily accessible to anyone with an internet connection. Within our application, we will integrate an understandable and easy to navigate UI to allow a seamless experience for users on any device using frameworks such as Bootstrap and Tailwind.
+We plan to implement our product as a web application, making it easily accessible to anyone with an internet connection. Users can interact with or without an account, with the benefit being long-term saved information on a cloud database. Users will connect to each other via peer to peer networking using WebRTC, which provides secure, reliable, and widely supported connections in browsers. Within our application, we will integrate an understandable and easy to navigate UI to allow a seamless experience for users on any device using frameworks such as Tailwind and React.
 
 ## Risks
 
@@ -170,7 +180,7 @@ Once availability input and schedule visualization are functional, external feed
 **Late Stage Feedback (Week 9\)**  
 Before final submission, external feedback will be used to identify bugs, accessibility issues, and edge cases. Instructor feedback and peer testing will help ensure the application behaves as expected and is easy to use.
 
-# **10 Week Development Timeline**
+# **10 Week Development Timeline and Project Schedule**
 
 **Week 1: Team Formation**
 
@@ -408,20 +418,26 @@ Do test cases that are based off of the use case, and run by people not in the g
 
 # **Software Architecture**
 
-Our web application will utilize a **peer to peer** (P2P) system architecture in order to maximize scalability and overall ease of use for connecting multiple users and sharing data between them. 
+Our web application will utilize a **peer to peer** (P2P) system architecture with cloud assistance in order to maximize scalability and overall ease of use for connecting multiple users and sharing data between them. Our application will be hosted on AWS, which integrates well with our chosen architecture due to AWS’s provided static IP address that our networking can work off of. Our P2P API, WebRTC, will ensure a secure and stable connection between clients.
 
 ## Major Components:
 
-The major components present here follow the model-view-controller application structure.
+The major components present here follow the basic architecture of a full-stack MERN web app using a restful API and a model-view-controller structure.
 
-- The model component is in charge of making API calls and executing functions pertaining to server-side data access and connection.   
-- The controller component will contain route handlers in order to properly respond to HTTP requests.  
-- The scheduler component will parse any number of schedules and work out where and when there is overlap.  
-- The view component will contain all HTML pages with dynamic interaction for the user to send HTTP requests and navigate the web application.
+- The client-side/fronted component will contain all content pages with dynamic interaction for the user to send HTTP requests and navigate the single page web application. The client will also optionally be in charge of locally storing cached data.  
+- The controller component will contain route handlers in order to properly respond to HTTP requests by calling the model component.  
+- The model component is in charge of making calls to the other server-side components and executing other algorithms in order to respond to the HTTP requests.   
+- The database component will contain all API calls needed to execute CRUD operations on the DBMS  
+- The network component will contain all API calls relating to peer to peer networking connectivity and communication.  
+- The schedule component will be responsible for parsing user-inputed schedule data, either manually inputted or uploaded from a file, and making API calls related to time zone calculations. Additionally, the schedule component will export meeting times to Google calendar, and any other calendars we wish to integrate.
 
 ## Interfaces Between Components:
 
-Our backend (model and controller, server-side) will be developed using express.js in order to implement route handling and HTTP requests from the user/client. Each request’s body will be structured to contain all the information our route handlers, located in our controller component, will need to process the requests properly. Our frontend will be sending all the requests through fields and forms. Error handling will be implemented to ensure all request bodies contain the sufficient data needed, and appropriate response codes will be sent back. Our debugging and test suite procedures will make input validation and request sending and responses work properly. The requests will inherently be secure since they are using HTTPS protocol for the HTTP requests. The controller component will directly call the model component’s functions for executing requests.
+Our backend (model, controller, network, database components; server-side) will be developed using express.js in order to implement route handling and HTTP requests from the user/client. Each request’s body will be structured to contain all the information our route handlers, located in our controller component, will need to process the requests properly. The controller component will route the requests with the corresponding data/arguments to the model, who may then handle the request itself or send it to the database, network, or schedule component if it pertains to the DBMS, P2P connection, or schedule parsing respectively. The database component will only be used when CRUD operations are executed via HTTP requests.
+
+Our frontend will be sending all the requests through fields, forms, and fetch calls. As data is inputted by the frontend and responses are sent back from the controller, the optionally browser caching will locally save data and load it into respective portions of the pages. Error handling will be implemented to ensure all request bodies contain the sufficient data needed, and appropriate response codes will be sent back. Our debugging and test suite procedures will make input validation and request sending and responses work properly. The requests will inherently be secure since they are using HTTPS protocol for the HTTP requests. The controller component will directly call the model component’s functions for executing requests.
+
+The network component may need to update the web page at any given moment depending on when data is sent over by other users in a session. It will be able to send a signal to the frontend React application and make it update to reflect the corresponding change in data. This data will be parsed via the schedule component and be sent over. and from there the frontend will be able to update the contents of the page accordingly. Error handling will be implemented to ensure data shown on each client is accurate and consistent. The network connections and data transfers will be inherently secure due to the nature of our chosen API, WebRTC, which utilizes end to end encryption. 
 
 ## Data
 
@@ -431,73 +447,87 @@ Database Schema: Each user has this data stored in the database as their profile
 
 - Username (String)  
 - Password (String)  
-- Availability (2D Array or JS Object)
+- Availability (JS Object: {“Monday”, \[8:15, 16:45\], ….)
+
+Users are not required to log-in, and this is the main way we’ve designed our system work. The implementation of cached data in the browser is a feature we hope to add to extend the functionality of the application. We would implement this feature using Web Storage API, which can easily and almost universally store data cached in browser sessions. The stored data would be any relevant data to the current browser session the user is involved in. Moreover, any inputted information like their schedule, display name in session, etc.
 
 ## Architecture Assumptions:
 
 - A large number of clients can all access the MongoDB database in order to add their user profile information and share their availability with other clients while still having a secure and reliable username and password.  
 - The connection between other clients is smooth and updates consistently with accurate data across all clients connected in a session.  
 - Each client is able to simultaneously run their client-side and server-side components in the browser with no external downloads or resources required outside of the browser.  
-- The P2P connections can handle at least a medium number of users, at least a dozen, in any given session.
+- The P2P connections can handle a medium number of users (at least a dozen) in any given session.  
+- The AWS server is able to properly host our application and field our P2P networking through it.
 
 ## Alternative Architecture Choices:
 
 - A client-server architecture was initially proposed instead of P2P  
-  - Pros:  
+  - Client-server Pros:  
     - More secure data encryption.  
     - More reliable and consistent data across clients.  
-  - Cons:  
+  - Client-server Cons:  
     - More expensive to manage.  
     - The loss of the server means all clients lose connection.  
     - One server would possibly host all sessions, or multiple serves would be required. This could quickly become complicated and costly.  
-- We are choosing to store our users’ data in a database, where we can alternatively store the data in the browser through web storage and IndexedDB  
-  - Pros:  
-    - Quicker to access since it’s local to the users’ machine or browser.  
-    - Easily store data long-term without the need for database upkeep.  
-    - Persistent data through page navigation.  
-    - Able to store smaller and simpler data in web storage, as well as larger and more complex data in IndexedDB.  
-    - Has offline functionality with other APIs it works with (Service workers and Cache API)  
-  - Cons:  
-    - More complex, and our team is less familiar with these systems  
-    - Mainly used for saving data from session to session rather than allowing for user profile data creation and storage that our product plans to implement.  
-    - Stores data in the browser, and we want our product to not rely on that.
+- We have chosen to separate our backend components, rather than having the model hold all API calls.  
+  - Centralized API Calling Pros:  
+    - APIs, data, and functions can all be stored in one place and obfuscated from the rest of the program, allowing for flexible changes to be made as long as input and output are the same from the eyes of the rest of the program.  
+  - Centralized API Calling Cons:  
+    - The model should only be used for route handling, and functions from APIs or ones we write may need to be used elsewhere in the program.
 
 # **Software Design** 
 
-## View Component:
+## Client/Frontend Component:
 
-The view component will use HTML and CSS to give the user an interface to do all actions they may need to perform by sending HTTP requests to the backend components with interactive and dynamic html elements and pages. Certain pages will contain forms or input fields that will fill out the request body of a HTTP request, which can then be sent to the controller for processing and response. The view will receive the response of the controller and may give the user visual access to data, update page elements or navigate to other pages. 
+The client-side component will be built with React, Vite, and Tailwind to give the user an interactive and dynamic interface to perform actions by navigating pages, interacting with React components, and sending HTTP requests to the backend components. Certain pages will contain interactive portions, such as input fields, whose data will fill out the request body of a HTTP request, which will then be sent to the controller for processing and response. The view will receive the response of the controller and may give the user visual access to data, update page elements or navigate to other pages. The added functionality available to us through React’s API will make creating robust interactions and pages easier.
 
 Packages:
 
-- **Bootstrap HTML:** Developer tools such as buttons, boxes, and fields  
+- **React.js & Vite:** Allows for a dynamically created and component-based SPA implementation  
 - **Tailwind CSS:** Providing utility classes and prefixes for developing UI
-
-## Model Component:
-
-The model component will connect to the MongoDB database to access user-specific data based on a required username and password, which gets passed through by a HTTP request routed by a route handler in the controller. Additionally, the model component will perform other operations based on HTTP requests, such as connecting to a session of other clients in a P2P network and making Google Calendar API calls. Most API calls will be contained in this component in order for the application to remain restful and organized.
-
-Packages:
-
-- **Mongoose for MongoDB:** Interacting with MongoDB cloud database and defining classes for entries into the database  
-- **Google Calendar API:** Creating calendar events based on meeting times decided in user sessions  
-- **WebRTC API:** Creates and connects to P2P sessions between client-server users.
 
 ## Controller Component:
 
-The controller’s main purpose is to define route handlers for HTTP requests sent from the view component. Requests will be monitored and routed using Express.js. Based on the request method and the target address, the controller will call certain functions from the model component in order to complete the request. The controller will ensure a status code and a response to each request is sent based on the success of the request.
+The controller’s main purpose is to define route handlers for HTTP requests sent from the frontend. Requests will be monitored and routed using Express.js. Based on the request method and the target address, the controller will call certain functions from the model component in order to complete the request. The controller will ensure a status code and a response to each request is sent based on the success of the request.
 
 Packages:
 
 - **Express.js:** Used to build the backend component to create and manage http request route handlers, as well as for allowing asynchronous functions.
 
-## Schedule Component:
+## Model Component
 
-This component will be in charge of making comparisons and calculations based on schedules that are inputted and parsed. The schedules, which will be some data structure or type like a JavaScript Object or a JSON, will be inputted and parsed from both the user and other clients in the user’s session. This data will be sent from the user via the model after the information is requested by the user. An algorithm will be executed to examine all schedules and return the results of overlapping availability and or openings. This data can be passed to the view component and be displayed so the user can visually view the results.
+The model component will call the other backend components in response to the calls from the route handler. Data passed through from the controller will undergo any extra parsing or modification, and then will be sent to the respective component(s) depending on the requests’ goal/purpose. Additionally, the model component may store references to relative data that the components will use. The model essentially acts as the middle man between the controller and the API calls, and will ensure that the controller gets the data it needs to send back a response to the client.
+
+Dependencies:
+
+- **Database Component**  
+- **Network Component**  
+- **Schedule Component**
+
+## Database Component:
+
+This component will house all references and calls to the DBMS and its respective API. The database schema will be set up here, as well as the connection to the database with the proper log-in metrics so the user can only access their data. All standard CRUD operations will be supported here.
 
 Packages:
 
-- **Timezone API:** Translates times between timezones.
+- **Mongoose for MongoDB:** Provides API calls for connecting to a MongoDB cluster and performing CRUD operations on data. 
+
+## Network Component:
+
+The network component will be in charge of connecting clients to other clients in sessions. A form of an invitation will be sent through and authenticated, allowing for a connection to me made, maintained, and monitored by this component. The model will call this component in response to route handlers passed to it, and additionally this component will need to update the client’s view in response to data transfers from other clients in the session, additionally calling the schedule component to update the session’s group schedule.
+
+Packages:
+
+- **WebRTC:** Allows secure, robust peer to peer connectivity capabilities across modern browsers.
+
+## Schedule Component:
+
+This component will be in charge of making comparisons and calculations based on schedules that are inputted and parsed. The schedules, which will be some data structure or type like a JavaScript Object or a JSON, will be inputted and parsed from both the user and other clients in the user’s session. This data will be sent from the user via the model after the information is requested by the user. An algorithm will be executed to examine all schedules and return the results of overlapping availability and or openings. This data can be passed to the view component and be displayed so the user can visually view the results. This component has the potential to also support parsing schedules to and from files, as well as making calls to calendar APIs to export meeting times.
+
+Packages:
+
+- **Timezone API:** Translates times between timezones.  
+- **Google Calendar API:** Creating calendar events based on meeting times decided in user sessions
 
 ## Coding Guidelines
 
@@ -512,70 +542,102 @@ These guidelines are the most similar to what we usually comment, and easiest to
 
 Verify that individual functions behave correctly in isolation
 
-**Schedule input testing:** Validate that inputs are accepted only in correct time formats. Ensure that start times \< end times. Make sure that empty/invalid input is handled.  
-**Timezone testing:** Make sure the program converts individual availability into a unified timezone.  
-**Login system testing:** Ensure the user cannot create a login (username) with invalid characters, such as spaces. We also need to ensure that usernames are created one time, and are unique.  
-**Overlap/Suggested Meeting:** Make sure the program correctly identifies times across multiple users.  
-**Strategy**:  
+**What we’ll test for:**
+
+- **Schedule input testing:** Validate that inputs are accepted only in correct time formats. Ensure that start times \< end times. Make sure that empty/invalid input is handled.  
+- **Timezone testing:** Make sure the program converts individual availability into a unified timezone.  
+- **Login system testing:** Ensure the user cannot create a login (username) with invalid characters, such as spaces. We also need to ensure that usernames are created one time, and are unique.  
+- **Overlap/Suggested Meeting:** Make sure the program correctly identifies times across multiple users.
+
+**Our strategy:**  
 Write tests for both normal and edge cases, with each module passing 100% before integration.
 
 ### System / Integration Testing
 
 Ensure functions interact correctly as a whole system.
 
-**Multi user availability submission:** Multiple users input availability, system computes overlap, UI displays correct results.  
-**Suggested meeting flow:** Algorithm suggests meeting, meeting is confirmed, Google Calendar integration works.  
-**Error handling:** Submitting invalid availability triggers error messages and the system does not crash.  
-**Strategy**:  
-Conduct integration tests  
-Create user scenarios  
-Perform cross browser testing (Chrome, Firefox, Edge)
+**What we’ll test for:**
+
+- **Multi user availability submission:** Multiple users input availability, system computes overlap, UI displays correct results.  
+- **Suggested meeting flow:** Algorithm suggests meeting, meeting is confirmed, Google Calendar integration works.  
+- **Error handling:** Submitting invalid availability triggers error messages and the system does not crash.
+
+**Our strategy**:
+
+- Conduct integration tests  
+- Create user scenarios  
+- Perform cross browser testing (Chrome, Firefox, Edge)
 
 ### Usability Testing
 
 Verify that the application is intuitive, accessible, and meets user needs
 
-**Availability Input:** Can users select time blocks easily, and does it prevent invalid inputs?  
-**Schedule Visualization:** Can users interpret overlapping times visually? Does color usage (contrast) support accessibility?  
-**Suggested meeting Confirmation:** Users can follow steps to finalize a meeting and export to their Google Calendar.  
-**Mobile responsiveness:** UI works on mobile and tablet layouts  
-**Strategy**:  
-Have non-group peers/students conduct a usability test  
-Assign tasks, such as input availability, identify overlapping time with another user, and confirm a suggested meeting and export to Google Calendar  
-Have the students record any errors, time taken to complete tasks, and accessibility issues.  
-Collect feedback once the test has concluded.
+**What we’ll test for:**
+
+- **Availability Input:** Can users select time blocks easily, and does it prevent invalid inputs?  
+- **Schedule Visualization:** Can users interpret overlapping times visually? Does color usage (contrast) support accessibility?  
+- **Suggested meeting Confirmation:** Users can follow steps to finalize a meeting and export to their Google Calendar.  
+- **Mobile responsiveness:** UI works on mobile and tablet layouts
+
+**Our strategy**:
+
+- Have non-group peers/students conduct a usability test  
+- Assign tasks, such as input availability, identify overlapping time with another user, and confirm a suggested meeting and export to Google Calendar  
+- Have the students record any errors, time taken to complete tasks, and accessibility issues.  
+- Collect feedback once the test has concluded.
+
+### Accessibility Testing
+
+Verify our software is WCAG compliant using tools that are often seen as industry standard.
+
+**What tools and methods we’ll use:**
+
+- **Wave Evaluation Tool:** Identify common issues, an automated tool that will catch missing alt text, skipped heading levels, and contrast issues.  
+- **Aquia Web Governance:** Simulate visual impairment disabilities to identify readability issues.  
+- **Keyboard navigation:** Ensure the site can be navigated without the use of a mouse   
+- **Screen reader testing:** Confirm compatibility with popular screen readers.  
+- **Visual Test Stress:** Check for screen shaking and/or extra windows opening
 
 ### Bug handling
 
-Track bugs: Use GitHub issues  
-Rank by severity: (Critical, major, minor)
+Each failed test leads to a bug report to ensure the issue can properly be resolved and lead to the test passing in the future. Once we find a bug, we will make a GitHub issue detailing the bug, how to reproduce the bug, and its severity (critical, major, minor). Then we will work to fix the bug and perform testing until we can verify the bug has been fixed. 
 
-### Testing:
+Before launch, we will ensure all critical bugs are eliminated, and 90% of the major bugs are resolved. We want the crucial components of the application to work first, and then the remaining bugs can be fixed when there’s time, such as in post-launch patches.
 
-Reproduce bug, recording all steps  
-Fix with unit/integration tests
+### Test Data and Metrics
+
+**Dataset:** Our testing datasets will include edge case test suites that test different user, reservation, group, and notification data. Automated testing will provide a random array of data that can be tested against all of our features. Practical user testing will give us insight into and feedback for UI accessibility and functionality.
+
+**Specific Test Suites:**
+
+- **User:** empty username, duplicate user, user with special characters, different languages  
+- **Reservation:** Multiple overlapping ones, end time before start time, different timezones  
+- **Group:** Empty group, maximum group size, minimum group size  
+- **Notifications:** no email (no account), invalid email
+
+**Metrics:** We will chase branch and path coverage metrics to ensure that our test cases cover each possible edge case, as those will predict as being the most problematic, and additionally cover all portions of our application to ensure proper functionality all around.
 
 # **Team Info**
 
 **Dylan Knapp**  
 Role: Main Backend developer  
 Responsibility: Most knowledge in code of program and implementation. Works mainly with JavaScript.  
-Justification: The main backend developer is responsible for availability comparison logic, time zone handling, and API interactions. Dylan focuses on ensuring the system functions correctly behind the UI.
+Justification: The main backend developer is responsible for availability comparison logic, time zone handling, and API interactions. Dylan focuses on ensuring the system functions correctly behind the UI through integrating implementations and directing testing methods.
 
 **Sarah Pilon**  
-Role: Project lead  
-Responsibility: Ensures project stays on track, and goals are met. Flexible in helping out both front and backend developers depending on what goal needs the most focus. Doesn’t have a specific language they mainly work on.  
+Role: Project Manager   
+Responsibility: Ensures project stays on track, and goals are met. Flexible in helping out both front and backend developers depending on what goal needs the most focus. Doesn’t have a specific language they mainly work on. Will handle the testing.  
 Justification: This role is necessary to coordinate tasks, manage deadlines, and make sure work is aligned with project goals. She also will help out with both backend and frontend, which is needed to ensure documentation stays consistent and both sides remain on the same wavelength. Sarah is responsible for planning, communicating, and conflict resolution.
 
 **Ella Wilkinson**  
-Role: Main Frontend developer  
+Role: Front-End Engineer, UI Design, QA Engineer  
 Responsibility: Most knowledge in finalized UI of program, and leads the team with UI design. Works mainly with HTML and CSS.  
 Justification: A main frontend role is required to ensure usability and accessibility. Ella is responsible for UI design, availability input forms, schedule visualization, and WCAG 2.2 compliance.
 
 ### Software Toolset
 
 * **Frontend**:  
-  Bootstrap 5.3 and Tailwind CSS for responsive and accessible UI design as they are considered industry standards, and are reliable in developing websites.  
+  Tailwind CSS for responsive and accessible UI design as they are considered industry standards, and are reliable in developing websites.  
 * **Backend**:  
   JavaScript with Express.js and Node.js for scheduling logic and API integration as we have the most experience with these platforms, and will work sufficiently with our group plans.  
 * **APIs**:  
@@ -648,8 +710,11 @@ Throughout our assignment, we will develop a readme for debugging, and develop a
 [https://github.com/sarahpilon/-CS-362-Project-Pitch-](https://github.com/sarahpilon/-CS-362-Project-Pitch-)
 
 **Project resources:**  
-[https://getbootstrap.com/docs/5.3/getting-started/introduction/](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
 [https://tailwindcss.com/](https://tailwindcss.com/)  
 [https://tailwindcss.com/docs/installation/using-vite](https://tailwindcss.com/docs/installation/using-vite)  
+[https://vite.dev/guide/](https://vite.dev/guide/)  
+[https://react.dev/learn/build-a-react-app-from-scratch](https://react.dev/learn/build-a-react-app-from-scratch)  
+[https://webrtc.org](https://webrtc.org)  
+https://www.mongodb.com/docs/api/  
 [https://developers.google.com/workspace/calendar/api/guides/overview](https://developers.google.com/workspace/calendar/api/guides/overview)  
 [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/)  
