@@ -15,7 +15,7 @@ users and developers. This goal must be pushed back another week or two as we sl
 4. **Next Week's Planned Goals:**  
     1. Complete most of basic setup of all application components and codebase as a whole, finish in 7 days
     2. Start implementing frontend code for UI based on finalized Figma designs, finish in 7 days
-    3. Develop a plan for user and developer documentation, and start writing drafts, finish in 3 days
+    3. Develop a plan for user and developer documentation and start writing drafts, and prepare for midterm presentation, finish in 3 days
 ## Team Contributions
 ### Sarah Pilon
 1. **This Week's Planned Goals:**  
@@ -25,7 +25,7 @@ users and developers. This goal must be pushed back another week or two as we sl
      1. Figma designs completed
      2. PlantUML diagram finished
 3. **Next Week's Planned Goals:**  
-     1. Develop a plan for user and developer documentation, and start writing drafts, finish in 3 days
+     1. Develop a plan for user and developer documentation and start writing drafts, and prepare for midterm presentation, finish in 3 days
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
    1. Implement UI on OSU's public html hosting, finish in 4 days
