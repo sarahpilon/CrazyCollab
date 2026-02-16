@@ -5,14 +5,15 @@
     2. Start implementing frontend code for UI based on finalized Figma designs, finish in 7 days
     3. Develop a plan for user and developer documentation and start writing drafts, and prepare for midterm presentation, finish in 3 days
 2. **Team Progress and Issues:**  
-   1. Completed midterm presentation
-   2. Discussed possible stretch goals
-   3. Did further research on packaging to use
-   4. Update living document  to add clarification found while researching throughout the week
-   5. Updated weekly document according to feedback given from presentation.
-   6. Website pushed on public html ready for implementation
-   7. Avaliablity input has not been started, so all hands on deck for that and overlapping logic
-3. **Next Week's Planned Goals:**  
+    This week saw our team presenting our project update to the shareholders (classmates, professor, and TAs), which gave us lots of valuable
+   feedback that we used to revise our living documentation's details of our design, architecture, and feature implementation. These changes were
+   a welcome addition, but they unfortunately delayed the setup and implementation of our codebase further. However, from this point on our app
+   will have a much more solid and rounded out design that integrated the feedback given after our presentation, as well as realizations our
+   team made through the process of presenting and re-writing design choices. The novelty of our app was not presented well in our documents and
+   presentation, so we enforced that aspect in writing and we plan to execute on that novelty as we get further into development. In summary,
+   our overall codebase development was delayed and will need to be caught up on in the following week. However, our product is well planned for
+   and our implementation efforts should flow smoothly from this point on.
+4. **Next Week's Planned Goals:**  
     1. Draft and start implementing algorithms for backend components, finish in 7 days
     2. Fully implement half of the frontend UI, finish in 7 days
     3. Begin developing tests (total time 6 days)
