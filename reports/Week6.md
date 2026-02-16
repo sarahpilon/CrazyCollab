@@ -44,11 +44,14 @@
 1. **This Week's Planned Goals:**  
    1. Complete basic setup of all application components and codebase as a whole, finish in 7 days
 2. **Progress and Issues:**  
-   1. w
-   2. a
-   3. s
-   4. d
+   1. Due to the large amount of feedback and neccessary revisions that followed, this week was mostly spent re-designing aspects of the 
+   application. The living documents was updated accordingly, and now accurately represents how the project architecture will look moving 
+   forward.
+   2. Comparing our project with other codebases and similar products help influence the design choices behind our planned implementation.
+   3. I learned that our previous implementation was held back by our choices of, or lack thereof, packages and what role components played. 
+   4. For a majority of the week, I was stuck from adding to our code base based on our designs due to the many revisions. After this week, 
+   I may resume the programming of the app.
 3. **Next Week's Planned Goals:**  
-    1. TBD
+    1. Draft and start implementing algorithms for backend components, finish in 7 day
 
 
