@@ -32,9 +32,13 @@ wasd
 1. **This Week's Planned Goals:**  
    1. Begin skeleton code and commits to codebase to prepare for mid-term project presentation, finish in 5 days
 2. **Progress and Issues:**  
-   1. w
-   2. a
-   3. s
-   4. d
+   1. Began writing codebase and setting up app in a branch off of the repository. Set up node and express, ready to install remaining packages. 
+   Some simple routes and route handlers were setup to test that aspect of the app.
+   2. Using github deskptop and managing the codebase with a local copy on my machine worked well, allowing me to freely edit and push changes with ease. 
+   Additionally, the workflow that was utilized with Visual Studio code proved to be efficient and effective.
+   3. Learned more about setting up node and express from scratch since previously I always had a framework or example to build off of.
+   4. Had some initial problems creating the application with node, such as downloading the correct packages and getting the app to run 
+   on a local server. Also had issues with route handlers behaving in unexpected ways. Once the remaining packages are implemented, the app 
+   can be setup in a fashion more akin to our design.
 3. **Next Week's Planned Goals:**  
     1. Complete basic setup of all application components and codebase as a whole, finish in 7 days
