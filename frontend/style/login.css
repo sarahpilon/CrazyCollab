@@ -1,0 +1,29 @@
+body {
+    background-color: #EADFD5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input {
+    width: 100%;
+}
+
+.card {
+    background-color: #AAB0C0;
+    padding: 50px;
+    border-radius: 8px;
+    min-width: 300px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
