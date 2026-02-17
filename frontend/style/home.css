@@ -1,0 +1,25 @@
+body {
+    background-color: #EADFD5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subtext {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    font-size: 14px;
+    padding-top: 20px;
+    color: #000000;
+}
