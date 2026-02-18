@@ -7,14 +7,13 @@ const PORT = 3000;
 
 const app = express();
 app.use(express.json());
-app.use(express.static('frontend'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
 
 
-app.post('/home', asyncHandler( async (req, res) => {
+app.post('/collab', asyncHandler( async (req, res) => {
 
-    res.status(203).send("Logged in"); // model.log_in(req.body)
+    res.status(200).send("Logged in"); // model.log_in(req.body)
 }));
