@@ -10,35 +10,35 @@ Our website is hosted in a Git repository. To get the source code, connect your 
 
 # Layout of the Project
 
-CrazyCollab/                     # project folder
-├── backend/                     # holds backend logic
-│   ├── Controller.mjs           # Route handles
-│   └── Model.mjs                # Database logic
-├── frontend/                    # holds frontend logic
-│   ├── public/                  # main public pages
-│   │   └── home.html            # main homepage
-│   ├── src/                     
-│   │   └── src.txt              # Placeholder for backend logic
-│   ├── style/                   # stylesheets
-│   │   ├── Global.css           # main stylesheet for every page
-│   │   ├── Home.css             # home specific stylesheet
-│   │   └── Login.css            # login specific stylesheet
-│   └── Index.html               # login homepage
-├── reports/                     # weekly reports
-│   ├── Week3.md
-│   ├── Week4.md
-│   ├── Week5.md
-│   ├── Week6.md
-│   ├── Week7.md
-│   └── template.md              # template for weekly report
-├── tests/                       # Test files
-│   ├── unit-tests/              # unit tests
-│   └── Integration tests/       # System integration tests
-├── .gitignore                   # Temp files git shouldn’t track
-├── README.md                    # Project overview
-├── index.js                     # Namespace
-├── Package-lock.json            # Dependency versions
-└── Package.json                 # Project dependencies
+- **CrazyCollab/** - project folder
+  - **backend/** - holds backend logic
+    - `Controller.mjs` - Route handles
+    - `Model.mjs` - Database logic
+  - **frontend/** - holds frontend logic
+    - **public/** - main public pages
+      - `home.html` - main homepage
+    - **src/**
+      - `src.txt` - Placeholder for backend logic
+    - **style/** - stylesheets
+      - `Global.css` - main stylesheet for every page
+      - `Home.css` - home specific stylesheet
+      - `Login.css` - login specific stylesheet
+    - `Index.html` - login homepage
+  - **reports/** - weekly reports
+    - `Week3.md`
+    - `Week4.md`
+    - `Week5.md`
+    - `Week6.md`
+    - `Week7.md`
+    - `template.md` - template for weekly report
+  - **tests/** - Test files
+    - **unit-tests/** - unit tests
+    - **Integration tests/** - System integration tests
+  - `.gitignore` - Temp files git shouldn’t track
+  - `README.md` - Project overview
+  - `index.js` - Namespace
+  - `Package-lock.json` - Dependency versions
+  - `Package.json` - Project dependencies
 
 # How to Build The Software
 
