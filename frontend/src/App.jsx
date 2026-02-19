@@ -6,18 +6,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className='app'>
+    <div>
       <Router>
           <nav>
             <Link to="/">Home</Link>
-            <Link to="/collab">Create a Meeting</Link>
+            <Link to="/meeting">Create a Meeting</Link>
           </nav>
           <Routes>
             <Route path="/" element={<HomePage/>}></Route>
-            <Route path="/collab" element={<CollabPage/>}></Route>
+            <Route path="/meeting" element={<CollabPage/>}></Route>
           </Routes>
         </Router>
     </div>

@@ -13,7 +13,8 @@ app.listen(PORT, () => {
 });
 
 
-app.post('/collab', asyncHandler( async (req, res) => {
+app.post('/collab/login', asyncHandler( async (req, res) => {
 
-    res.status(200).send("Logged in"); // model.log_in(req.body)
+    // Call database component to verify and get account credentials / data
+    res.status(200).send("Logged in");
 }));

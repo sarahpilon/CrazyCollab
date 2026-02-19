@@ -1,30 +1,215 @@
-body {
+.body {
     background-color: #EADFD5;
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start;
+    min-height: 80vh;
     margin: 0;
-    padding-left: 20px;
+    padding: 20px;
+    gap: 20px;
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
+    background-color: #7C8499;
+    color: #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 75px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 10px;
+    
 }
 
 .subtext {
     font-size: 14px;
-    padding-top: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     color: #000000;
+}
+
+.group-members-title {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #7C8499;
+    color: #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 60px;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.group-members-box {
+    background-color: #F5F5F5;
+    border-radius: 3px;
+    border: 2px solid #7C8499;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    align-self: center;
+    margin-top: 55px;
+    margin-bottom: 30px;
+    width: 80%;
+    min-height: 250px;
+}
+
+.invite-button {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    color: #282121;
+    border: 2px solid #7C8499;
+    padding: 15px 75px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 30px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.invite-button:hover {
+    background-color: #e69cd1;
+}
+
+.invite-button select:hover {
+    background-color: #717a91;
 }
 
 .card {
     background-color: #AAB0C0;
+    border: 2px solid #7C8499;
     padding: 20px;
-    min-width: 300px;
-    height: 70vh;
-    border-radius: 8px;
+    border-radius: 3px;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin-right: 100px;
+}
+
+.meeting-name {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #7C8499;
+    color: #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 10px;
+}
+
+.timezone {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: fit-content;
+    background-color: #7C8499;
+    border-radius: 3px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timezone label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #7C8499;
+    padding: 15px 15px;
+    border-radius: 3px 0 0 3px;
+}
+
+.timezone select {
+    padding: 15px 35px 15px 15px;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    background-color: #7C8499;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.timezone select:hover {
+    background-color: #717a91;
+}
+
+.rightcard {
+    background-color: #AAB0C0;
+    border: 2px solid #7C8499;
+    padding: 20px;
+    width: 64.66%;
+    min-height: 80vh;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-box {
+    background-color: #F5F5F5;
+    border-radius: 3px;
+    border: 2px solid #7C8499;
+    padding: 12px;
+    flex: 0.80;
+    align-self: center;
+    margin-top: auto;
+    width: 90%;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-around;
+    padding-top: 30px;
+    width: calc(80% - 60px);
+    margin-left: calc(10% + 60px + 15px);
+    margin-right: auto;
+}
+
+.day {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+    padding-top: 20px;
+}
+
+.calendar-grid {
+    background-color: #F5F5F5;
+    border: 2px solid #7C8499;
+    border-radius: 3px;
+    min-height: 400px;
+    padding: 10px;
+    width: 80%;
+}
+
+.calendar-content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.time-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 410px;
+    width: 60px;
+}
+
+.time {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    color: #000000;
+    padding-right: 10px;
 }
