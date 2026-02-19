@@ -50,7 +50,8 @@ We use a mix of automatic and manual tests for accessibility testing.
 **Automated Testing**  
 	We run a browser extension called WAVE that provides real time feedback on accessibility issues. To use it, download the [chrome extension](https://chromewebstore.google.com/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh?pli=1) and press Control \+ Shift \+ U to activate a report.  
 **Manual Testing**  
-	For manual testing, Aquia is used to simulate visual impairment to identify readability issues.
+	For manual testing, Aquia is used to simulate visual impairment to identify readability issues. 
+     ([Referenced from ReadMe.md](https://github.com/sarahpilon/CrazyCollab/blob/main/README.md#accessibility-testing))
 
 # How to Add New Tests
 
