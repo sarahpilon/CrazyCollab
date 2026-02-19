@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../style/home.css'
+import CalendarCollection from '../components/CalendarCollection';
 
 const identitySchedule = [
     {id: 0, name: "monday", time: [8.00]},
@@ -68,45 +69,21 @@ function CollabPage() {
                 <div class="group-members-title">Group Members</div>
                 <div class="group-members-box"></div>
                 <a href="https://web.engr.oregonstate.edu/~wilkinel/dancing-lady/" class="invite-button">Invite More</a>
-                </div>
+            </div>
 
-                <div class="rightcard">
+            <div class="rightcard">
                 <div class="meeting-name">Group Meeting: Crazy Testing!</div>
                 <div class="timezone">
                     <label for="timezone-select">Timezone:</label>
-                    <select id="timezone-select" name="timezone">
-                        <option value="PST" selected>(PST) Pacific Time</option>
+                    <select id="timezone-select" name="timezone" defaultValue={"PST"}>
+                        <option value="PST">(PST) Pacific Time</option>
                         <option value="EST">(EST) Eastern Time</option>
                         <option value="CST">(CST) Central Time</option>
                         <option value="MST">(MST) Mountain Time</option>
                     </select>
                 </div>
 
-                <div class="calendar-box">
-                    <div class="calendar">
-                        <div class="day">Mon<button onClick={e => {setDayToEdit('monday')}}></button></div>
-                        <div class="day">Tues<button onClick={e => {setDayToEdit('tuesday')}}></button></div>
-                        <div class="day">Wed<button onClick={e => {setDayToEdit('wednesday')}}></button></div>
-                        <div class="day">Thur<button onClick={e => {setDayToEdit('thursday')}}></button></div>
-                        <div class="day">Fri<button onClick={e => {setDayToEdit('friday')}}></button></div>
-                        <div class="day">Sat<button onClick={e => {setDayToEdit('saturday')}}></button></div>
-                        <div class="day">Sun<button onClick={e => {setDayToEdit('sunday')}}></button></div>
-                    </div>
-                    <div class="calendar-content">
-                        <div class="time-labels">
-                            <div class="time">9 am<button onClick={e => {handleScheduleChange(9.00)}}></button></div>
-                            <div class="time">10 am<button onClick={e => {handleScheduleChange(10.00)}}></button></div>
-                            <div class="time">11 am<button onClick={e => {handleScheduleChange(11.00)}}></button></div>
-                            <div class="time">12 pm<button onClick={e => {handleScheduleChange(12.00)}}></button></div>
-                            <div class="time">1 pm<button onClick={e => {handleScheduleChange(13.00)}}></button></div>
-                            <div class="time">2 pm<button onClick={e => {handleScheduleChange(14.00)}}></button></div>
-                            <div class="time">3 pm<button onClick={e => {handleScheduleChange(15.00)}}></button></div>
-                            <div class="time">4 pm<button onClick={e => {handleScheduleChange(16.00)}}></button></div>
-                            <div class="time">5 pm<button onClick={e => {handleScheduleChange(17.00)}}></button></div>
-                        </div>
-                        <div class="calendar-grid"></div>
-                    </div>
-                </div>
+                <CalendarCollection></CalendarCollection>
             </div>
         </div>
     )

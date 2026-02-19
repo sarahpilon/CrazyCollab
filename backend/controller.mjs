@@ -18,3 +18,7 @@ app.post('/collab/login', asyncHandler( async (req, res) => {
     // Call database component to verify and get account credentials / data
     res.status(200).send("Logged in");
 }));
+
+app.post('/collab/schedule', asyncHandler( async (req, res) => {
+    
+}));

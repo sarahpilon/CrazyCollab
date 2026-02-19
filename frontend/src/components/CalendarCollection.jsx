@@ -4,7 +4,9 @@ function CalendarCollection(){
 
     return (
         <>
-            <CalendarTable/>
+            <CalendarGrid/>
         </>
     )
 }
+
+export default CalendarCollection;
