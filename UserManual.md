@@ -1,6 +1,7 @@
 # User Manual
 
-Our product is a web application that helps groups plan meetings based on overlapping availability in schedules. Individuals in a group, either remotely or locally, can input their available dates and times, adapting across timezones, and cross reference availability with other group members. From there, a group meeting/event can be scheduled and sent to google calendar for easier tracking and planning. (Referenced from ReadMe.md)
+Our product is a web application that helps groups plan meetings based on overlapping availability in schedules. Individuals in a group, either remotely or locally, can input their available dates and times, adapting across timezones, and cross reference availability with other group members. From there, a group meeting/event can be scheduled and sent to google calendar for easier tracking and planning. ([Referenced from ReadMe.md](https://github.com/sarahpilon/CrazyCollab/blob/main/README.md#abstract))
+
 
 # How to Install
 
