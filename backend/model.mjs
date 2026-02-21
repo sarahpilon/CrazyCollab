@@ -1,5 +1,4 @@
 import * as dataabse from './database_component.mjs';
-import * as network from './network_component.mjs';
 import * as schedule from './schedule_component.mjs';
 
 async function log_in(log_info){
