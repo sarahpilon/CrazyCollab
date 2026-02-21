@@ -14,7 +14,45 @@ const identitySchedule = [
 
 function CollabPage() {
 
-    const displayName = "Dylan Knapp";
+    const [schedule, setSchedule] = useState(identitySchedule);
+    const [dayToEdit, setDayToEdit] = useState('monday');
+
+    function handleScheduleChange(targetTime) {
+
+        const newSchedule = schedule.map(day => {
+            if (day.name == dayToEdit){
+                let match = false;
+                day.time.map(t => {
+                    if (t == targetTime){
+                        console.log("match!");
+                        match = true;
+                    }
+                })
+                
+                if (match){
+                    return {
+                        ...day,
+                        time: day.time.filter(n => {
+                            return n != targetTime;
+                        })
+                    }
+                } else {
+                    return {
+                        ...day,
+                        time: [
+                            ...day.time,
+                            targetTime
+                        ]
+                    }
+                }
+            } else {
+                return day;
+            }
+        })
+
+        setSchedule(newSchedule);
+        console.log(newSchedule);
+    }
 
     // Need to replace portions of this with the components so they can be re-used in different areas. The calendar grid should be able to be
     // reused when users set their availabilty and when they view their group's collective schedule/availability. Lots of diverse functionality 
@@ -29,10 +67,8 @@ function CollabPage() {
                 <div class="logo">Crazy Collab</div>
                 <div class="subtext">Find meeting times that actually work for everyone</div>
                 <div class="group-members-title">Group Members</div>
-                <div class="group-members-box">
-                    {displayName}
-                </div>
-                <a class="invite-button">Invite More</a>
+                <div class="group-members-box"></div>
+                <a href="https://web.engr.oregonstate.edu/~wilkinel/dancing-lady/" class="invite-button">Invite More</a>
             </div>
 
             <div class="rightcard">
