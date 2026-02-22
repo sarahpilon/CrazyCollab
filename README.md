@@ -617,6 +617,31 @@ Before launch, we will ensure all critical bugs are eliminated, and 90% of the m
 
 **Metrics:** We will chase branch and path coverage metrics to ensure that our test cases cover each possible edge case, as those will predict as being the most problematic, and additionally cover all portions of our application to ensure proper functionality all around.
 
+### Infrastructure
+
+We chose Jest as our testing infrastructure. We chose this framework as it works best with React and Node, has support with asynchronous code, and handles mock databases smoothly. Jest also integrates easily with our chosen CI service with minimal configuration. More information on how to run tests can be found in our [developer documentation](https://github.com/sarahpilon/CrazyCollab/blob/main/DeveloperDocumentation.md#unit-and-system--integration-testing).
+
+### CI Service
+
+For Continuous Integration, we chose Github actions. You can find the workflow file located at:  
+
+	.github/workflows/ci.yml  
+Whenever a push or pull request on the main branch happens, Github follows the following steps:
+
+1. Checks out the repository  
+2. Sets up node  
+3. Downloads the dependencies for the back and front end  
+4. Proceeds to run the Jest tests. **If any tests fail, so does the CI and the build is marked as failed.**
+
+We chose Github actions as it is integrated in github, meaning set up is easier. It also works seamlessly with Jest, providing clear logs for debugging with Node.js projects. Also most importantly, it is free. The second choice was CircleCL, however due to the learning curve involved in it and the short duration of our project, we decided that Github actions would be the better choice.
+
+|  | Pros | Cons |
+| ----- | ----- | ----- |
+| **Travis** | Simple setup Easy Github integration  | Limited free tier Not optimized for Jest  Slower performance |
+| **CircleCL** | Fast testing Easy workflows Works great with Jest, React, and Node | Limited free tier, and expensive Complex to setup initially Steep learning curve |
+| **Github Actions** | Easy Github integration **Free\!** Easy YAML workflows Works great with Jest, React, and Node | Slow on large workflows Debugging can be difficult with complex workflows |
+| **MS Azure Pipelines** | Works great with Jest, React, and Node Very fast and reliable Customizable YAML workflows | Limited free tier Complex to setup initially *Too* Microsoft focused, better suited for projects that utilize Microsoft tools (Azure, DevOps) |
+
 # **Team Info**
 
 **Dylan Knapp**  
@@ -711,10 +736,3 @@ Throughout our assignment, we will develop a readme for debugging, and develop a
 
 **Project resources:**  
 [https://tailwindcss.com/](https://tailwindcss.com/)  
-[https://tailwindcss.com/docs/installation/using-vite](https://tailwindcss.com/docs/installation/using-vite)  
-[https://vite.dev/guide/](https://vite.dev/guide/)  
-[https://react.dev/learn/build-a-react-app-from-scratch](https://react.dev/learn/build-a-react-app-from-scratch)  
-[https://webrtc.org](https://webrtc.org)  
-https://www.mongodb.com/docs/api/  
-[https://developers.google.com/workspace/calendar/api/guides/overview](https://developers.google.com/workspace/calendar/api/guides/overview)  
-[https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/)  
