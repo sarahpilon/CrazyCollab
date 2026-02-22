@@ -25,9 +25,25 @@
  * @returns updated schedule
  */
 async function parseSchedule(scheduleJSON){
-    return 4;  // made test expect a 4 just to test if it would work
-    // return scheduleJSON // for test to run
-    // 
+    try {
+
+        // parsed Schedule
+        const schedule = {};
+
+        // go through json and store each day into a seperate bracket
+        for (const day in scheduleJSON) {
+
+            //  Move objects to array, and turn decimal into time
+            schedule[day] = scheduleJSON[day].map(time => universal(time))
+
+        }
+
+        return schedule;
+
+    } catch (error) {
+        console.error("invalid data")
+        return null;
+    }
 }
 
 
@@ -38,8 +54,11 @@ async function parseSchedule(scheduleJSON){
  * @returns {Object[]} Conflicting dates list
  */
 async function compareUsers(userA, userB) {
-    const a = await parseSchedule(userA);
-    const b = await parseSchedule(userB);
+    const ScheduleA = 0 // retrieve schedule
+    const ScheduleB = 0 // retrieve schedule
+
+    const PasrsedA = await parseSchedule(ScheduleA);
+    const ParsedB = await parseSchedule(ScheduleB);
 
     return compareSchedules(a, b);
 }
@@ -57,7 +76,10 @@ async function compareUsers(userA, userB) {
  */
 function compareSchedules(userA, userB) {
 
+    const Timeconflicts = []
+
     // for loop iterating through each day of the week
+    for ()
         // get user a schedule for that day and set to an array
         // get user b schedule 
 
@@ -67,5 +89,31 @@ function compareSchedules(userA, userB) {
    // so return array
 
 }
+
+
+/**
+ * 
+ */
+function universal(time) {
+
+    // get time string to date object
+    var dateObject = new Date(0,0);
+
+    // set to hh:mm
+    dateObject.setMinutes(+time * 60);
+    
+    // set to local time
+    dateObject.toLocaleString
+
+    // cut off the date part
+    var result = dateObject.toTimeString().slice(0, 5);
+
+
+
+    return result
+}
+
+
+
 
 module.exports = {parseSchedule, compareSchedules, compareUsers};
