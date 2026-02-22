@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "unitTests": "jest tests/unit-tests",
+    "integrationTests": "jest tests/integration-tests",
+    "test": "npm run test:unit && npm run test:integration"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}

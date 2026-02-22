@@ -12,6 +12,9 @@ Assuming the schedule takes this format as a JSON:
 */
 
 async function parseSchedule(scheduleJSON){
-
-    
+    return 4;
+    // return scheduleJSON // for test to run
 }
+
+
+module.exports = {parseSchedule};
