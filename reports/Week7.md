@@ -10,11 +10,15 @@ Backend components were developed, key UI interaction was added, and tests were 
 Our solidified and well-defined team roles played a large part in ensuring each portion of development was covered for and worked on throughout 
 the week. Our team has continue to learn new tools and APIs, as well as how to navigate bringing cohesion to our project's different elements. 
 Work on the backend was slow, but progressive, due to working with alien APIs. The backend components will surely prove to be the most time-
-consuming and difficult portion of the development process.
+consuming and difficult portion of the development process. To allocate more time for developing the backend, and to have code to test, we completed the CI and test suite logic this week, and will fully dedicate the next week to backend.
 3. **Next Week's Planned Goals:**  
     1. Finish implementing half of component algorithms for backend components with proper testing, finish in 7 days
+		1. Confirm schedule parsing works (finish in 1 day)
+		2. Work on database retrieval (finish in 3 days)
+		3. Test edge cases, and guest data logic (finish in 3 days)
     2. Fully implement all of the frontend UI, finish in 7 days
-    3. Develop more tests, and finish setup of proper CI & CD workflow (total time 6 days)
+		1. Polish up schedule UI (3 days)
+		2. Implement group UI (4 days)
 ## Team Contributions
 ### Sarah Pilon
 1. **This Week's Planned Goals:**  
@@ -23,9 +27,14 @@ consuming and difficult portion of the development process.
          2. Develop test suites for reservations (invalid inputs, overlapping times from one user, ect.), finish in 4 days
      2. Be support for developing avaliablity on front and backend when needed (flex) 
 2. **Progress and Issues:**  
-     1. TBD
+     1. After researching common testing frameworks, found out Jest worked best with our project and seemed the easiest to implement.
+	 2. After using Github actions in class, did more research on it and decided on it for our project.
+	 3. Did more research on usability tests, and fleshed out some manual tests in the developer documentation for them.
+	 4. Began to develop test suites, and learned how to make new tests, manage different test suites, and organize our tests with Jest.
+	 5. Realized we needed one fully fleshed out component to test out on, so focused on completing our schedule logic and developed both a unit and integration test suite.
 3. **Next Week's Planned Goals:**  
-     1. TO DO
+     1. Add in tests according to team members chosen unit and integration tests
+	 2. Work more on the backend, and how to store and recieve MongoDB information from the user
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
    1. Fully implement half of the frontend UI, finish in 7 days
