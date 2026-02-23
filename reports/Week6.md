@@ -31,15 +31,12 @@
      2. Be support for developing avaliablity on front and backend when needed (flex)
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
-   1. TBD 
+   1. Complete multiple pages of UI and have fully furbished homepage to showcase during midterm presentation, finish in 2 days.
 2. **Progress and Issues:**  
-   1. w
-   2. a
-   3. s
-   4. d
+   1. Completed homepage UI to be in a state for presentation.
+   2. Made some adjustments to frameworks we will be using for front end development, prioritizing Tailwind over Bootstrap.
 3. **Next Week's Planned Goals:**  
-   1. w
-   2. a
+   1. Connect availability input logic with calendar on homepage, finish in 7 days 
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
    1. Complete basic setup of all application components and codebase as a whole, finish in 7 days
