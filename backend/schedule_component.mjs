@@ -56,13 +56,11 @@ async function parseSchedule(scheduleJSON){
 async function compareUsers(userA, userB) {
 
     try {
-    const ScheduleA = 0 // retrieve schedule
-    const ScheduleB = 0 // retrieve schedule
 
     const PasrsedA = await parseSchedule(ScheduleA);
     const ParsedB = await parseSchedule(ScheduleB);
 
-    return compareSchedules(a, b);
+    return compareSchedules(PasrsedA, ParsedB);
     
 } catch (error) {
     console.error("Schedule issue")
@@ -88,9 +86,9 @@ function compareSchedules(UserA, UserB) {
     // for loop iterating through each day of the week
     for (const day in UserA) {
         // get user a schedule for that day and set to an array
-        ScheduleA = userA[day] || [];
+        ScheduleA = UserA[day] || [];
         // get user b schedule 
-        ScheduleB = userB[day] || [];
+        ScheduleB = UserB[day] || [];
 
         // use filter() to find times that are the same, and save to array
         Timeconflicts[day] = ScheduleA.filter(time => ScheduleB.includes(time))
@@ -127,7 +125,7 @@ function universal(time) {
 
     } else {
         console.error("Invalid Time")
-        return error;
+        return null;
 
     }
     
