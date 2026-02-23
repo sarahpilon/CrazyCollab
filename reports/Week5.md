@@ -33,7 +33,7 @@ users and developers. This goal must be pushed back another week or two as we sl
 2. **Progress and Issues:**  
    1. Draft of website pushed onto osu public html
 3. **Next Week's Planned Goals:**  
-   1. TBD
+   1. Complete multiple pages hosted on OSU public html, finish in 7 days
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
    1. Begin skeleton code and commits to codebase to prepare for mid-term project presentation, finish in 5 days
