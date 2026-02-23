@@ -30,13 +30,19 @@ async function parseSchedule(scheduleJSON){
         // parsed Schedule
         const schedule = {};
 
-        // go through json and store each day into a seperate bracket
-        for (const day in scheduleJSON) {
+        // Test for a valid schedule
+        if (Object.keys(scheduleJSON).length === 0) {
 
-            //  Move objects to array, and turn decimal into time
-            schedule[day] = scheduleJSON[day].map(time => universal(time))
+            // go through json and store each day into a seperate bracket
+            for (const day in scheduleJSON) {
+                //  Move objects to array, and turn decimal into time
+                schedule[day] = scheduleJSON[day].map(time => universal(time))
+            }
 
+        } else {
+            return null;
         }
+        
 
         return schedule;
 
@@ -57,8 +63,8 @@ async function compareUsers(userA, userB) {
 
     try {
 
-    const PasrsedA = await parseSchedule(ScheduleA);
-    const ParsedB = await parseSchedule(ScheduleB);
+    const PasrsedA = await parseSchedule(userA);
+    const ParsedB = await parseSchedule(userB);
 
     return compareSchedules(PasrsedA, ParsedB);
     
@@ -134,4 +140,4 @@ function universal(time) {
 
 
 
-module.exports = {parseSchedule, compareSchedules, compareUsers};
+module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
