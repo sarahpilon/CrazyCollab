@@ -1,24 +1,24 @@
 const { compareUsers } = require("../../backend/schedule_component.mjs");
 
-test("Integration: compareUsers parses and compares schedules", async () => {
-    const fakeUserA = {
+// name of test
+test("See if compare Users compares schedules", async () => {
+    // create fake test user objects
+    const UserA = {
         monday: [8.25, 9.00],
         tuesday: [10.00]
     };
 
-    const fakeUserB = {
+    const UserB = {
         monday: [9.00, 10.00],
         tuesday: [10.00]
     };
-
-    const result = await compareUsers(fakeUserA, fakeUserB);
     
-    console.log("A keys:", Object.keys(fakeUserA));
-console.log("B keys:", Object.keys(fakeUserB));
+    // compare the fake test users
+    const result = await compareUsers(UserA, UserB);
 
-
+    // what you would expect from the test
     expect(result).toEqual({
-        monday: ["09:00"],   // parsed + matched
+        monday: ["09:00"], 
         tuesday: ["10:00"]
     });
 });
