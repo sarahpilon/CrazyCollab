@@ -12,9 +12,16 @@ test("Integration: compareUsers parses and compares schedules", async () => {
     };
 
     const result = await compareUsers(fakeUserA, fakeUserB);
+    
+    console.log("A keys:", Object.keys(fakeUserA));
+console.log("B keys:", Object.keys(fakeUserB));
+
 
     expect(result).toEqual({
         monday: ["09:00"],   // parsed + matched
         tuesday: ["10:00"]
     });
 });
+
+
+

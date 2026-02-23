@@ -31,7 +31,7 @@ async function parseSchedule(scheduleJSON){
         const schedule = {};
 
         // Test for a valid schedule
-        if (Object.keys(scheduleJSON).length === 0) {
+        if (Object.keys(scheduleJSON).length !== 0) {
 
             // go through json and store each day into a seperate bracket
             for (const day in scheduleJSON) {
@@ -107,12 +107,12 @@ function compareSchedules(UserA, UserB) {
 
 
 /**
- * 
+ * Function to set the timezone to a universal time
  */
 function universal(time) {
 
     // if the time was invalid, throw an error
-    if (time <= 23.99) {
+    if (time >= 0 && time <= 23.99) {
 
     // get time string to date object
     var dateObject = new Date(0,0);
@@ -121,10 +121,13 @@ function universal(time) {
     dateObject.setMinutes(+time * 60);
     
     // set to local time
-    dateObject.toLocaleString
-
-    // cut off the date part
-    var result = dateObject.toTimeString().slice(0, 5);
+    const result = dateObject.toLocaleTimeString("en-US",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    }
+                );
     
     // return final result
     return result
