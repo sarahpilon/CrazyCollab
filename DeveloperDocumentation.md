@@ -10,45 +10,45 @@ Our website is hosted in a Git repository. To get the source code, connect your 
 
 # Layout of the Project
 
-- **CrazyCollab/** - project folder
-  - **backend/** - holds backend logic
-    - `Controller.mjs` - Route handles
-    - `Model.mjs` - Database logic
-  - **frontend/** - holds frontend logic
-    - **public/** - main public pages
-      - `home.html` - main homepage
-    - **src/**
-      - `src.txt` - Placeholder for backend logic
-    - **style/** - stylesheets
-      - `Global.css` - main stylesheet for every page
-      - `Home.css` - home specific stylesheet
-      - `Login.css` - login specific stylesheet
-    - `Index.html` - login homepage
-  - **reports/** - weekly reports
-    - `Week3.md`
-    - `Week4.md`
-    - `Week5.md`
-    - `Week6.md`
-    - `Week7.md`
-    - `template.md` - template for weekly report
-  - **tests/** - Test files
-    - **unit-tests/** - unit tests
-    - **Integration tests/** - System integration tests
-  - `.gitignore` - Temp files git shouldn’t track
-  - `README.md` - Project overview
-  - `index.js` - Namespace
-  - `Package-lock.json` - Dependency versions
-  - `Package.json` - Project dependencies
+* CrazyCollab/ \- project folder  
+  * backend/ \- holds backend logic  
+    * Controller.mjs \- Route handles  
+    * Model.mjs \- Database logic  
+  * frontend/ \- holds frontend logic  
+    * public/ \- main public pages  
+      * home.html \- main homepage  
+    * src/  
+      * src.txt \- Placeholder for backend logic  
+    * style/ \- stylesheets  
+      * Global.css \- main stylesheet for every page  
+      * Home.css \- home specific stylesheet  
+      * Login.css \- login specific stylesheet  
+    * Index.html \- login homepage  
+  * reports/ \- weekly reports  
+    * Week3.md  
+    * Week4.md  
+    * Week5.md  
+    * Week6.md  
+    * Week7.md  
+    * template.md \- template for weekly report  
+  * tests/ \- Test files  
+    * unit-tests/ \- unit tests  
+    * Integration tests/ \- System integration tests  
+  * .gitignore \- Temp files git shouldn’t track  
+  * README.md \- Project overview  
+  * index.js \- Namespace  
+  * Package-lock.json \- Dependency versions  
+  * Package.json \- Project dependencies
 
 # How to Build The Software
 
 After installing the source code run the following commands, assuming you are already in the CrazyCollab folder:
 
-Cd ./frontend
+	cd ./frontend
 
-Npm install
+	npm install
 
-Npm run dev
+	npm run dev
 
 # How to Test the Software
 
@@ -58,15 +58,17 @@ For both the unit and system / integration tests we will use Jest. Here are the 
 
 **Unit Tests**
 
-Npm run test:unitTest
+	npm run unitTests
 
 **Integration Tests**
 
-Npm run test:integrationTest
+	npm run integrationTests
+
+	
 
 **All Tests**
 
-Npm test
+	npm test
 
 ## Usability Testing
 
@@ -83,12 +85,22 @@ We use a mix of automatic and manual tests for accessibility testing.
 
 # How to Add New Tests
 
-To add a new test, navigate to the tests folder. Then proceed to the correct unit or integration test depending on the type you are planning to add. From there follow the steps below:
+To add a new test, navigate to the tests folder. Then proceed to the correct unit or integration folder depending on the type you are planning to add. From there follow the steps below:
 
-1. Name your test file accordingly to the type of test  
-   1. Unit tests: *description*.test.js  
-   2. Integration tests: *description*.int.test.js  
-2. Write the test following the Jest syntax, it is advised to look at existing tests for examples.
+1. **It is important your file is named correctly\!** Jest finds the file automatically as long as it's named correctly\! Name your test file as follows:  
+   1. *function name*.test.js  
+2. Write the test following the Jest syntax, it is advised to look at existing tests for examples. A simple example for an async function would be this:
+
+ 		// Get the function (in this case parseSchedule) from the correct backend folder
+ 		const { parseSchedule } \= require("../../backend/schedule\_component.mjs");
+
+ 		 // function for test, where example is the name of the test
+  		test('example', async () \=\> {
+
+	  		// return what you would expect from parseSchedule
+	       return expect(parseSchedule()).resolves.toBe(4)
+
+	   })
 
 ## 
 
