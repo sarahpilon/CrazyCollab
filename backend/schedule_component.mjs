@@ -41,7 +41,7 @@ async function parseSchedule(scheduleJSON){
         return schedule;
 
     } catch (error) {
-        console.error("invalid data")
+        console.error("Invalid data")
         return null;
     }
 }
@@ -54,6 +54,8 @@ async function parseSchedule(scheduleJSON){
  * @returns {Object[]} Conflicting dates list
  */
 async function compareUsers(userA, userB) {
+
+    try {
     const ScheduleA = 0 // retrieve schedule
     const ScheduleB = 0 // retrieve schedule
 
@@ -61,6 +63,11 @@ async function compareUsers(userA, userB) {
     const ParsedB = await parseSchedule(ScheduleB);
 
     return compareSchedules(a, b);
+    
+} catch (error) {
+    console.error("Schedule issue")
+    return null;
+}
 }
 
 
@@ -74,19 +81,23 @@ async function compareUsers(userA, userB) {
 /**
  * Compares two schedules and returns conflicting times
  */
-function compareSchedules(userA, userB) {
+function compareSchedules(UserA, UserB) {
 
-    const Timeconflicts = []
+    const Timeconflicts = {};
 
     // for loop iterating through each day of the week
-    for ()
+    for (const day in UserA) {
         // get user a schedule for that day and set to an array
+        ScheduleA = userA[day] || [];
         // get user b schedule 
+        ScheduleB = userB[day] || [];
 
         // use filter() to find times that are the same, and save to array
-
+        Timeconflicts[day] = ScheduleA.filter(time => ScheduleB.includes(time))
+    }
    // array should have conflicts, between the two, as well as the times with conflict
    // so return array
+   return Timeconflicts;
 
 }
 
@@ -95,6 +106,9 @@ function compareSchedules(userA, userB) {
  * 
  */
 function universal(time) {
+
+    // if the time was invalid, throw an error
+    if (time <= 23.99) {
 
     // get time string to date object
     var dateObject = new Date(0,0);
@@ -107,10 +121,16 @@ function universal(time) {
 
     // cut off the date part
     var result = dateObject.toTimeString().slice(0, 5);
-
-
-
+    
+    // return final result
     return result
+
+    } else {
+        console.error("Invalid Time")
+        return error;
+
+    }
+    
 }
 
 
