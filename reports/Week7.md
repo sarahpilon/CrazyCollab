@@ -40,12 +40,12 @@ consuming and difficult portion of the development process. To allocate more tim
    1. Fully implement half of the frontend UI, finish in 7 days
 2. **Progress and Issues:**  
    1. While connecting fron and back end logic, learned we will need more UI pages implemented to accommodate for more logic.
-   2. a
-   3. s
-   4. d
+   2. Realized that UI needs updated styling to buttons to align with calendar box card.
+   3. While testing mobile sizing, learned that our program doesn't handle screensize breakpoints correctly. 
 3. **Next Week's Planned Goals:**  
    1. Develop more unit and integration tests in coordination with team members
-   2. Create and polish more front end pages
+   2. Create and polish more front end pages, ensuring styling is consistent.
+   3. Fix breakpoints to accommodate for different screen sizes.
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
    1. Draft and start implementing algorithms for backend components, finish in 7 days
