@@ -1,28 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../style/home.css'
 import CalendarCollection from '../components/CalendarCollection';
-
-const identitySchedule = [
-    {id: 0, name: "monday", time: [8.00]},
-    {id: 1, name: "tuesday", time: [8.00]},
-    {id: 2, name: "wednesday", time: [8.00]},
-    {id: 3, name: "thursday", time: [8.00]},
-    {id: 4, name: "friday", time: [8.00]},
-    {id: 5, name: "saturday", time: [8.00]},
-    {id: 6, name: "sunday", time: [8.00]}
-]
+import * as network from '../js/network_component.mjs'
 
 function CollabPage() {
 
-    const displayName = "Dylan Knapp";
+    const [inviteCode, setInviteCode] = useState();
+    const [displayName, setDisplayName] = useState("Dylan Knapp");
+    const [groupMembers, setGroupMembers] = useState([displayName]);
 
-    // Need to replace portions of this with the components so they can be re-used in different areas. The calendar grid should be able to be
-    // reused when users set their availabilty and when they view their group's collective schedule/availability. Lots of diverse functionality 
-    // can be allowed even when components are re-used, since we can pass in different functions for the 'onClick' effects, for example.
+    async function handleInvite(){
 
-    // Currently, I setup buttons on the days and times just to test out my 'setState' functions. Clicking on a day's button will set that day 
-    // as the 'dayToEdit', and clicking on a time will add that time as availabilty under the 'dayToEdit', or remove that time if the time is 
-    // already listed in that day's array of times.
+       network.createOffer(setInviteCode);
+    }
+
+    const handleMemberJoin = (newMemberName) => {
+
+        const newMemberList = [
+            ...groupMembers,
+            newMemberName
+        ]
+
+        setGroupMembers(newMemberList);
+    }
+
+    useEffect(() => {
+        
+        const loadFunc = async () => {
+
+            setDisplayName(network.displayName);
+            network.setFunction(handleMemberJoin);
+            console.log("Page loaded");
+        }
+
+        loadFunc();
+    }, []);
+
     return(
         <div class="body">
             <div class="card">
@@ -30,9 +43,10 @@ function CollabPage() {
                 <div class="subtext">Find meeting times that actually work for everyone</div>
                 <div class="group-members-title">Group Members</div>
                 <div class="group-members-box">
-                    {displayName}
+                    {groupMembers.map((name, i) => <div key={i}>{name}</div>)}
                 </div>
-                <a class="invite-button">Invite More</a>
+                <a class="invite-button" onClick={e => {e.preventDefault(); handleInvite();}}>Invite More</a>
+                <div class="invite-code">{inviteCode}</div>
             </div>
 
             <div class="rightcard">

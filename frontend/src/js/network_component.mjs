@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase';
+import { data } from '@remix-run/router';
+import {initializeApp} from 'firebase/app';
+import {getFirestore, collection, deleteDoc, query, getDocs, getDoc, addDoc, setDoc, doc, onSnapshot} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,13 +17,13 @@ const firebaseConfig = {
   measurementId: "G-09C1YBP1MP"
 };
 
-let callInput;
+let callInput = 1;
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
-}
-
-const firestore = firebase.firestore;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+let displayName = "Jane Doe";
+let sessionMembers = [displayName];
+let updateSessionMembers;
 
 const servers = {
   iceServers: [
@@ -33,45 +35,69 @@ const servers = {
 };
 
 // Global state values
-let pc = new RTCPeerConnection(); // Emits events to update database and emit media streams, etc
-const dataChannel = pc.createDataChannel("schedule"); // local data stream
+let pc = new RTCPeerConnection(servers); // Emits events to update database and emit media streams, etc
+let dataChannel = pc.createDataChannel("schedule"); // local data stream
+//console.log(dataChannel);
 
 // peer data stream
 pc.addEventListener('datachannel', event => {
-    const dataChannel = event.channel;
+    dataChannel = event.channel;
+    console.log("data channel opened");
+    dataChannel.send(displayName)
 });
 
+pc.addEventListener("connectionstatechange", event => {
+    if (pc.connectionState === 'connected'){
+        console.log("connected to peers!")
+    }
+})
+    
 dataChannel.addEventListener('open', event => {
     // opened datachannel, do ...
-
+    console.log("triggered event listener");
     // send schedule data to other peers
 })
 
 dataChannel.addEventListener('close', event => {
     // closed datachannel, do ...
+    console.log("data channel closed :(");
 })
 
 // to send data, do dataChannel.send(message)
 // this event listener will listen for incoming messages
 dataChannel.addEventListener('message', event => {
     // recieved data, do ...
-
+    const message = event.data;
+    console.log("recieved a message: ", event.data);
+    updateSessionMembers(message);
     // const message = event.data
 })
 
+function setFunction(func){
+
+    updateSessionMembers = func;
+}
+
 // Create an offer
-async function createOffer() {
+async function createOffer(setInviteCode) {
 
-    console.log("Creating offer");
+    //console.log("Creating offer");
 
-    const callDoc = firestore.collection('calls').doc();
-    const offerCanidates = callDoc.collection('offerCanidates');
-    const answerCanidates = callDoc.collection('answerCanidates');
+    const callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
 
-    callInput.value = callDoc.id;
+    const offerRefId = callDoc.id;
+    console.log("Document written with id: ", offerRefId);
+
+    const offerCanidates =  collection(db, 'calls', offerRefId, "offerCanidates");
+    const answerCanidates = collection(db, 'calls', offerRefId, "answerCanidates");
+
+    //callInput.value = callDoc.id;
 
     pc.onicecandidate = event => {
-        event.candidate && offerCanidates.add(event.candidate.toJSON());
+        if (event.candidate){
+            //console.log(event.candidate.toJSON());
+            event.candidate && addDoc(offerCanidates, event.candidate.toJSON()); //offerCanidates.add(event.candidate.toJSON());
+        }
     }
 
     const offerDescription = await pc.createOffer();
@@ -82,60 +108,97 @@ async function createOffer() {
         type: offerDescription.type,
     };
 
-    await callDoc.set({offer});
+    // New, and good
+    try {
+        await(setDoc(callDoc, {offer: offer}));
+        console.log("Document written with id: ", callDoc.id);
+        setInviteCode(callDoc.id);
+    } catch (e) {
+        console.error("Error addiing document: ", e);
+    }
 
-    callDoc.onSnapshot((snapshot) => {
+    const offerQuery = query(collection(db, "calls"));
+
+    const offerSnapshot = await getDocs(offerQuery);
+
+    // Listen for remote answer
+    onSnapshot(callDoc, (snapshot) => {
+        console.log("listening to calls");
         const data = snapshot.data();
+        console.log("call data: ", data);
+        console.log("Current remote description: ", pc.currentRemoteDescription)
         if(!pc.currentRemoteDescription && data?.answer) {
             const answerDescription = new RTCSessionDescription(data.answer);
             pc.setRemoteDescription(answerDescription);
+            console.log("setting remote description")
         }
     });
 
-    answerCanidates.onSnapshot(snapshot => {
-        snapshot.docChanges().forEaach((change) => {
+    const answerQuery = query(answerCanidates);
+
+    const answerSnapshot = await getDocs(answerQuery);
+
+    // When answered, add candidate to peer connection
+    onSnapshot(answerQuery, (snapshot) => {
+        console.log("offer answered, snapshot: ", snapshot);
+        snapshot.docChanges().forEach((change) => {
+            console.log("change: ", change)
             if (change.type === 'added'){
                 const candidate = new RTCIceCandidate(change.doc.data());
                 pc.addIceCandidate(candidate);
+                console.log("added ice canidate");
             }
         })
-    })
+    });
 }
 
 // Answering calls
-async function answerCall() {
-    const callId = callInput.value;
-    const callDoc = firestore.collection('calls').doc(callId);
-    const answerCanidates = callDoc.collection('answerCanidates');
+async function answerCall(inviteCode, dn) {
+
+    const callId = inviteCode;
+    displayName = dn;
+
+    console.log(callId);
+    const callDoc = await doc(db, 'calls',callId);
+    const offerCanidates = collection(db, 'calls', callId, "offerCanidates");
+    const answerCanidates = collection(db, 'calls', callId, "answerCanidates");
 
      pc.onicecandidate = event => {
-        event.candidate && offerCanidates.add(event.candidate.toJSON());
+        event.candidate && addDoc(answerCanidates, event.candidate.toJSON());
+        console.log("answer canidates")
     }
 
-    const callData = (await callDoc.get()).data();
+    const callSnap = await getDoc(callDoc);
+    const callData = callSnap.data();
+    console.log(callData);
 
     const offerDescription = callData.offer;
     await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+    console.log("Remote description: ", pc.remoteDescription);
 
     const answerDescription = await pc.createAnswer();
     await pc.setLocalDescription(answerDescription);
 
     const answer = {
-        type: answerDescription.type,
         sdp: answerDescription.sdp,
+        type: answerDescription.type,
     };
 
-    await callDoc.update({answer});
+    await(setDoc(callDoc, {answer: answer}));
 
-    offerCanidates.onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
+    const offerQuery = query(offerCanidates);
+
+    const offerSnapshot = await getDocs(offerQuery);
+    onSnapshot(offerQuery, (snapshot) => {
+        offerSnapshot.docChanges().forEach((change) => {
             console.log(change);
             if (change.type === 'added'){
                 let data = change.doc.data();
                 pc.addIceCandidate(new RTCIceCandidate(data));
+                console.log("joined peer, and added ice canidate")
             }
         })
-    })
+    });
 }
 
-export {createOffer, answerCall}
+export {createOffer, answerCall, displayName, setFunction}
