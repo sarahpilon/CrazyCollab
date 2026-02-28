@@ -1,0 +1,35 @@
+name: Crazy Collab
+
+on:
+  push:
+    branches:
+      - main
+      - Testing
+  pull_request:
+    branches:
+      - main
+      - Testing
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+          
+      - name: Use node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+        
+      - name: Download dependencies (backend)
+        run: npm ci
+  
+      - name: Download dependencies (frontend)
+        run: |
+          cd frontend
+          npm install
+        
+      - name: Run tests (both unit and integration)
+        run: npm test
