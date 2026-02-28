@@ -99,9 +99,16 @@ function compareSchedules(UserA, UserB) {
         // use filter() to find times that are the same, and save to array
         Timeconflicts[day] = ScheduleA.filter(time => ScheduleB.includes(time))
     }
-   // array should have conflicts, between the two, as well as the times with conflict
-   // so return array
-   return Timeconflicts;
+   
+    // Return array ONLY if its populated, otherwise produce an error
+    if (Object.values(Timeconflicts).every(day => day.length === 0)) {
+        console.error("No suggested time found")
+        return null;
+    } else {
+         // array should have conflicts, between the two, as well as the times with conflict
+        // so return array
+            return Timeconflicts;
+    }
 
 }
 
