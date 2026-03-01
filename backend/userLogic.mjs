@@ -4,10 +4,10 @@
  * 
  */
 
-import User from "./database_component.mjs";
-import * as schedule from "./schedulecomponent.mjs";
+const User = require("./database_component.mjs"); 
+const schedule = require("./schedule_component.mjs");
 
-export async function getUserSchedule(username) {
+async function getUserSchedule(username) {
     try {
 
         // Find the user
@@ -35,7 +35,7 @@ export async function getUserSchedule(username) {
 }
 
 
-export async function getMeetingTimes(userASchedule, userB) {
+async function getMeetingTimes(userASchedule, userB) {
     try {
         // get both added users schedule comparison
         const userBSchedule = await getUserSchedule(userB);
@@ -56,4 +56,4 @@ export async function getMeetingTimes(userASchedule, userB) {
 
 
 
-export {getUserSchedule, getMeetingTimes};
+module.exports = {getUserSchedule, getMeetingTimes};

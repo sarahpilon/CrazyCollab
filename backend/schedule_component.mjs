@@ -30,13 +30,20 @@ async function parseSchedule(scheduleJSON){
         // parsed Schedule
         const schedule = {};
 
+        // days of the week
+        const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
         // Test for a valid schedule
         if (Object.keys(scheduleJSON).length !== 0) {
 
             // go through json and store each day into a seperate bracket
-            for (const day in scheduleJSON) {
+            for (const day of days) {
+
+                // set to an empty array if day isnt in schedule
+                const times = scheduleJSON[day] || [];
+
                 //  Move objects to array, and turn decimal into time
-                schedule[day] = scheduleJSON[day].map(time => universal(time))
+                schedule[day] = times.map(time => universal(time))
             }
 
         } else {
@@ -99,6 +106,15 @@ function compareSchedules(UserA, UserB) {
         // use filter() to find times that are the same, and save to array
         Timeconflicts[day] = ScheduleA.filter(time => ScheduleB.includes(time))
     }
+
+    // remove empty days
+    for (const day in Timeconflicts) {
+        if (Timeconflicts[day].length === 0) {
+            delete Timeconflicts[day];
+        }
+    }
+
+    
    
     // Return array ONLY if its populated, otherwise produce an error
     if (Object.values(Timeconflicts).every(day => day.length === 0)) {
@@ -150,4 +166,4 @@ function universal(time) {
 
 
 
-export {parseSchedule, compareSchedules, compareUsers, universal};
+module.exports = {parseSchedule, compareSchedules, compareUsers, universal};

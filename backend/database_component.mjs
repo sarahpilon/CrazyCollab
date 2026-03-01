@@ -1,8 +1,4 @@
-import mongoose from "mongoose";
-
-// Generated connection string 
-const ConnectionString = "mongodb+srv://Professor:test@crazycollab.sgopi0u.mongodb.net/CrazyCollab?retryWrites=true&w=majority";
-mongoose.connect(ConnectionString)
+const mongoose = require("mongoose");
 
 // set up structure of the database
 const userSchema = new mongoose.Schema({
@@ -22,4 +18,4 @@ const userSchema = new mongoose.Schema({
 
 const User= mongoose.model("User", userSchema);
 
-export default User;
+module.exports = User;

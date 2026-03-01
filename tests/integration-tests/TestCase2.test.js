@@ -1,19 +1,24 @@
-import mongoose from "mongoose";
-import User from "../../backend/database_component.mjs";
-import { getMeetingTimes } from "../../backend/user_logic.mjs";
+const mongoose = require("mongoose");
+const { MongoMemoryServer } = require("mongodb-memory-server");
+const User = require("../../backend/database_component.mjs");
+const { getMeetingTimes } = require("../../backend/userLogic.mjs");
+
+let mongo;
 
 beforeAll(async () => {
-    // connect to a test database (NOT your real one)
-    await mongoose.connect("mongodb://127.0.0.1:27017/crazycollab_test");
+    mongo = await MongoMemoryServer.create();
+    const uri = mongo.getUri();
+    await mongoose.connect(uri);
 });
 
 afterAll(async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
+    await mongo.stop();
 });
 
+
 test("Use case: Administrator gets suggested meeting times for professor", async () => {
-    // Insert fake professor into test DB
     await User.create({
         username: "profA",
         password: "123",
@@ -22,23 +27,24 @@ test("Use case: Administrator gets suggested meeting times for professor", async
             tuesday: [10.00],
             wednesday: [],
             thursday: [],
-            friday: []
+            friday: [],
+            saturday: [],
+            sunday: []
         }
     });
 
-    // Administrator's schedule (input manually)
     const adminSchedule = {
         monday: [9.00, 10.00],
         tuesday: [10.00],
         wednesday: [],
         thursday: [],
-        friday: []
+        friday: [],
+        saturday: [],
+        sunday: []
     };
 
-    // Run the full workflow
     const result = await getMeetingTimes(adminSchedule, "profA");
 
-    // Expected suggested meeting times
     expect(result).toEqual({
         monday: ["09:00"],
         tuesday: ["10:00"]
