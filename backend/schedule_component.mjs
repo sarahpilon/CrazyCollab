@@ -150,4 +150,4 @@ function universal(time) {
 
 
 
-module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
+export {parseSchedule, compareSchedules, compareUsers, universal};
