@@ -7,15 +7,6 @@
 *    tuesday: [2.00, 2.25, 2.50, 2.75, 3.00],
 *    ...
 * }
-*
-*     Note: I added some function parameters and commented some pseduocode for how i assume
-*    the functions would be done. I just use jsdoc for a reference as thats what
-*    our stylesheet was based off of. (https://jsdoc.app/tags-param)
-*
-*     Note 2: Also, was not quite sure what parse schedule would parse, so I just assumed
-*    it would parse the time into a universal timezone (even if it just parses from decimal to
-*    an actual time, I think it might be good to have it be for both)
-*
 */
 
 
