@@ -4,9 +4,15 @@
  * 
  */
 
+
 const User = require("./database_component.mjs"); 
 const schedule = require("./schedule_component.mjs");
 
+/**
+ * Retrieves schedule from database based off of user
+ * @param {string} username 
+ * @returns unparsed schedule, or null if any error occurs
+ */
 async function getUserSchedule(username) {
     try {
 
@@ -34,7 +40,12 @@ async function getUserSchedule(username) {
     }
 }
 
-
+/**
+ * Wrapper that connects user logic and schedule logic to find schedule
+ * @param {Object} userASchedule 
+ * @param {string} userB
+ * @returns Conflicting dates list between both users, or null if any error occurs
+ */
 async function getMeetingTimes(userASchedule, userB) {
     try {
         // get both added users schedule comparison
@@ -53,6 +64,7 @@ async function getMeetingTimes(userASchedule, userB) {
 
     }
 }
+
 
 
 
