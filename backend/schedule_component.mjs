@@ -155,6 +155,6 @@ function universal(time) {
 }
 
 
+export {parseSchedule, compareSchedules, compareUsers, universal};
 
-
-module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
+// module.exports = {parseSchedule, compareSchedules, compareUsers, universal};

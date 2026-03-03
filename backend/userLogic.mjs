@@ -5,8 +5,11 @@
  */
 
 
-const User = require("./database_component.mjs"); 
-const schedule = require("./schedule_component.mjs");
+// const User = require("./database_component.mjs"); 
+import User from "./database_component.mjs"; 
+
+// const schedule = require("./schedule_component.mjs");
+import schedule from "./schedule_component.mjs";
 
 /**
  * Retrieves schedule from database based off of user
@@ -66,6 +69,6 @@ async function getMeetingTimes(userASchedule, userB) {
 }
 
 
+export {getUserSchedule, getMeetingTimes};
 
-
-module.exports = {getUserSchedule, getMeetingTimes};
+// module.exports = {getUserSchedule, getMeetingTimes};
