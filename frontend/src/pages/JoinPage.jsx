@@ -2,6 +2,7 @@ import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as network from "../js/network_component.mjs";
 import EditCalendarCollection from '../components/EditCalendarCollection';
+import '../style/join.css';
 
 const identitySchedule = [
     {id: 0, name: "monday", time: []},
@@ -39,14 +40,17 @@ function JoinPage(){
     }
 
     return (
-        <div class="body">
-        
-            <label for="inviteCode">Invite Code</label>
-            <input name="inviteCode" type="text" value={inviteCode} onChange={e => {setInviteCode(e.target.value)}}></input>
-            <label for="displayName">Display Name</label>
-            <input name="displayName" type="text" value={displayName} onChange={e => {setDisplayName(e.target.value)}}></input>
-            <button onClick={e => {e.preventDefault(); handleJoin();}}>Join</button>
-            <EditCalendarCollection schedule={schedule} setSchedule={setSchedule}></EditCalendarCollection>
+        <div class="join-body">
+            <div class="join-form">
+                <label for="inviteCode" class="join-label invite-code-button">Invite Code</label>
+                <input class="join-input" name="inviteCode" type="text" value={inviteCode} onChange={e => {setInviteCode(e.target.value)}}></input>
+                <label for="displayName" class="join-label display-name-button">Display Name</label>
+                <input class="join-input" name="displayName" type="text" value={displayName} onChange={e => {setDisplayName(e.target.value)}}></input>
+                <button class="join-button" onClick={e => {e.preventDefault(); handleJoin();}}>Join</button>
+            </div>
+            <div class="rightcard">
+                <EditCalendarCollection schedule={schedule} setSchedule={setSchedule}></EditCalendarCollection>
+            </div>
         </div>
     )
 }

@@ -90,7 +90,14 @@
     margin-right: 100px;
 }
 
-.meeting-name {
+.meeting-header {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    margin-left: 3.8%;
+}
+
+.meeting-name{
     font-size: 20px;
     font-weight: bold;
     background-color: #7C8499;
@@ -99,8 +106,23 @@
     padding: 15px 20px;
     border-radius: 3px;
     width: fit-content;
-    margin-top: 10px;
 }
+
+.meeting-date {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    color: #000000;
+    border: 2px solid #7C8499;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    margin-left: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 3px;
+    width: fit-content;
+}
+
 
 .timezone {
     margin-top: 20px;
@@ -112,6 +134,7 @@
     background-color: #7C8499;
     border-radius: 3px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 3.8%;
 }
 
 .timezone label {
