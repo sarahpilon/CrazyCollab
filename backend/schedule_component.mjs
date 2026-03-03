@@ -19,13 +19,28 @@ async function parseSchedule(scheduleJSON){
     try {
 
         // parsed Schedule
-        const schedule = {};
+        const schedule = {
+
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: [],
+            sunday: []
+        };
 
         // days of the week
         const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
         // Test for a valid schedule
         if (Object.keys(scheduleJSON).length !== 0) {
+
+            /*
+            For each object in scheduleJSON
+                Find the field whose's name matches the value of the 'name' field
+                Set it's value to the value of the 'time' field 
+            */
 
             // go through json and store each day into a seperate bracket
             for (const day of days) {
@@ -157,4 +172,9 @@ function universal(time) {
 
 export {parseSchedule, compareSchedules, compareUsers, universal};
 
+<<<<<<< Updated upstream
 // module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
+=======
+
+export {parseSchedule, compareSchedules, compareUsers, universal};
+>>>>>>> Stashed changes

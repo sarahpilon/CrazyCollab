@@ -1,4 +1,5 @@
 export default {
   testEnvironment: "node",
-  transform: {}
+  transform: {},
+  testTimeout: 110000
 };

@@ -4,14 +4,29 @@ import '../style/login.css'
 
 function HomePage() {
 
-    const [name, setName] = useState();
+    const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
     const navigate = useNavigate();
 
-    const logIn = async () => {
+    const signUp = async () => {
 
-        const account = {name, password}
+        const account = {username, password}
+        const response = await fetch('/collab/signup', {
+            method: 'POST',
+            body: JSON.stringify(account),
+            headers: {'Content-type': 'application/json'}
+        });
+
+        if (response.status == 200){
+            alert("Successfully Signed Up!")
+        } else {
+            alert("Account already exists")
+        }
+    }
+
+    const logIn = async () => {
+        const account = {username, password}
         const response = await fetch('/collab/login', {
             method: 'POST',
             body: JSON.stringify(account),
@@ -20,9 +35,8 @@ function HomePage() {
 
         if (response.status == 200){
             alert("Successfully Logged In!")
-            navigate('/meeting');
         } else {
-            alert("Failed to Log In")
+            alert("Account doesn't exist")
         }
     }
 
@@ -35,12 +49,13 @@ function HomePage() {
                     <div class="subtitle">Sign in to start meeting</div>
 
                     <form class="form">
-                        <input type="text" class="input" placeholder="Username or email" required onChange={e => setName(e.target.value)}></input>
+                        <input type="text" class="input" placeholder="Username or email" required onChange={e => setUsername(e.target.value)}></input>
                         <input type="password" class="input" placeholder="Password" required onChange={e => setPassword(e.target.value)}></input>
 
+                        <button type="button" class="btn-signup" onClick={logIn}>Log in</button>
                         <div class="input-disabled">Don't have an account yet?</div>
                     
-                        <button type="button" class="btn-signup" onClick={logIn}>Sign up</button>
+                        <button type="button" class="btn-signup" onClick={signUp}>Sign up</button>
                     </form>
                 </div>
             </div>
