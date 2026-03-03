@@ -36,3 +36,8 @@ app.get('/collab/#sessionid', asyncHandler( async (req, res) => {
 
 
 }));
+
+app.get('/meeting/#sessionid', asyncHandler( async (req, res) => {
+
+    console.log("Link has a session id");
+}))

@@ -17,13 +17,20 @@ const firebaseConfig = {
   measurementId: "G-09C1YBP1MP"
 };
 
-let callInput = 1;
+const identitySchedule = [
+    {id: 0, name: "monday", time: []},
+    {id: 1, name: "tuesday", time: []},
+    {id: 2, name: "wednesday", time: []},
+    {id: 3, name: "thursday", time: []},
+    {id: 4, name: "friday", time: []},
+    {id: 5, name: "saturday", time: []},
+    {id: 6, name: "sunday", time: []}
+]
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-let displayName = "Jane Doe";
-let sessionMembers = [displayName];
-let updateSessionMembers;
+let displayName = "Dylan Knapp";
+let schedule = identitySchedule;
 
 const servers = {
   iceServers: [
@@ -35,10 +42,11 @@ const servers = {
 };
 
 // Global state values
-let pc = new RTCPeerConnection(servers); // Emits events to update database and emit media streams, etc
-let dataChannel = pc.createDataChannel("schedule"); // local data stream
+const pc = new RTCPeerConnection(servers); // Emits events to update database and emit media streams, etc
+//let dataChannel = pc.createDataChannel("schedule"); // local data stream
 //console.log(dataChannel);
 
+/*
 // peer data stream
 pc.addEventListener('datachannel', event => {
     dataChannel = event.channel;
@@ -72,16 +80,14 @@ dataChannel.addEventListener('message', event => {
     updateSessionMembers(message);
     // const message = event.data
 })
-
-function setFunction(func){
-
-    updateSessionMembers = func;
-}
+*/
 
 // Create an offer
-async function createOffer(setInviteCode) {
+async function createOffer(setInviteCode, dn) {
 
     //console.log("Creating offer");
+
+    displayName = dn;
 
     const callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
 
@@ -111,7 +117,6 @@ async function createOffer(setInviteCode) {
     // New, and good
     try {
         await(setDoc(callDoc, {offer: offer}));
-        console.log("Document written with id: ", callDoc.id);
         setInviteCode(callDoc.id);
     } catch (e) {
         console.error("Error addiing document: ", e);
@@ -125,8 +130,6 @@ async function createOffer(setInviteCode) {
     onSnapshot(callDoc, (snapshot) => {
         console.log("listening to calls");
         const data = snapshot.data();
-        console.log("call data: ", data);
-        console.log("Current remote description: ", pc.currentRemoteDescription)
         if(!pc.currentRemoteDescription && data?.answer) {
             const answerDescription = new RTCSessionDescription(data.answer);
             pc.setRemoteDescription(answerDescription);
@@ -153,10 +156,11 @@ async function createOffer(setInviteCode) {
 }
 
 // Answering calls
-async function answerCall(inviteCode, dn) {
+async function answerCall(inviteCode, dn, sch) {
 
     const callId = inviteCode;
     displayName = dn;
+    schedule = sch;
 
     console.log(callId);
     const callDoc = await doc(db, 'calls',callId);
@@ -165,16 +169,14 @@ async function answerCall(inviteCode, dn) {
 
      pc.onicecandidate = event => {
         event.candidate && addDoc(answerCanidates, event.candidate.toJSON());
-        console.log("answer canidates")
+        console.log("added ice canidate to answer canidates")
     }
 
     const callSnap = await getDoc(callDoc);
     const callData = callSnap.data();
-    console.log(callData);
 
     const offerDescription = callData.offer;
     await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
-    console.log("Remote description: ", pc.remoteDescription);
 
     const answerDescription = await pc.createAnswer();
     await pc.setLocalDescription(answerDescription);
@@ -191,7 +193,6 @@ async function answerCall(inviteCode, dn) {
     const offerSnapshot = await getDocs(offerQuery);
     onSnapshot(offerQuery, (snapshot) => {
         offerSnapshot.docChanges().forEach((change) => {
-            console.log(change);
             if (change.type === 'added'){
                 let data = change.doc.data();
                 pc.addIceCandidate(new RTCIceCandidate(data));
@@ -201,4 +202,4 @@ async function answerCall(inviteCode, dn) {
     });
 }
 
-export {createOffer, answerCall, displayName, setFunction}
+export {createOffer, answerCall, displayName, pc, schedule}
