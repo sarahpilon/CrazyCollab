@@ -113,7 +113,10 @@ function CollabHostPage() {
             </div>
 
             <div class="rightcard">
-                <div class="meeting-name">Group Meeting: Crazy Testing!</div>
+                <div class="meeting-header">
+                    <div class="meeting-name">Group Meeting: Crazy Testing!</div>
+                    <div class="meeting-date">March 2-9</div>
+                </div>
                 <div class="timezone">
                     <label for="timezone-select">Timezone:</label>
                     <select id="timezone-select" name="timezone" defaultValue={"PST"}>
@@ -123,7 +126,6 @@ function CollabHostPage() {
                         <option value="MST">(MST) Mountain Time</option>
                     </select>
                 </div>
-
                 <MeetCalendarCollection schedule={schedule} setSchedule={setSchedule}></MeetCalendarCollection>
             </div>
         </div>

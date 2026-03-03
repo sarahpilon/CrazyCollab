@@ -25,12 +25,18 @@ jobs:
         
       - name: Download dependencies (in general)
         run: npm ci    
-        
+
+      - name: Download dependencies (backend)
+        run: |
+          cd backend
+          npm install
+          cd ..
   
       - name: Download dependencies (frontend)
         run: |
           cd frontend
           npm install
+          cd ..
         
       - name: Run tests (both unit and integration)
         run: npm test
