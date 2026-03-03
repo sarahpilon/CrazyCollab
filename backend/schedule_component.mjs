@@ -11,12 +11,43 @@
 
 
 /**
- * Parses schedule to match a universal timezone.
+ * Parses schedule to match database format if taken from
+ * website, then makes schedule to match a universal timezone.
  * @param {*} scheduleJSON 
  * @returns updated schedule
  */
 async function parseSchedule(scheduleJSON){
     try {
+        // taken in scheduleJSON in correct format
+        let formattedSchedule = {};
+
+        // if taking in array of objects
+        if (Array.isArray(scheduleJSON)) {
+            for (const entry of scheduleJSON) {
+
+                // if the entry has a valid day and time, store the formatted schedule
+                if (entry && entry.name) {
+
+                    // store the time if the day is valid and if not, set as empty array
+                    if (Array.isArray(entry.time)) {
+
+                        formattedSchedule[entry.name] = entry.time;
+                    
+                    } else {
+                    
+                        formattedSchedule[entry.name] = [];
+                
+                    }
+                }
+
+            }
+
+        }
+
+        // if taking data from dataset (already matches expected format)
+        else if (typeof scheduleJSON === "object" && scheduleJSON !== null) {
+            formattedSchedule = scheduleJSON;
+        }
 
         // parsed Schedule
         const schedule = {
@@ -34,7 +65,7 @@ async function parseSchedule(scheduleJSON){
         const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
         // Test for a valid schedule
-        if (Object.keys(scheduleJSON).length !== 0) {
+        if (Object.keys(formattedSchedule).length !== 0) {
 
             /*
             For each object in scheduleJSON
@@ -46,7 +77,7 @@ async function parseSchedule(scheduleJSON){
             for (const day of days) {
 
                 // set to an empty array if day isnt in schedule
-                const times = scheduleJSON[day] || [];
+                const times = formattedSchedule[day] || [];
 
                 //  Move objects to array, and turn decimal into time
                 schedule[day] = times.map(time => universal(time))
