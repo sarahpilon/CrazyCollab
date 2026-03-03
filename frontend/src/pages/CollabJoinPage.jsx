@@ -18,8 +18,8 @@ function CollabJoinPage() {
 
     const [inviteCode, setInviteCode] = useState();
     // const [displayName, setDisplayName] = useState("Dylan Knapp");
-    const [groupMembers, setGroupMembers] = useState([]);
-    const [schedule, setSchedule] = useState(identitySchedule);
+    const [groupMembers, setGroupMembers] = useState([network.displayName]);
+    const [schedule, setSchedule] = useState(network.schedule);
 
     network.pc.addEventListener('datachannel', event => {
         const channel = event.channel;
@@ -43,22 +43,48 @@ function CollabJoinPage() {
         // this event listener will listen for incoming messages
         channel.addEventListener('message', event => {
             // recieved data, do ...
-            const message = event.data;
-            console.log("recieved a message: ", event.data);
-            handleMemberJoin([event.data, network.displayName]);
-            //updateSessionMembers(message);
-            // const message = event.data
+            const message = JSON.parse(event.data);
+            const dn = message.dn;
+            const sch = message.sch;
+            console.log("recieved a message: ", message);
+            console.log("Display name: ", dn);
+            console.log("Schedule: ", sch);
+            handleMemberJoin(dn, sch);
         })
     });
 
-    const handleMemberJoin = (newMemberNames) => {
+    const handleScheduleAdd = (addSchedule) => {
 
+
+        console.log("New schedule to add: ", addSchedule);
+
+        const newSchedule = schedule.map(dayA => {
+           return {
+                ...dayA,
+                time: [
+                    ...dayA.time,
+                    ...addSchedule[dayA.id].time
+                ]
+           }
+        })
+
+        console.log("new schedule calculated: ", newSchedule);
+
+        setSchedule(newSchedule);
+    }
+
+    const handleMemberJoin = (newMemberName, newMemberSchedule) => {
+
+        // Add name to name list
         const newMemberList = [
             ...groupMembers,
-            ...newMemberNames
+            newMemberName
         ]
 
         setGroupMembers(newMemberList);
+
+        // setSchedule(newMemberSchedule);
+        handleScheduleAdd(newMemberSchedule);
     }
 
     useEffect(() => {
@@ -87,6 +113,7 @@ function CollabJoinPage() {
 
             <div class="rightcard">
                 <div class="meeting-name">Group Meeting: Crazy Testing!</div>
+                <div class="meeting-date">March 2-9</div>
                 <div class="timezone">
                     <label for="timezone-select">Timezone:</label>
                     <select id="timezone-select" name="timezone" defaultValue={"PST"}>

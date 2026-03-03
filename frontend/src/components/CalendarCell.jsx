@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function CalendarCell({onClick, day, time}){
 
-    const [isActive, setIsActive] = useState(false);
+    const [weight, setWeight] = useState(0);
 
     const buttonNames = ["left", "right", "wheel", "back", "forward"];
     function mouseButtonPressed(event, buttonName) {
@@ -10,12 +10,29 @@ function CalendarCell({onClick, day, time}){
         return Boolean(event.buttons & (1 << buttonNames.indexOf(buttonName)));
     }
 
-    const handleClick = () => {
-        setIsActive(!isActive);
+    const calcStyle = () => {
+        
+        let weight = 0;
+
+        day.time.forEach(element => {
+            if (element == time){
+                weight += 1;
+            }
+        });
+
+        if (weight == 0){
+            return '#ffffff'
+        } else if (weight == 1){
+            return '#aab0c0'
+        } else {
+            return '#7c8499'
+        }
+
     }
 
     const style = {
-        backgroundColor: day.time.includes(time) != false ? 'lightGray' : 'white'
+        
+        backgroundColor: calcStyle() // day.time.includes(time) != false ? 'lightGray' : 'white'
     }
 
     return (
@@ -23,15 +40,15 @@ function CalendarCell({onClick, day, time}){
             <div id="cell" style={style} onContextMenu={e => {e.preventDefault();}} 
                 onMouseOver={e => 
                     {if(mouseButtonPressed(e, "left")) 
-                        {e.preventDefault(); handleClick(); onClick(time, day.name, true)} 
+                        {e.preventDefault(); onClick(time, day.name, true)} 
                     else if(mouseButtonPressed(e, "right")) 
-                        {e.preventDefault(); handleClick(); onClick(time, day.name, false)} }
+                        {e.preventDefault(); onClick(time, day.name, false)} }
                 } 
                 onMouseDown={e => 
                     {if(mouseButtonPressed(e, "left")) 
-                        {e.preventDefault(); handleClick(); onClick(time, day.name, true)} 
+                        {e.preventDefault(); onClick(time, day.name, true)} 
                     else if(mouseButtonPressed(e, "right")) 
-                        {e.preventDefault(); handleClick(); onClick(time, day.name, false)} }
+                        {e.preventDefault(); onClick(time, day.name, false)} }
                 }   
             ></div>
         </>

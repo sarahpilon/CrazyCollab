@@ -9,7 +9,7 @@ function EditCalendarCollection({schedule, setSchedule}){
                 let match = false;
                 day.time.map(t => {
                     if (t == targetTime){
-                        console.log("match!");
+                        // console.log("match!");
                         match = true;
                     }
                 })
@@ -42,7 +42,7 @@ function EditCalendarCollection({schedule, setSchedule}){
         })
 
         setSchedule(newSchedule);
-        console.log(newSchedule);
+        // console.log(newSchedule);
     }
 
     return (

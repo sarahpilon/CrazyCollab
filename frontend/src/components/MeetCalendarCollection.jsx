@@ -1,6 +1,6 @@
 import CalendarGrid from './CalendarGrid';
 
-function EditCalendarCollection({schedule, setSchedule}){
+function MeetCalendarCollection({schedule, setSchedule}){
 
     function handleTimeSelect() {
         
@@ -13,4 +13,4 @@ function EditCalendarCollection({schedule, setSchedule}){
     )
 }
 
-export default EditCalendarCollection;
+export default MeetCalendarCollection;

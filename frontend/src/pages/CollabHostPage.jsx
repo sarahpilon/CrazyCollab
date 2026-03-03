@@ -16,65 +16,79 @@ const identitySchedule = [
 
 function CollabHostPage() {
 
-    const [inviteCode, setInviteCode] = useState();
-    const [displayName, setDisplayName] = useState("Dylan Knapp");
+    const [inviteCode, setInviteCode] = useState(network.inviteCode);
+    const [displayName, setDisplayName] = useState(network.displayName);
     const [groupMembers, setGroupMembers] = useState([displayName]);
-    const [schedule, setSchedule] = useState(identitySchedule);
-
-    const navigate = useNavigate();
+    const [schedule, setSchedule] = useState(network.schedule);
 
     // Initialize host's datachannel
     let channel = network.pc.createDataChannel('channel');
 
-    async function handleInvite(){
-
-       network.createOffer(setInviteCode, displayName);
-       // channel = network.pc.createDataChannel('channel'); // Create new data channel after peer connection is made
-    
-
-        network.pc.addEventListener("connectionstatechange", event => {
-            if (network.pc.connectionState === 'connected'){
-                console.log("connected to peers! Message coming from page!")
+    network.pc.addEventListener("connectionstatechange", event => {
+        if (network.pc.connectionState === 'connected'){
+            console.log("connected to peers! Message coming from page!")
+            setInviteCode(network.inviteCode);
+        
+            const peerConnect = async () => {
             
-                const peerConnect = async () => {
+                
+                setInviteCode(network.inviteCode);
 
-                    channel.addEventListener('open', event => {
+                channel.addEventListener('open', event => {
 
-                        console.log("Data channel opened for host");
-                        channel.send(displayName);
-                        console.log("Sent message to peer from host");
-                    })
+                    const message = {dn: network.displayName, sch: network.schedule};
+                    channel.send(JSON.stringify(message));
+                    console.log("Sending message to peer: ", message);
+                })
 
 
-                    channel.addEventListener('close', event => {
-                        // closed datachannel, do ...
-                        console.log("data channel closed :(");
-                    })
+                channel.addEventListener('close', event => {
+                    // closed datachannel, do ...
+                    console.log("data channel closed :(");
+                })
 
-                    // to send data, do dataChannel.send(message)
-                    // this event listener will listen for incoming messages
-                    channel.addEventListener('message', event => {
-                        // recieved data, do ...
-                        const message = JSON.parse(event.data);
-                        const dn = message.dn;
-                        const sch = message.sch;
-                        console.log("recieved a message: ", message);
-                        console.log("Display name: ", dn);
-                        console.log("Schedule: ", sch);
-                        handleMemberJoin(dn, sch);
-                        //updateSessionMembers(message);
-                        // const message = event.data
-                    })
-                }
-
-                peerConnect();
-            
+                // to send data, do dataChannel.send(message)
+                // this event listener will listen for incoming messages
+                channel.addEventListener('message', event => {
+                    // recieved data, do ...
+                    const message = JSON.parse(event.data);
+                    const dn = message.dn;
+                    const sch = message.sch;
+                    console.log("recieved a message: ", message);
+                    console.log("Display name: ", dn);
+                    console.log("Schedule: ", sch);
+                    handleMemberJoin(dn, sch);
+                    //updateSessionMembers(message);
+                    // const message = event.data
+                })
             }
+
+            peerConnect();
+        
+        }
+    })
+
+    const handleScheduleAdd = (addSchedule) => {
+
+
+        console.log("New schedule to add: ", addSchedule);
+
+        const newSchedule = schedule.map(dayA => {
+           return {
+                ...dayA,
+                time: [
+                    ...dayA.time,
+                    ...addSchedule[dayA.id].time
+                ]
+           }
         })
 
+        console.log("new schedule calculated: ", newSchedule);
+
+        setSchedule(newSchedule);
     }
 
-    const handleMemberJoin = (newMemberName, schedule) => {
+    const handleMemberJoin = (newMemberName, newMemberSchedule) => {
 
         // Add name to name list
         const newMemberList = [
@@ -84,14 +98,15 @@ function CollabHostPage() {
 
         setGroupMembers(newMemberList);
 
-        setSchedule(schedule);
+        handleScheduleAdd(newMemberSchedule);
     }
 
     useEffect(() => {
         
         const loadFunc = async () => {
 
-            setDisplayName(network.displayName);
+            // setDisplayName(network.displayName);
+            // setInviteCode(network.inviteCode);
             
             console.log("Page loaded");
         }
@@ -108,7 +123,6 @@ function CollabHostPage() {
                 <div class="group-members-box">
                     {groupMembers.map((name, i) => <div key={i}>{name}</div>)}
                 </div>
-                <a class="invite-button" onClick={e => {e.preventDefault(); handleInvite();}}>Invite More</a>
                 <div class="invite-code">{inviteCode}</div>
             </div>
 

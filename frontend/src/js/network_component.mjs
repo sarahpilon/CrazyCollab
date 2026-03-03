@@ -31,6 +31,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 let displayName = "Dylan Knapp";
 let schedule = identitySchedule;
+let inviteCode = '';
 
 const servers = {
   iceServers: [
@@ -82,16 +83,23 @@ dataChannel.addEventListener('message', event => {
 })
 */
 
+function setSchedule(newSchedule){
+
+    schedule = newSchedule;
+}
+
 // Create an offer
-async function createOffer(setInviteCode, dn) {
+async function createOffer(setInviteCode, dn, sch) {
 
     //console.log("Creating offer");
 
     displayName = dn;
+    schedule = sch;
 
     const callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
 
     const offerRefId = callDoc.id;
+    inviteCode = offerRefId;
     console.log("Document written with id: ", offerRefId);
 
     const offerCanidates =  collection(db, 'calls', offerRefId, "offerCanidates");
@@ -121,6 +129,8 @@ async function createOffer(setInviteCode, dn) {
     } catch (e) {
         console.error("Error addiing document: ", e);
     }
+
+    // inviteCode = callDoc.id;
 
     const offerQuery = query(collection(db, "calls"));
 
@@ -156,9 +166,9 @@ async function createOffer(setInviteCode, dn) {
 }
 
 // Answering calls
-async function answerCall(inviteCode, dn, sch) {
+async function answerCall(ic, dn, sch) {
 
-    const callId = inviteCode;
+    const callId = ic;
     displayName = dn;
     schedule = sch;
 
@@ -202,4 +212,4 @@ async function answerCall(inviteCode, dn, sch) {
     });
 }
 
-export {createOffer, answerCall, displayName, pc, schedule}
+export {createOffer, answerCall, displayName, pc, schedule, inviteCode}
