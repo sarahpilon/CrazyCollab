@@ -26,11 +26,6 @@ jobs:
       - name: Download dependencies (in general)
         run: npm ci    
         
-      - name: Download dependencies (backend)
-        run: |
-          cd backend
-          npm install
-        
   
       - name: Download dependencies (frontend)
         run: |
