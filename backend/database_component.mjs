@@ -1,7 +1,12 @@
 // const mongoose = require("mongoose");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import mongoose from "mongoose";
 
+=======
+import "dotenv/config"
+import mongoose from "mongoose";
+>>>>>>> Stashed changes
 =======
 import "dotenv/config"
 import mongoose from "mongoose";
@@ -26,10 +31,13 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // module.exports = User;
 
 export {User};
 =======
+=======
+>>>>>>> Stashed changes
 let connection = undefined;
 
 async function connect(){
@@ -69,5 +77,9 @@ async function log_in(user_info){
 
 
 //module.exports = User;
+<<<<<<< Updated upstream
+export {User, connect, log_in, sign_up}
+>>>>>>> Stashed changes
+=======
 export {User, connect, log_in, sign_up}
 >>>>>>> Stashed changes

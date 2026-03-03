@@ -177,4 +177,7 @@ export {parseSchedule, compareSchedules, compareUsers, universal};
 =======
 
 export {parseSchedule, compareSchedules, compareUsers, universal};
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
