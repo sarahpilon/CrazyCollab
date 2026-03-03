@@ -1,7 +1,16 @@
-const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
-const User = require("../../backend/database_component.mjs");
-const { getMeetingTimes } = require("../../backend/userLogic.mjs");
+
+/**
+// const mongoose = require("mongoose");
+// const { MongoMemoryServer } = require("mongodb-memory-server");
+// const User = require("../../backend/database_component.mjs");
+// const { getMeetingTimes } = require("../../backend/userLogic.mjs");
+ */
+
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import {User} from "../../backend/database_component.mjs";
+import {getMeetingTimes} from "../../backend/userLogic.mjs";
+
 
 let mongo;
 

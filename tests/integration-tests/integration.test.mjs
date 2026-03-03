@@ -1,4 +1,8 @@
-const { compareUsers } = require("../../backend/schedule_component.mjs");
+// const { compareUsers } = require("../../backend/schedule_component.mjs");
+// const { parseSchedule } = require("../../backend/schedule_component.mjs");
+import {compareUsers} from "../../backend/schedule_component.mjs";
+
+
 
 // name of test
 test("See if compare Users compares schedules", async () => {

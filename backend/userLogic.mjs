@@ -6,10 +6,10 @@
 
 
 // const User = require("./database_component.mjs"); 
-import User from "./database_component.mjs"; 
+import {User} from "./database_component.mjs"; 
 
 // const schedule = require("./schedule_component.mjs");
-import schedule from "./schedule_component.mjs";
+import * as schedule from "./schedule_component.mjs";
 
 /**
  * Retrieves schedule from database based off of user
