@@ -23,8 +23,14 @@ jobs:
         with:
           node-version: '22.x'
         
+      - name: Download dependencies (in general)
+        run: npm ci    
+        
       - name: Download dependencies (backend)
-        run: npm ci
+        run: |
+          cd backend
+          npm install
+        
   
       - name: Download dependencies (frontend)
         run: |
