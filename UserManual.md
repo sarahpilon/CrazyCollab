@@ -86,3 +86,9 @@ Next, CD into the backend folder. Once you enter this directory, run "npm instal
 In a different terminal, cd into the frontend folder. Run "npm install" again. Run "npm run dev".
 
 Locate the locally hosted react page, on port 5173.
+
+At the top of the page, locate the "Create a Meeting" page. You will need to enter a display name and availability. Once this has been selected, press "Create Meeting". This will give you an invite code used to invite other members to your group.
+
+Copy this code, and open CrazyCollab on a different window. Locate the "Join a Meeting" page. On this page, input the invite code and display name, as well as your schedule. Once this has been input, press the "Join" button. This will allow you to join the host's group.
+
+This function covers use case #2: Two users connecting.
