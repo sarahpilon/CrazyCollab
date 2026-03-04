@@ -125,6 +125,7 @@ async function createOffer(setInviteCode, dn, sch) {
     // New, and good
     try {
         await(setDoc(callDoc, {offer: offer}));
+        inviteCode = callDoc.id;
         setInviteCode(callDoc.id);
     } catch (e) {
         console.error("Error addiing document: ", e);

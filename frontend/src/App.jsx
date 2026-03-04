@@ -8,6 +8,9 @@ import HostPage from './pages/HostPage'
 
 function App() {
 
+  
+  const [inviteCode, setInviteCode] = useState();
+
   return (
     <div>
       <Router>
@@ -18,10 +21,10 @@ function App() {
           </nav>
           <Routes>
             <Route path="/" element={<HomePage/>}></Route>
-            <Route path="/meeting/host" element={<CollabHostPage/>}></Route>
+            <Route path="/meeting/host" element={<CollabHostPage inviteCode={inviteCode} setInviteCode={setInviteCode}/>}></Route>
             <Route path="/meeting/join" element={<CollabJoinPage/>}></Route>
             <Route path="/join" element={<JoinPage/>}></Route>
-            <Route path="/host" element={<HostPage/>}></Route>
+            <Route path="/host" element={<HostPage inviteCode={inviteCode} setInviteCode={setInviteCode}/>}></Route>
           </Routes>
         </Router>
     </div>

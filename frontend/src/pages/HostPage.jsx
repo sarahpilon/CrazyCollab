@@ -15,9 +15,9 @@ const identitySchedule = [
     {id: 6, name: "sunday", time: []}
 ]
 
-function HostPage(){
+function HostPage({inviteCode, setInviteCode}){
 
-    const [inviteCode, setInviteCode] = useState();
+    // const [inviteCode, setInviteCode] = useState();
     const [displayName, setDisplayName] = useState();
     const [schedule, setSchedule] = useState(identitySchedule);
 

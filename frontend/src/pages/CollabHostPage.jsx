@@ -14,9 +14,8 @@ const identitySchedule = [
     {id: 6, name: "sunday", time: []}
 ]
 
-function CollabHostPage() {
+function CollabHostPage({inviteCode, setInviteCode}) {
 
-    const [inviteCode, setInviteCode] = useState(network.inviteCode);
     const [displayName, setDisplayName] = useState(network.displayName);
     const [groupMembers, setGroupMembers] = useState([displayName]);
     const [schedule, setSchedule] = useState(network.schedule);
@@ -123,7 +122,7 @@ function CollabHostPage() {
                 <div class="group-members-box">
                     {groupMembers.map((name, i) => <div key={i}>{name}</div>)}
                 </div>
-                <div class="invite-code">{inviteCode}</div>
+                <div class="invite-code">Invite Code: {inviteCode}</div>
             </div>
 
             <div class="rightcard">
