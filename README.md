@@ -4,6 +4,10 @@
 
 Our product is a web application that helps groups plan meetings based on overlapping availability in schedules. Individuals in a group, either remotely or locally, can input their available dates and times, adapting across timezones, and cross reference availability with other group members. From there, a group meeting/event can be scheduled and sent to google calendar for easier tracking and planning.
 
+# How to Use and Develop 
+
+Information on how to use the app can be found in the user manual, and how to run the app locally can be found in the developer manual.
+
 **Features:**
 
 * Easy to Navigate UI  
@@ -115,6 +119,7 @@ The time constraint we must work within is the greatest risk factor we face in t
 - Students who are participating in multiple group schedules are unable to add those meeting times to their availability.
 
  
+**Operating approach**
 
 2. Teachers:
 
