@@ -74,7 +74,7 @@ To report a bug follow the steps below:
 
 # Beta Testing Manual
 
-Clone the crazy collab repository to your machine. To do this, select <code>, and copy the http clone link.
+Clone the crazy collab repository to your machine. To do this, select code, and copy the http clone link.
 Next, create a new directory on your machine, and clone the repository into this.
 
 Cd into the CrazyCollab folder. 
@@ -85,4 +85,4 @@ Next, CD into the backend folder. Once you enter this directory, run "npm instal
 
 In a different terminal, cd into the frontend folder. Run "npm install" again. Run "npm run dev".
 
-Locate the locally hosted react page.
+Locate the locally hosted react page, on port 5173.
