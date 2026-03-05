@@ -200,6 +200,46 @@ function universal(time) {
     
 }
 
+
+/**
+ * Parse schedule from database format into frontend format
+ */
+
+function parseScheduleFrontend(schedule) {
+    let formattedSchedule = [
+    {id: 0, name: "monday", time: []},
+    {id: 1, name: "tuesday", time: []},
+    {id: 2, name: "wednesday", time: []},
+    {id: 3, name: "thursday", time: []},
+    {id: 4, name: "friday", time: []},
+    {id: 5, name: "saturday", time: []},
+    {id: 6, name: "sunday", time: []}
+    ]
+
+    // days of the week
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+    for (const day of days) {
+
+        // index of the day
+        const dayIndex = days.indexOf(day);
+
+        // check if the day has times 
+        if (schedule[day] && Array.isArray(schedule[day])) {
+
+            // if theres times add the times to the formatted schedule
+            formattedSchedule[dayIndex].time = schedule[day];
+        } else {
+            // set to empty array if day has no times
+            formattedSchedule[dayIndex].time = [];
+        }
+
+    }
+
+    return formattedSchedule;
+
+}
+
 // module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
 
-export {parseSchedule, compareSchedules, compareUsers, universal};
+export {parseSchedule, compareSchedules, compareUsers, universal, parseScheduleFrontend};
