@@ -19,8 +19,8 @@ app.post('/collab/signup', asyncHandler( async (req, res) => {
     const body = req.body;
     const user = await model.sign_up(body);
     
-    if (user != undefined){
-        res.status(200).send("Signed up!");
+    if (user != null){
+        res.status(200).send(user);
     } else {
         res.status(404).send("Account already exists.");
     }
@@ -32,8 +32,10 @@ app.post('/collab/login', asyncHandler( async (req, res) => {
     const body = req.body;
     const user = await model.log_in(body);
 
-    if (user[0] != undefined){
-        res.status(200).send("Logged in!");
+    console.log("User: ", user);
+
+    if (user != null){
+        res.status(200).send(user);
     } else {
         res.status(404).send("Account doesn't exist.");
     }
@@ -42,6 +44,22 @@ app.post('/collab/login', asyncHandler( async (req, res) => {
 // Saving your schedule to database
 app.post('/collab/schedule', asyncHandler( async (req, res) => {
     
+    const body = req.body; // Username, password, schedule
+
+    const username = body.username;
+    const password = body.password;
+    const user_info = {username, password};
+    
+    const schedule = body.schedule;
+
+    const update = await model.post_schedule(user_info, schedule)
+
+    if (update != null){
+    
+        res.status(200).send(update);
+    }  else {
+        res.status(404).send("Schedule post failed");
+    }
 
 }));
 

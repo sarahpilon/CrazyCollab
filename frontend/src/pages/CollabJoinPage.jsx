@@ -87,18 +87,6 @@ function CollabJoinPage() {
         handleScheduleAdd(newMemberSchedule);
     }
 
-    useEffect(() => {
-        
-        const loadFunc = async () => {
-
-            // setDisplayName(network.displayName);
-            
-            console.log("Page loaded");
-        }
-
-        loadFunc();
-    }, []);
-
     return(
         <div class="body">
             <div class="card">

@@ -10,11 +10,30 @@ async function connect(){
 }
 
 async function sign_up(user_info){
-    return await database.sign_up(user_info);
+    const user = await database.sign_up(user_info);
+
+    return user;
 }
 
 async function log_in(user_info){
-    return await database.log_in(user_info);
+    const user = await database.log_in(user_info);
+
+    return user;
 }
 
-export {connect, log_in, sign_up}
+async function post_schedule(user, newSchedule){
+    
+    const parsedSchedule = await schedule.parseSchedule(newSchedule);
+
+    const newUserInfo = {
+        ...user,
+        schedule: [
+            parsedSchedule
+        ]
+    }
+
+    return await database.update_user(user, newUserInfo);
+
+}
+
+export {connect, log_in, sign_up, post_schedule}

@@ -100,19 +100,6 @@ function CollabHostPage({inviteCode, setInviteCode}) {
         handleScheduleAdd(newMemberSchedule);
     }
 
-    useEffect(() => {
-        
-        const loadFunc = async () => {
-
-            // setDisplayName(network.displayName);
-            // setInviteCode(network.inviteCode);
-            
-            console.log("Page loaded");
-        }
-
-        loadFunc();
-    }, []);
-
     return(
         <div class="body">
             <div class="card">

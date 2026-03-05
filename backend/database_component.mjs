@@ -24,7 +24,7 @@ const User = mongoose.model("User", userSchema);
 let connection = undefined;
 
 async function connect(){
-    /*
+
     try{
         await mongoose.connect(process.env.MONGODB_CONNECT_STRING);
         connection = mongoose.connection;
@@ -33,19 +33,18 @@ async function connect(){
         console.log(err);
         throw Error(`Could not connect to MongoDB ${err.message}`)
     }
-    */
 }
 
 async function sign_up(user_info){
     
     const existing = await log_in(user_info);
-    console.log(user_info);
-    console.log(existing);
-    if (existing[0] == undefined){
+    console.log("New User info: ", user_info);
+    console.log("Existing matching user: ", existing);
+    if (existing == null){
 
         console.log("No existing account");
         const newUser = new User(user_info);
-        console.log(newUser);
+        console.log("Added new user: ", newUser);
         return newUser.save();
     } else {
 
@@ -55,11 +54,22 @@ async function sign_up(user_info){
 
 async function log_in(user_info){
 
-    const query = User.find(user_info);
+    console.log("Existing User info: ", user_info);
+    const query = User.findOne(user_info);
     return query.exec();
+}
 
+async function update_user(user_info, new_info){
+
+    const update = await User.findOneAndUpdate(user_info, new_info);
+
+    if (update != undefined){
+        return log_in(user_info);
+    } else {
+        return null;
+    }
 }
 
 
 //module.exports = User;
-export {User, connect, log_in, sign_up}
+export {User, connect, log_in, sign_up, update_user}

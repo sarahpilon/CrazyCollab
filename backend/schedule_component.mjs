@@ -112,10 +112,10 @@ async function compareUsers(userA, userB) {
 
     return compareSchedules(PasrsedA, ParsedB);
     
-} catch (error) {
-    console.error("Schedule issue")
-    return null;
-}
+    } catch (error) {
+        console.error("Schedule issue")
+        return null;
+    }
 }
 
 
