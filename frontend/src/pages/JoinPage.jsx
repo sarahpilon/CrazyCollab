@@ -1,10 +1,11 @@
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as network from "../js/network_component.mjs";
+import { Connection } from '../js/network_component.mjs';
 import EditCalendarCollection from '../components/EditCalendarCollection';
 import '../style/join.css';
 
-function JoinPage({username, setUsername, schedule, setSchedule}){
+function JoinPage({username, setUsername, schedule, setSchedule, connections, setConnections}){
 
     const [inviteCode, setInviteCode] = useState();
     // const [displayName, setDisplayName] = useState();
@@ -13,12 +14,16 @@ function JoinPage({username, setUsername, schedule, setSchedule}){
 
     async function handleJoin(){
 
-        network.answerCall(inviteCode, username, schedule);
+        const pc = new Connection();
+
+        setConnections(pc.pc);
+
+        pc.answerCall(inviteCode, username, schedule);
         
-        network.pc.addEventListener("connectionstatechange", event => {
+        pc.pc.addEventListener("connectionstatechange", event => {
                     
             console.log("Attempting peer connect");
-            if (network.pc.connectionState === 'connected'){
+            if (pc.pc.connectionState === 'connected'){
                 console.log("connected to host! Message coming from page!")
             
                  navigate(`/meeting/join`);

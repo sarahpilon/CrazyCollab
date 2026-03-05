@@ -14,14 +14,16 @@ const identitySchedule = [
     {id: 6, name: "sunday", time: []}
 ]
 
-function CollabJoinPage() {
+function CollabJoinPage({connections, setConnections, username, userSchedule}) {
+
+    let pc = connections;
 
     const [inviteCode, setInviteCode] = useState();
-    // const [displayName, setDisplayName] = useState("Dylan Knapp");
-    const [groupMembers, setGroupMembers] = useState([network.displayName]);
-    const [schedule, setSchedule] = useState(network.schedule);
+    const [displayName, setDisplayName] = useState(username);
+    const [groupMembers, setGroupMembers] = useState([displayName]);
+    const [schedule, setSchedule] = useState(userSchedule);
 
-    network.pc.addEventListener('datachannel', event => {
+    pc.addEventListener('datachannel', event => {
         const channel = event.channel;
         console.log("Connecting to host channel: ", event.channel);
         console.log("data channel opened");
@@ -29,7 +31,7 @@ function CollabJoinPage() {
         // Event listeners for opened data channel
         channel.addEventListener('open', event => {
 
-            const message = {dn: network.displayName, sch: network.schedule};
+            const message = {dn: username, sch: userSchedule};
             channel.send(JSON.stringify(message));
             console.log("Sending message to host: ", message);
         });

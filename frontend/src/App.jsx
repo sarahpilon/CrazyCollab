@@ -26,6 +26,7 @@ function App() {
   const [schedule, setSchedule] = useState(identitySchedule);
   const [inviteCode, setInviteCode] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [connections, setConnections] = useState([]);
 
   return (
     <div>
@@ -40,13 +41,17 @@ function App() {
                                                password={password} setPassword={setPassword} 
                                                loggedIn={loggedIn} setLoggedIn={setLoggedIn}
                                                schedule={schedule} setSchedule={setSchedule}/>}></Route>
-            <Route path="/meeting/host" element={<CollabHostPage inviteCode={inviteCode} setInviteCode={setInviteCode}/>}></Route>
-            <Route path="/meeting/join" element={<CollabJoinPage/>}></Route>
+            <Route path="/meeting/host" element={<CollabHostPage inviteCode={inviteCode} setInviteCode={setInviteCode}
+                                                                 connections={connections} setConnections={setConnections}
+                                                                 username={username} userSchedule={schedule}/>}></Route>
+            <Route path="/meeting/join" element={<CollabJoinPage connections={connections} setConnections={setConnections}
+                                                                 username={username} userSchedule={schedule}/>}></Route>
             <Route path="/join" element={<JoinPage username={username} setUsername={setUsername}
-                                                   schedule={schedule} setSchedule={setSchedule}/>}></Route>
+                                                   schedule={schedule} setSchedule={setSchedule}
+                                                   connections={connections} setConnections={setConnections}/>}></Route>
             <Route path="/host" element={<HostPage inviteCode={inviteCode} setInviteCode={setInviteCode} u
+                                                   connections={connections} setConnections={setConnections}
                                                    username={username} setUsername={setUsername}
-                                                   password={password} setPassword={setPassword}
                                                    schedule={schedule} setSchedule={setSchedule}
                                                    loggedIn={loggedIn}/>}></Route>
             <Route path="/signup" element={<SignUpPage username={username} setUsername={setUsername} 

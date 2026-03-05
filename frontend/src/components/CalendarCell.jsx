@@ -13,7 +13,6 @@ function CalendarCell({onClick, day, time}){
     const calcStyle = () => {
         
         let weight = 0;
-
         day.time.forEach(element => {
             if (element == time){
                 weight += 1;
@@ -24,8 +23,10 @@ function CalendarCell({onClick, day, time}){
             return '#ffffff'
         } else if (weight == 1){
             return '#aab0c0'
-        } else {
+        } else if (weight == 2) {
             return '#7c8499'
+        } else if (weight == 3) {
+            return '#5b606e'
         }
 
     }

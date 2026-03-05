@@ -171,15 +171,18 @@ function compareSchedules(UserA, UserB) {
  */
 function universal(time) {
 
+
     // if the time was invalid, throw an error
     if (time >= 0 && time <= 23.99) {
+
 
     // get time string to date object
     var dateObject = new Date(0,0);
 
+
     // set to hh:mm
     dateObject.setMinutes(+time * 60);
-    
+    // dateObject.setMinutes(Math.round(time * 60));
     // set to local time
     const result = dateObject.toLocaleTimeString("en-US",
                     {
@@ -188,18 +191,32 @@ function universal(time) {
                         hour12: false
                     }
                 );
-    
+   
     // return final result
     return result
+
 
     } else {
         console.error("Invalid Time")
         return null;
 
+
     }
-    
+   
 }
 
+function BackToDecimal(t) {
+    // split into hour minute
+    const [hour, minute] = t.split(':').map(Number);
+
+
+    // convert into fraction
+    const fraction = minute / 60;
+
+
+    // return ROUNDED answer
+    return Number((hour + fraction).toFixed(2));
+}
 
 /**
  * Parse schedule from database format into frontend format
@@ -228,13 +245,19 @@ function parseScheduleFrontend(schedule) {
         if (schedule[day] && Array.isArray(schedule[day])) {
 
             // if theres times add the times to the formatted schedule
-            formattedSchedule[dayIndex].time = schedule[day];
+            for (const time of schedule[day][0]){
+                console.log(time);
+                formattedSchedule[dayIndex].time.push(BackToDecimal(time)); // NEED TO SET TIME BACK TO DECIMAL AMOUNT
+            }
+            // formattedSchedule[dayIndex].time = schedule[day];
         } else {
             // set to empty array if day has no times
             formattedSchedule[dayIndex].time = [];
         }
 
     }
+
+    console.log("Formatted schedule: ", formattedSchedule);
 
     return formattedSchedule;
 

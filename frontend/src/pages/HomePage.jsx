@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css'
 import EditCalendarCollection from '../components/EditCalendarCollection';
@@ -14,6 +14,7 @@ function HomePage({username, setUsername, password, setPassword, schedule, setSc
        navigate('/signup');
     }
 
+
     const logIn = async () => {
         const account = {username: newUsername, password: newPassword}
 
@@ -26,15 +27,22 @@ function HomePage({username, setUsername, password, setPassword, schedule, setSc
         if (response.status == 200){
             alert("Successfully Logged In!")
             const user = await response.json();
-            console.log(user);
+            console.log("Returned user from log-in: ", user);
             setLoggedIn(true);
+            setSchedule(user.schedule);
             setUsername(newUsername);
             setPassword(newPassword);
-            // setSchedule(JSON.parse(response.JSON()));
+            console.log("old schedule: ", schedule);
+            console.log("new schedule: ", user.schedule);
         } else {
             alert("Account doesn't exist")
         }
     }
+
+    useEffect(() => {
+
+        console.log(schedule)
+    }, [schedule])
 
     return (
         <div class="body">

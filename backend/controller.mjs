@@ -42,17 +42,13 @@ app.post('/collab/login', asyncHandler( async (req, res) => {
 }));
 
 // Saving your schedule to database
+// Shouldn't require username since will only be executed if logged in
 app.post('/collab/schedule', asyncHandler( async (req, res) => {
     
-    const body = req.body; // Username, password, schedule
-
-    const username = body.username;
-    const password = body.password;
-    const user_info = {username, password};
-    
+    const body = req.body; // schedule
     const schedule = body.schedule;
 
-    const update = await model.post_schedule(user_info, schedule)
+    const update = await model.post_schedule(schedule)
 
     if (update != null){
     
@@ -66,6 +62,14 @@ app.post('/collab/schedule', asyncHandler( async (req, res) => {
 // Retrieving your schedule to database
 app.get('/collab/schedule', asyncHandler( async (req, res) => {
 
+    const response = await model.get_schedule();
+
+    if (response != null) {
+
+        res.status(200).send(response);
+    } else {
+        res.status(404).send("Failed to get schedule");
+    }
 
 }));
 

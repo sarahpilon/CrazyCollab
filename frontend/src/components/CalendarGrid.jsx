@@ -20,6 +20,10 @@ function CalendarGrid ({schedule, setSchedule, onClick}){
         setSchedule(identitySchedule);
     }
 
+    const refreshSchedule = () => {
+        setSchedule(schedule);
+    }
+
     return (
         <>
             <div class="calendar-box">

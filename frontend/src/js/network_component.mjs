@@ -29,9 +29,9 @@ const identitySchedule = [
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-let displayName = "Dylan Knapp";
-let schedule = identitySchedule;
-let inviteCode = '';
+// let displayName = "Dylan Knapp";
+// let schedule = identitySchedule;
+// let inviteCode = '';
 
 const servers = {
   iceServers: [
@@ -42,65 +42,191 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-// Global state values
-const pc = new RTCPeerConnection(servers); // Emits events to update database and emit media streams, etc
-//let dataChannel = pc.createDataChannel("schedule"); // local data stream
-//console.log(dataChannel);
+class Connection {
 
-/*
-// peer data stream
-pc.addEventListener('datachannel', event => {
-    dataChannel = event.channel;
-    console.log("data channel opened");
-    dataChannel.send(displayName)
-});
+    connectionName;
+    pc;
+    displayName;
+    schedule;
+    inviteCode;
+    setup;
 
-pc.addEventListener("connectionstatechange", event => {
-    if (pc.connectionState === 'connected'){
-        console.log("connected to peers!")
+    constructor(name){
+        this.connectionName = name;
+        this.displayName = "Dylan Knapp";
+        this.pc = new RTCPeerConnection(servers);
+        this.schedule = identitySchedule;
+        this.inviteCode = '';
+        this.setup = false;
     }
-})
+
+    // Create an offer
+    async createOffer(setInviteCode, dn, sch, callId = null) {
+
+        console.log("Creating offer by ", this.connectionName);
+
+        this.displayName = dn;
+        this.schedule = sch;
+
+        let callDoc;
+        let offerRefId;
+
+        if (callId == null){
+
+            console.log("Creating new doc");
+            callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
+
+            offerRefId = callDoc.id;
+            this.inviteCode = offerRefId;
+            // console.log("Document written with id: ", offerRefId);
+        } else {
+            console.log("connecting to exisitng doc with id: ", callId);
+            callDoc = await doc(db, 'calls', callId);
+            offerRefId = callId;
+            this.inviteCode = offerRefId;
+            console.log("Document written with id: ", offerRefId);
+        }
+
+        const offerCanidates =  collection(db, 'calls', offerRefId, "offerCanidates");
+        const answerCanidates = collection(db, 'calls', offerRefId, "answerCanidates");
+
+        //callInput.value = callDoc.id;
+
+        this.pc.onicecandidate = event => {
+            if (event.candidate){
+                //console.log(event.candidate.toJSON());
+                event.candidate && addDoc(offerCanidates, event.candidate.toJSON()); //offerCanidates.add(event.candidate.toJSON());
+            }
+        }
+
+        const offerDescription = await this.pc.createOffer();
+        await this.pc.setLocalDescription(offerDescription);
+
+        const offer = {
+            sdp: offerDescription.sdp,
+            type: offerDescription.type,
+        };
+
+        // New, and good
+        try {
+            await(setDoc(callDoc, {offer: offer}));
+            this.inviteCode = callDoc.id;
+            if (callId == null){setInviteCode(callDoc.id);}
+        } catch (e) {
+            console.error("Error addiing document: ", e);
+        }
+
+        // inviteCode = callDoc.id;
+
+        const offerQuery = query(collection(db, "calls"));
+
+        const offerSnapshot = await getDocs(offerQuery);
+
+        // Listen for remote answer
+        onSnapshot(callDoc, (snapshot) => {
+            console.log("listening to calls");
+            const data = snapshot.data();
+            if(!this.pc.currentRemoteDescription && data?.answer) {
+                const answerDescription = new RTCSessionDescription(data.answer);
+                this.pc.setRemoteDescription(answerDescription);
+                console.log("setting remote description")
+            }
+        });
+
+        const answerQuery = query(answerCanidates);
+
+        const answerSnapshot = await getDocs(answerQuery);
+
+        // When answered, add candidate to peer connection
+        onSnapshot(answerQuery, (snapshot) => {
+            console.log("offer answered, snapshot: ", snapshot);
+            snapshot.docChanges().forEach((change) => {
+                console.log("change: ", change)
+                if (change.type === 'added'){
+                    const candidate = new RTCIceCandidate(change.doc.data());
+                    this.pc.addIceCandidate(candidate);
+                    console.log("added ice canidate");
+                }
+            })
+        });
+    }
     
-dataChannel.addEventListener('open', event => {
-    // opened datachannel, do ...
-    console.log("triggered event listener");
-    // send schedule data to other peers
-})
+    // Answering calls
+    async answerCall(ic, dn, sch) {
 
-dataChannel.addEventListener('close', event => {
-    // closed datachannel, do ...
-    console.log("data channel closed :(");
-})
+        const callId = ic;
+        this.displayName = dn;
+        this.schedule = sch;
 
-// to send data, do dataChannel.send(message)
-// this event listener will listen for incoming messages
-dataChannel.addEventListener('message', event => {
-    // recieved data, do ...
-    const message = event.data;
-    console.log("recieved a message: ", event.data);
-    updateSessionMembers(message);
-    // const message = event.data
-})
-*/
+        console.log(callId);
+        const callDoc = await doc(db, 'calls', callId);
+        const offerCanidates = collection(db, 'calls', callId, "offerCanidates");
+        const answerCanidates = collection(db, 'calls', callId, "answerCanidates");
 
-function setSchedule(newSchedule){
+        this.pc.onicecandidate = event => {
+            event.candidate && addDoc(answerCanidates, event.candidate.toJSON());
+            console.log("added ice canidate to answer canidates")
+        }
 
-    schedule = newSchedule;
+        const callSnap = await getDoc(callDoc);
+        const callData = callSnap.data();
+
+        const offerDescription = callData.offer;
+        await this.pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
+        const answerDescription = await this.pc.createAnswer();
+        await this.pc.setLocalDescription(answerDescription);
+
+        const answer = {
+            sdp: answerDescription.sdp,
+            type: answerDescription.type,
+        };
+
+        await(setDoc(callDoc, {answer: answer}));
+
+        const offerQuery = query(offerCanidates);
+
+        const offerSnapshot = await getDocs(offerQuery);
+        onSnapshot(offerQuery, (snapshot) => {
+            offerSnapshot.docChanges().forEach((change) => {
+                if (change.type === 'added'){
+                    let data = change.doc.data();
+                    this.pc.addIceCandidate(new RTCIceCandidate(data));
+                    console.log("joined peer, and added ice canidate")
+                }
+            })
+        });
+    }
+
 }
 
+// Global state values
+// const pc = new RTCPeerConnection(servers); // Emits events to update database and emit media streams, etc
+//let dataChannel = pc.createDataChannel("schedule"); // local data stream
+//console.log(dataChannel);
+/*
 // Create an offer
-async function createOffer(setInviteCode, dn, sch) {
+async function createOffer(setInviteCode, dn, sch, callId = null) {
 
     //console.log("Creating offer");
 
     displayName = dn;
     schedule = sch;
 
-    const callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
+    let callDoc;
+    let offerRefId;
 
-    const offerRefId = callDoc.id;
-    inviteCode = offerRefId;
-    console.log("Document written with id: ", offerRefId);
+    if (callId == null){
+
+        callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
+
+        offerRefId = callDoc.id;
+        inviteCode = offerRefId;
+        console.log("Document written with id: ", offerRefId);
+    } else {
+        callDoc = await doc(db, 'calls', callId);
+        offerRefId = callId;
+    }
 
     const offerCanidates =  collection(db, 'calls', offerRefId, "offerCanidates");
     const answerCanidates = collection(db, 'calls', offerRefId, "answerCanidates");
@@ -174,7 +300,7 @@ async function answerCall(ic, dn, sch) {
     schedule = sch;
 
     console.log(callId);
-    const callDoc = await doc(db, 'calls',callId);
+    const callDoc = await doc(db, 'calls', callId);
     const offerCanidates = collection(db, 'calls', callId, "offerCanidates");
     const answerCanidates = collection(db, 'calls', callId, "answerCanidates");
 
@@ -212,5 +338,6 @@ async function answerCall(ic, dn, sch) {
         })
     });
 }
+*/
 
-export {createOffer, answerCall, displayName, pc, schedule, inviteCode}
+export {Connection}

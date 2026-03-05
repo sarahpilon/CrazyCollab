@@ -14,58 +14,70 @@ const identitySchedule = [
     {id: 6, name: "sunday", time: []}
 ]
 
-function CollabHostPage({inviteCode, setInviteCode}) {
+function CollabHostPage({inviteCode, setInviteCode, username, connections, setConnections, userSchedule}) {
 
-    const [displayName, setDisplayName] = useState(network.displayName);
+    // let pc = connections;
+
+    const [displayName, setDisplayName] = useState(username);
     const [groupMembers, setGroupMembers] = useState([displayName]);
-    const [schedule, setSchedule] = useState(network.schedule);
+    const [schedule, setSchedule] = useState(userSchedule);
 
-    // Initialize host's datachannel
-    let channel = network.pc.createDataChannel('channel');
+    for (let pc of connections) {
 
-    network.pc.addEventListener("connectionstatechange", event => {
-        if (network.pc.connectionState === 'connected'){
-            console.log("connected to peers! Message coming from page!")
-            setInviteCode(network.inviteCode);
-        
-            const peerConnect = async () => {
+        // Initialize host's datachannel
+        let channel = pc.createDataChannel('channel');
+        let code = inviteCode;
+        console.log("Invite code: ", code);
+
+        pc.addEventListener("connectionstatechange", event => {
+            if (pc.connectionState === 'connected'){
+                console.log("connected to peers! Message coming from page!")
+                // network.extendConnection();
             
-                
-                setInviteCode(network.inviteCode);
+                const peerConnect = async () => {
 
-                channel.addEventListener('open', event => {
+                    channel.addEventListener('open', event => {
 
-                    const message = {dn: network.displayName, sch: network.schedule};
-                    channel.send(JSON.stringify(message));
-                    console.log("Sending message to peer: ", message);
-                })
+                        const message = {dn: username, sch: userSchedule};
+                        channel.send(JSON.stringify(message));
+                        console.log("Sending message to peer: ", message);
+                    })
 
 
-                channel.addEventListener('close', event => {
-                    // closed datachannel, do ...
-                    console.log("data channel closed :(");
-                })
+                    channel.addEventListener('close', event => {
+                        // closed datachannel, do ...
+                        console.log("data channel closed :(");
+                    })
 
-                // to send data, do dataChannel.send(message)
-                // this event listener will listen for incoming messages
-                channel.addEventListener('message', event => {
-                    // recieved data, do ...
-                    const message = JSON.parse(event.data);
-                    const dn = message.dn;
-                    const sch = message.sch;
-                    console.log("recieved a message: ", message);
-                    console.log("Display name: ", dn);
-                    console.log("Schedule: ", sch);
-                    handleMemberJoin(dn, sch);
-                    //updateSessionMembers(message);
-                    // const message = event.data
-                })
+                    // to send data, do dataChannel.send(message)
+                    // this event listener will listen for incoming messages
+                    channel.addEventListener('message', event => {
+                        // recieved data, do ...
+                        const message = JSON.parse(event.data);
+                        const dn = message.dn;
+                        const sch = message.sch;
+                        //console.log("recieved a message: ", message);
+                        //console.log("Display name: ", dn);
+                        //console.log("Schedule: ", sch);
+                        handleMemberJoin(dn, sch);
+                        //updateSessionMembers(message);
+                        // const message = event.data
+                    })
+
+                    const newpc = new network.Connection("second");
+                    setConnections([...connections, newpc.pc]);
+                    console.log("Creating new peer connetion for next person: ", newpc.pc, "\nWith code: ", code, "\n\n\n");
+                    newpc.createOffer(setInviteCode, username, schedule);
+                    pc.setup = true;
+                }
+
+                peerConnect();
+
             }
+        })
 
-            peerConnect();
-        
-        }
-    })
+
+    }
 
     const handleScheduleAdd = (addSchedule) => {
 
