@@ -26,11 +26,15 @@ This week, our team worked towards backend implementations and connecting it to 
      2. Work on project poster (1 day)
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
-   1. a
+   1. Prepare UI pages for Beta testing
+   2. Add functionality and prepare for more backend logic implementation
 2. **Progress and Issues:**  
-   1. a
+   1. Learned screen size breakpoint issue will be time consuming to resolve, resolution of this issue will be lower priority
+   2. Polished UI by updating styling to buttons, making them align with calendar grid
+   3. Coordinated with Dylan (backend) to implement an extra meeting page
 3. **Next Week's Planned Goals:**  
-   1. a
+   1. Implement meeting export buttons to allow user to export their selected time to their calendar.
+   2. Prepare for Google Calendar API integration by coordinating with Sarah
 ### Dylan Knapp
 1. **This Week's Planned Goals:**  
    1. a
