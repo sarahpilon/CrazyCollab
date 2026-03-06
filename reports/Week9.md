@@ -4,6 +4,7 @@
     1. Complete beta testing phase
     2. Recieve feedback from beta testers to identify potential bugs
     3. Bug fixes and UI refinements
+    4. Google Calendar API integration
 2. **Team Progress and Issues:**  
 [Progress]
 
