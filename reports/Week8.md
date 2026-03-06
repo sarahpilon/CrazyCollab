@@ -14,11 +14,16 @@ This week, our team worked towards backend implementations
 ## Team Contributions
 ### Sarah Pilon
 1. **This Week's Planned Goals:**  
-     1. a
+     1. Add in tests according to team members chosen unit and integration tests
+	 2. Work more on the backend, and how to store and recieve MongoDB information from the user
 2. **Progress and Issues:**  
-     1. a
+     1. Finished making tests, added even more to work on the use case
+     2. Set up MongoDB on backend
+     3. Discovered bugs relating to the database where two installations of MongoDB was installed
+     4. Database function is working completely
 3. **Next Week's Planned Goals:**  
-     1. a
+     1. Finalize Google Calendar API (3 days)
+     2. Work on project poster (2 days)
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
    1. a
