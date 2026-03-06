@@ -21,6 +21,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
     const [displayName, setDisplayName] = useState(username);
     const [groupMembers, setGroupMembers] = useState([displayName]);
     const [schedule, setSchedule] = useState(userSchedule);
+    const [channels, setChannels] = useState([]);
 
     for (let pc of connections) {
 
@@ -32,21 +33,20 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
         pc.addEventListener("connectionstatechange", event => {
             if (pc.connectionState === 'connected'){
                 console.log("connected to peers! Message coming from page!")
+                setChannels(e => [...channels, channel]);
                 // network.extendConnection();
             
                 const peerConnect = async () => {
 
                     channel.addEventListener('open', event => {
 
-                        const message = {dn: username, sch: userSchedule};
-                        channel.send(JSON.stringify(message));
-                        console.log("Sending message to peer: ", message);
+                        
                     })
 
 
                     channel.addEventListener('close', event => {
                         // closed datachannel, do ...
-                        console.log("data channel closed :(");
+                        console.log("data channel closed :");
                     })
 
                     // to send data, do dataChannel.send(message)
@@ -59,9 +59,12 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                         //console.log("recieved a message: ", message);
                         //console.log("Display name: ", dn);
                         //console.log("Schedule: ", sch);
-                        handleMemberJoin(dn, sch);
+                        
                         //updateSessionMembers(message);
                         // const message = event.data
+                        const messageSent = handleMemberJoin(dn, sch, channel);
+                        channel.send(JSON.stringify(messageSent));
+                        console.log("Sending message to peer: ", messageSent);
                     })
 
                     const newpc = new network.Connection("second");
@@ -97,19 +100,33 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
         console.log("new schedule calculated: ", newSchedule);
 
         setSchedule(newSchedule);
+
+        return newSchedule;
     }
 
-    const handleMemberJoin = (newMemberName, newMemberSchedule) => {
+    const handleMemberJoin = (newMemberName, newMemberSchedule, currentChannel) => {
 
+        console.log("HANDLING MEMBER JOIN\N\N");
         // Add name to name list
         const newMemberList = [
             ...groupMembers,
             newMemberName
         ]
 
+        console.log("new member list: ", newMemberList)
+
         setGroupMembers(newMemberList);
 
-        handleScheduleAdd(newMemberSchedule);
+        const newSchedule = handleScheduleAdd(newMemberSchedule);
+
+        for (const channel of channels){
+
+            const message = {dns: newMemberList, sch: newSchedule};
+            channel.send(JSON.stringify(message));
+        }
+
+        return {dns: newMemberList, sch: newSchedule};
+
     }
 
     return(

@@ -27,6 +27,7 @@ let connection = undefined;
 
 async function connect(){
 
+    /*
     try{
         await mongoose.connect(process.env.MONGODB_CONNECT_STRING);
         connection = mongoose.connection;
@@ -35,6 +36,7 @@ async function connect(){
         console.log(err);
         throw Error(`Could not connect to MongoDB ${err.message}`)
     }
+    */
 }
 
 async function sign_up(user_info){

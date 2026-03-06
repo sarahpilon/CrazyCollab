@@ -5,7 +5,7 @@ import { Connection } from '../js/network_component.mjs';
 import EditCalendarCollection from '../components/EditCalendarCollection';
 import '../style/join.css';
 
-function JoinPage({username, setUsername, schedule, setSchedule, connections, setConnections}){
+function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections}){
 
     const [inviteCode, setInviteCode] = useState();
     // const [displayName, setDisplayName] = useState();
@@ -39,7 +39,7 @@ function JoinPage({username, setUsername, schedule, setSchedule, connections, se
                 <label for="inviteCode" class="join-label invite-code-button">Invite Code</label>
                 <input class="join-input" name="inviteCode" type="text" value={inviteCode} onChange={e => {setInviteCode(e.target.value)}}></input>
                 <label for="username" class="join-label display-name-button">Display Name</label>
-                <input class="join-input" name="username" type="text" value={username} onChange={e => {if(username == null) {setUsername(e.target.value)} else {alert("Can't edit account name")}}}></input>
+                <input class="join-input" name="username" type="text" value={username} onChange={e => {if(loggedIn == false) {setUsername(e.target.value)} else {alert("Can't edit account name")}}}></input>
                 <button class="join-button" onClick={e => {e.preventDefault(); handleJoin();}}>Join</button>
             </div>
             <div class="rightcard">

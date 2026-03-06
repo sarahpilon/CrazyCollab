@@ -48,7 +48,8 @@ function App() {
                                                                  username={username} userSchedule={schedule}/>}></Route>
             <Route path="/join" element={<JoinPage username={username} setUsername={setUsername}
                                                    schedule={schedule} setSchedule={setSchedule}
-                                                   connections={connections} setConnections={setConnections}/>}></Route>
+                                                   connections={connections} setConnections={setConnections}
+                                                   loggedIn={loggedIn}/>}></Route>
             <Route path="/host" element={<HostPage inviteCode={inviteCode} setInviteCode={setInviteCode} u
                                                    connections={connections} setConnections={setConnections}
                                                    username={username} setUsername={setUsername}

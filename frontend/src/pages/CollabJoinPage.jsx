@@ -16,12 +16,12 @@ const identitySchedule = [
 
 function CollabJoinPage({connections, setConnections, username, userSchedule}) {
 
-    let pc = connections;
-
     const [inviteCode, setInviteCode] = useState();
     const [displayName, setDisplayName] = useState(username);
     const [groupMembers, setGroupMembers] = useState([displayName]);
     const [schedule, setSchedule] = useState(userSchedule);
+
+    let pc = connections;
 
     pc.addEventListener('datachannel', event => {
         const channel = event.channel;
@@ -46,17 +46,18 @@ function CollabJoinPage({connections, setConnections, username, userSchedule}) {
         channel.addEventListener('message', event => {
             // recieved data, do ...
             const message = JSON.parse(event.data);
-            const dn = message.dn;
+            const dns = message.dns;
             const sch = message.sch;
             console.log("recieved a message: ", message);
-            console.log("Display name: ", dn);
+            console.log("Display names: ", dns);
             console.log("Schedule: ", sch);
-            handleMemberJoin(dn, sch);
+            handleMemberJoin(dns, sch);
         })
     });
 
     const handleScheduleAdd = (addSchedule) => {
 
+        console.log("Current schedule:", schedule);
 
         console.log("New schedule to add: ", addSchedule);
 
@@ -75,18 +76,17 @@ function CollabJoinPage({connections, setConnections, username, userSchedule}) {
         setSchedule(newSchedule);
     }
 
-    const handleMemberJoin = (newMemberName, newMemberSchedule) => {
+    const handleMemberJoin = (newMemberNames, newMemberSchedule) => {
 
         // Add name to name list
         const newMemberList = [
-            ...groupMembers,
-            newMemberName
+            ...newMemberNames
         ]
 
         setGroupMembers(newMemberList);
 
         // setSchedule(newMemberSchedule);
-        handleScheduleAdd(newMemberSchedule);
+        setSchedule(newMemberSchedule);
     }
 
     return(
