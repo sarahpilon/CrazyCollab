@@ -5,7 +5,7 @@
     2. UI displays ranked suggestions, using algorithm
     3. Handling edge cases in preparation for beta testing
 2. **Team Progress and Issues:**  
-[Progress]
+This week, our team worked towards backend implementations
 
 4. **Next Week's Planned Goals:**  
     1. Google Calendar API integration
@@ -30,4 +30,6 @@
 1. **This Week's Planned Goals:**  
    1. a
 2. **Progress and Issues:**  
+   1. a
+3. **Next Week's Planned Goals:**
    1. a
