@@ -61,34 +61,30 @@ class Connection {
     }
 
     // Create an offer
-    async createOffer(setInviteCode, dn, sch, callId = null) {
+    async createOffer(setInviteCode, dn, sch, setCode = true, sessionId = null) {
 
         console.log("Creating offer by ", this.connectionName);
 
         this.displayName = dn;
         this.schedule = sch;
 
-        let callDoc;
-        let offerRefId;
+        let sessionDoc;
 
-        if (callId == null){
-
-            console.log("Creating new doc");
-            callDoc = await addDoc(collection(db, 'calls'), {}); //collection(db, 'calls');
-
-            offerRefId = callDoc.id;
-            this.inviteCode = offerRefId;
-            // console.log("Document written with id: ", offerRefId);
+        if (sessionId == null){
+            // If no existing session id is provided, it's a new session
+            console.log("Creating new session document")
+            sessionDoc = await addDoc(collection(db, 'calls'), {}); // New session
+            sessionId = sessionDoc.id;
         } else {
-            console.log("connecting to exisitng doc with id: ", callId);
-            callDoc = await doc(db, 'calls', callId);
-            offerRefId = callId;
-            this.inviteCode = offerRefId;
-            console.log("Document written with id: ", offerRefId);
+            console.log("Connecting to existing session doc id");
         }
 
-        const offerCanidates =  collection(db, 'calls', offerRefId, "offerCanidates");
-        const answerCanidates = collection(db, 'calls', offerRefId, "answerCanidates");
+        // New call; Adds a new document to the dession document's collection of calls
+        const callDoc = await addDoc(collection(db, 'calls', sessionId, 'sessionCalls'), {}); 
+        const callId = callDoc.id;
+
+        const offerCanidates =  collection(db, 'calls', sessionId, 'sessionCalls', callId, "offerCanidates");
+        const answerCanidates = collection(db, 'calls', sessionId, 'sessionCalls', callId, "answerCanidates");
 
         //callInput.value = callDoc.id;
 
@@ -110,8 +106,8 @@ class Connection {
         // New, and good
         try {
             await(setDoc(callDoc, {offer: offer}));
-            this.inviteCode = callDoc.id;
-            if (callId == null){setInviteCode(callDoc.id);}
+            this.inviteCode = sessionId;
+            if (setCode) {setInviteCode(sessionId)};
         } catch (e) {
             console.error("Error addiing document: ", e);
         }
@@ -154,14 +150,26 @@ class Connection {
     // Answering calls
     async answerCall(ic, dn, sch) {
 
-        const callId = ic;
+        const sessionId = ic;
         this.displayName = dn;
         this.schedule = sch;
 
-        console.log(callId);
-        const callDoc = await doc(db, 'calls', callId);
-        const offerCanidates = collection(db, 'calls', callId, "offerCanidates");
-        const answerCanidates = collection(db, 'calls', callId, "answerCanidates");
+        console.log(sessionId);
+        let callId = null;
+
+        const q = query(collection(db, 'calls', sessionId, 'sessionCalls'));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            if (doc.data().offer && callId == null){
+                console.log("Found offer to respond to");
+                callId = doc.id;
+            }
+        })
+
+        const callDoc = await doc(db, 'calls', sessionId, 'sessionCalls', callId);
+        const offerCanidates =  collection(db, 'calls', sessionId, 'sessionCalls', callId, "offerCanidates");
+        const answerCanidates = collection(db, 'calls', sessionId, 'sessionCalls', callId, "answerCanidates");
 
         this.pc.onicecandidate = event => {
             event.candidate && addDoc(answerCanidates, event.candidate.toJSON());

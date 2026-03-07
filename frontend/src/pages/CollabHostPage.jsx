@@ -28,7 +28,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
         // Initialize host's datachannel
         let channel = pc.createDataChannel('channel');
         let code = inviteCode;
-        console.log("Invite code: ", code);
+        console.log("Invite code: ", inviteCode);
 
         pc.addEventListener("connectionstatechange", event => {
             if (pc.connectionState === 'connected'){
@@ -69,8 +69,8 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
                     const newpc = new network.Connection("second");
                     setConnections([...connections, newpc.pc]);
-                    console.log("Creating new peer connetion for next person: ", newpc.pc, "\nWith code: ", code, "\n\n\n");
-                    newpc.createOffer(setInviteCode, username, schedule);
+                    console.log("Creating new peer connetion for next person: ", newpc.pc, "\nWith code: ", inviteCode, "\n\n\n");
+                    newpc.createOffer(setInviteCode, username, schedule, false, inviteCode);
                     pc.setup = true;
                 }
 
