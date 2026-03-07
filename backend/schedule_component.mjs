@@ -245,7 +245,7 @@ function parseScheduleFrontend(schedule) {
         if (schedule[day] && Array.isArray(schedule[day])) {
 
             // if theres times add the times to the formatted schedule
-            for (const time of schedule[day][0]){
+            for (const time of schedule[day]){
                 console.log(time);
                 formattedSchedule[dayIndex].time.push(BackToDecimal(time)); // NEED TO SET TIME BACK TO DECIMAL AMOUNT
             }

@@ -1,6 +1,7 @@
 // const mongoose = require("mongoose");
 
 import mongoose from "mongoose";
+import 'dotenv/config';
 
 // set up structure of the database
 const userSchema = new mongoose.Schema({
@@ -8,13 +9,13 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     timezone:{type: String, default: "UTC"},
     schedule: {
-        monday: [Number],
-        tuesday: [Number],
-        wednesday: [Number],
-        thursday: [Number],
-        friday: [Number],
-        saturday: [Number],
-        sunday: [Number],
+        monday: [String],
+        tuesday: [String],
+        wednesday: [String],
+        thursday: [String],
+        friday: [String],
+        saturday: [String],
+        sunday: [String],
     }
 });
 
@@ -27,7 +28,6 @@ let connection = undefined;
 
 async function connect(){
 
-    /*
     try{
         await mongoose.connect(process.env.MONGODB_CONNECT_STRING);
         connection = mongoose.connection;
@@ -36,7 +36,6 @@ async function connect(){
         console.log(err);
         throw Error(`Could not connect to MongoDB ${err.message}`)
     }
-    */
 }
 
 async function sign_up(user_info){
@@ -72,6 +71,7 @@ async function log_in(user_info){
 
     console.log("Existing User info: ", user_info);
     const exisitng_user = await find_user(user_info);
+    console.log("Found user: ", exisitng_user);
 
     if (exisitng_user != null){
 

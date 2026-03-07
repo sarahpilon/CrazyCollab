@@ -45,9 +45,9 @@ async function post_schedule(newSchedule){
     const parsedSchedule = await schedule_component.parseSchedule(newSchedule);
 
     const newUserInfo = {
-        schedule: [
-            parsedSchedule
-        ]
+        schedule: {
+            ...parsedSchedule
+        }
     }
 
     return await database.update_user(newUserInfo);
