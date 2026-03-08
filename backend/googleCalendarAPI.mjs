@@ -48,13 +48,13 @@ async function SentEvent(app) {
 
       // from google itself
       const event = {
-        summary: "kippys awakening",   // <-- this can be made into a variable similar to gmail
+        summary: "Group Meeting",   // <-- this can be made into a variable similar to gmail
         start: {
-          dateTime: "2026-03-6T09:00:00-07:00", // same with this and end time
+          dateTime: "2026-03-10T09:00:00-07:00", // same with this and end time
           timeZone: "America/Los_Angeles",
         },
         end: {
-          dateTime: "2026-03-6T09:00:00-07:00",  // can be changed
+          dateTime: "2026-03-10T09:00:00-07:00",  // can be changed
           timeZone: "America/Los_Angeles",
         },
         attendees: givenEmails.map(email => ({ email }))   // <-- format of what name and start/end time will look like
