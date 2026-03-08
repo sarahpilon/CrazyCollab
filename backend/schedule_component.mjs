@@ -1,5 +1,3 @@
-
-
 /**
 * Assuming the schedule takes this format as a JSON:
 * {
@@ -16,7 +14,7 @@
  * @param {*} scheduleJSON 
  * @returns updated schedule
  */
-async function parseSchedule(scheduleJSON){
+async function parseSchedule(scheduleJSON, timezone){
     try {
         // taken in scheduleJSON in correct format
         let formattedSchedule = {};
@@ -80,7 +78,7 @@ async function parseSchedule(scheduleJSON){
                 const times = formattedSchedule[day] || [];
 
                 //  Move objects to array, and turn decimal into time
-                schedule[day] = times.map(time => universal(time))
+                schedule[day] = times.map(time => universal(time, timezone))
             }
 
         } else {
@@ -107,8 +105,8 @@ async function compareUsers(userA, userB) {
 
     try {
 
-    const PasrsedA = await parseSchedule(userA);
-    const ParsedB = await parseSchedule(userB);
+    const PasrsedA = await parseSchedule(userA, userA.timezone);
+    const ParsedB = await parseSchedule(userB, userB.timezone);
 
     return compareSchedules(PasrsedA, ParsedB);
     
@@ -169,28 +167,37 @@ function compareSchedules(UserA, UserB) {
 /**
  * Function to set the timezone to a universal time
  */
-function universal(time) {
+function universal(time, timezone) {
 
 
     // if the time was invalid, throw an error
     if (time >= 0 && time <= 23.99) {
 
 
-    // get time string to date object
-    var dateObject = new Date(0,0);
+    // timezone logic
+    // create date for timezone logic
+    const currentTime = new Date("2000-01-01T00:00:00");
 
+    const localString = currentTime.toLocaleString("en-US", { timeZone: timezone });
+    const dateObject = new Date(localString);
+
+
+    
 
     // set to hh:mm
     dateObject.setMinutes(+time * 60);
-    // dateObject.setMinutes(Math.round(time * 60));
+    // dateObject.setMinutes(Math.round(time * 60));// dateObject.setMinutes(Math.round(time * 60));
     // set to local time
-    const result = dateObject.toLocaleTimeString("en-US",
+    const result = dateObject.toLocaleString("en-US",
                     {
                         hour: "2-digit",
                         minute: "2-digit",
-                        hour12: false
+                        hour12: false,
+                        timeZone: timezone
                     }
                 );
+
+    
    
     // return final result
     return result
@@ -205,24 +212,36 @@ function universal(time) {
    
 }
 
-function BackToDecimal(t) {
+function BackToDecimal(t, timezone) {
     // split into hour minute
     const [hour, minute] = t.split(':').map(Number);
 
+    // create date for timezone logic
+    const currentTime = new Date("2000-01-01T00:00:00");
+
+
+    const localTime = currentTime.toLocaleString("en-US", {timeZone: timezone});
+    const localDate = new Date(localTime);
+
+    // set local time
+    localDate.setHours(hour, minute, 0, 0);
+
+    // get two values
+    const localHour = localDate.getHours();
+    const localMinute = localDate.getMinutes();
 
     // convert into fraction
-    const fraction = minute / 60;
-
+    const fraction = localMinute / 60;
 
     // return ROUNDED answer
-    return Number((hour + fraction).toFixed(2));
+    return Number((localHour + fraction).toFixed(2));
 }
 
 /**
  * Parse schedule from database format into frontend format
  */
 
-function parseScheduleFrontend(schedule) {
+function parseScheduleFrontend(schedule, timezone) {
     let formattedSchedule = [
     {id: 0, name: "monday", time: []},
     {id: 1, name: "tuesday", time: []},
@@ -247,10 +266,12 @@ function parseScheduleFrontend(schedule) {
             // if theres times add the times to the formatted schedule
             for (const time of schedule[day]){
                 console.log(time);
-                formattedSchedule[dayIndex].time.push(BackToDecimal(time)); // NEED TO SET TIME BACK TO DECIMAL AMOUNT
+                formattedSchedule[dayIndex].time.push(BackToDecimal(time, timezone)); // NEED TO SET TIME BACK TO DECIMAL AMOUNT
             }
             // formattedSchedule[dayIndex].time = schedule[day];
         } else {
+
+
             // set to empty array if day has no times
             formattedSchedule[dayIndex].time = [];
         }
