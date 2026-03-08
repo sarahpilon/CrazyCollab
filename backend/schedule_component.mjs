@@ -105,8 +105,8 @@ async function compareUsers(userA, userB) {
 
     try {
 
-    const PasrsedA = await parseSchedule(userA.schedule, userA.timezone);
-    const ParsedB = await parseSchedule(userB.schedule, userB.timezone);
+    const PasrsedA = await parseSchedule(userA, userA.timezone);
+    const ParsedB = await parseSchedule(userB, userB.timezone);
 
     return compareSchedules(PasrsedA, ParsedB);
     
@@ -175,7 +175,7 @@ function universal(time, timezone) {
 
     // timezone logic
     // create date for timezone logic
-    const currentTime = new Date();
+    const currentTime = new Date("2000-01-01T00:00:00");
 
     const localString = currentTime.toLocaleString("en-US", { timeZone: timezone });
     const dateObject = new Date(localString);
@@ -216,7 +216,8 @@ function BackToDecimal(t, timezone) {
     const [hour, minute] = t.split(':').map(Number);
 
     // create date for timezone logic
-    const currentTime = new Date();
+    const currentTime = new Date("2000-01-01T00:00:00");
+
 
     const localTime = currentTime.toLocaleString("en-US", {timeZone: timezone});
     const localDate = new Date(localTime);
