@@ -25,7 +25,7 @@ let givenEmails = [];
 const PORT = process.env.PORT;
 
 app.listen(PORT, async () => {
-  //  await model.connect();
+    await model.connect();
     console.log(`Server listening on port ${PORT}...`);
 });
 
