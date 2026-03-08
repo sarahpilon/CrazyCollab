@@ -48,7 +48,7 @@ function HomePage({username, setUsername, password, setPassword, schedule, setSc
         <div class="body">
             <div class="container">
                 <div class="card">
-                    <h1 class="title">Welcome to Crazy Collab</h1>
+                    <div class="welcome-box">Welcome to Crazy Collab</div>
                     <div>{loggedIn == false ? '' : "Current User: " + username}</div>
                 
                     <div class="subtitle">Sign in to start meeting</div>
