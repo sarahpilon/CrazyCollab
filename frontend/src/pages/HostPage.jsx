@@ -7,10 +7,6 @@ import EditCalendarCollection from '../components/EditCalendarCollection';
 import '../style/join.css';
 
 
-
-    // const [inviteCode, setInviteCode] = useState();
-    // const [displayName, setDisplayName] = useState();
-    // const [schedule, setSchedule] = useState(identitySchedule);
 function HostPage({inviteCode, setInviteCode, username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections, groupName, setGroupName}){
 
     const navigate = useNavigate();
