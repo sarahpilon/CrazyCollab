@@ -14,9 +14,8 @@ const identitySchedule = [
     {id: 6, name: "sunday", time: []}
 ]
 
-function CollabJoinPage({connections, setConnections, username, userSchedule}) {
+function CollabJoinPage({connections, setConnections, username, userSchedule, groupName, setGroupName, inviteCode, setInviteCode}) {
 
-    const [inviteCode, setInviteCode] = useState();
     const [displayName, setDisplayName] = useState(username);
     const [groupMembers, setGroupMembers] = useState([displayName]);
     const [schedule, setSchedule] = useState(userSchedule);
@@ -48,9 +47,11 @@ function CollabJoinPage({connections, setConnections, username, userSchedule}) {
             const message = JSON.parse(event.data);
             const dns = message.dns;
             const sch = message.sch;
+            const gpn = message.gpn;
             console.log("recieved a message: ", message);
             console.log("Display names: ", dns);
             console.log("Schedule: ", sch);
+            setGroupName(gpn);
             handleMemberJoin(dns, sch);
         })
     });
@@ -92,17 +93,15 @@ function CollabJoinPage({connections, setConnections, username, userSchedule}) {
     return(
         <div class="body">
             <div class="card">
-                <div class="logo">Crazy Collab</div>
-                <div class="subtext">Find meeting times that actually work for everyone</div>
                 <div class="group-members-title">Group Members</div>
                 <div class="group-members-box">
                     {groupMembers.map((name, i) => <div key={i}>{name}</div>)}
                 </div>
-                <div class="invite-code">{inviteCode}</div>
+                <div class="invite-code">Invite Code: {inviteCode}</div>
             </div>
 
             <div class="rightcard">
-                <div class="meeting-name">Group Meeting: Crazy Testing!</div>
+                <div class="meeting-name">Group Meeting: {groupName}</div>
                 <div class="meeting-date">March 2-9</div>
                 
 

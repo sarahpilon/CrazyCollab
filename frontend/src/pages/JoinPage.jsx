@@ -5,9 +5,8 @@ import { Connection } from '../js/network_component.mjs';
 import EditCalendarCollection from '../components/EditCalendarCollection';
 import '../style/join.css';
 
-function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections}){
+function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections, inviteCode, setInviteCode}){
 
-    const [inviteCode, setInviteCode] = useState();
     // const [displayName, setDisplayName] = useState();
 
     const navigate = useNavigate();
@@ -18,7 +17,7 @@ function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, conne
 
         setConnections(pc.pc);
 
-        pc.answerCall(inviteCode, username, schedule);
+        pc.answerCall(inviteCode, username, schedule, setInviteCode);
         
         pc.pc.addEventListener("connectionstatechange", event => {
                     

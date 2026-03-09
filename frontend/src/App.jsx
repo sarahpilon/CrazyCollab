@@ -33,7 +33,7 @@ function App() {
   const [inviteCode, setInviteCode] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
   const [connections, setConnections] = useState([]);
-
+  const [groupName, setGroupName] = useState("Group Meeting");
 
   return (
     <div>
@@ -50,19 +50,24 @@ function App() {
                                                schedule={schedule} setSchedule={setSchedule}/>}></Route>
             <Route path="/meeting/host" element={<CollabHostPage inviteCode={inviteCode} setInviteCode={setInviteCode}
                                                                  connections={connections} setConnections={setConnections}
-                                                                 username={username} userSchedule={schedule}/>}></Route>
+                                                                 username={username} userSchedule={schedule}
+                                                                 groupName={groupName} setGroupName={setGroupName}/>}></Route>
             <Route path="/meeting/host/oauth" element={<Autorization/>}></Route>
             <Route path="/meeting/join" element={<CollabJoinPage connections={connections} setConnections={setConnections}
-                                                                 username={username} userSchedule={schedule}/>}></Route>
+                                                                 username={username} userSchedule={schedule}
+                                                                 groupName={groupName} setGroupName={setGroupName}
+                                                                 inviteCode={inviteCode} setInviteCode={setInviteCode}/>}></Route>
             <Route path="/join" element={<JoinPage username={username} setUsername={setUsername}
                                                    schedule={schedule} setSchedule={setSchedule}
                                                    connections={connections} setConnections={setConnections}
-                                                   loggedIn={loggedIn}/>}></Route>
+                                                   loggedIn={loggedIn}
+                                                   inviteCode={inviteCode} setInviteCode={setInviteCode}/>}></Route>
             <Route path="/host" element={<HostPage inviteCode={inviteCode} setInviteCode={setInviteCode}
                                                    connections={connections} setConnections={setConnections}
                                                    username={username} setUsername={setUsername}
                                                    schedule={schedule} setSchedule={setSchedule}
-                                                   loggedIn={loggedIn}/>}></Route>
+                                                   loggedIn={loggedIn} groupName={groupName}
+                                                   setGroupName={setGroupName}/>}></Route>
             <Route path="/signup" element={<SignUpPage username={username} setUsername={setUsername}
                                                        password={password} setPassword={setPassword}
                                                        loggedIn={loggedIn} setLoggedIn={setLoggedIn}

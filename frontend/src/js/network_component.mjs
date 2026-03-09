@@ -148,7 +148,7 @@ class Connection {
     }
     
     // Answering calls
-    async answerCall(ic, dn, sch) {
+    async answerCall(ic, dn, sch, setInviteCode) {
 
         const sessionId = ic;
         this.displayName = dn;
@@ -166,6 +166,8 @@ class Connection {
                 callId = doc.id;
             }
         })
+
+        setInviteCode(sessionId);
 
         const callDoc = await doc(db, 'calls', sessionId, 'sessionCalls', callId);
         const offerCanidates =  collection(db, 'calls', sessionId, 'sessionCalls', callId, "offerCanidates");

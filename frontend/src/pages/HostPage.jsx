@@ -7,15 +7,15 @@ import EditCalendarCollection from '../components/EditCalendarCollection';
 import '../style/join.css';
 
 
-function HostPage({inviteCode, setInviteCode, username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections}){
 
     // const [inviteCode, setInviteCode] = useState();
     // const [displayName, setDisplayName] = useState();
     // const [schedule, setSchedule] = useState(identitySchedule);
+function HostPage({inviteCode, setInviteCode, username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections, groupName, setGroupName}){
 
     const navigate = useNavigate();
 
-    async function postSchedule(){ // Currently removed from the onSubmit event due to bug when logged out
+    async function postSchedule(){
         if (loggedIn == false){
             console.log("Can't post schedule, not logged in");
         } else {
@@ -42,6 +42,8 @@ function HostPage({inviteCode, setInviteCode, username, setUsername, schedule, s
     return (
         <div class="join-body">
             <div class="join-form">
+                <label for="groupName" class="join-label display-name-button">Meeting Name</label>
+                <input class="join-input" name="groupName" type="text" value={groupName} onChange={e => {setGroupName(e.target.value)}}></input>
                 <label for="username" class="join-label display-name-button">Display Name</label>
                 <input class="join-input" name="username" type="text" value={username} onChange={e => {if(loggedIn == false) {setUsername(e.target.value)} else {alert("Can't edit account name")}}}></input>
                 <button class="join-button" onClick={e => {e.preventDefault(); postSchedule(); handleInvite();}}>Create Meeting</button>

@@ -18,7 +18,7 @@ const identitySchedule = [
 ]
 
 
-function CollabHostPage({inviteCode, setInviteCode, username, connections, setConnections, userSchedule}) {
+function CollabHostPage({inviteCode, setInviteCode, username, connections, setConnections, userSchedule, groupName, setGroupName}) {
 
 
     // let pc = connections;
@@ -176,7 +176,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
         }
 
 
-        return {dns: newMemberList, sch: newSchedule};
+        return {dns: newMemberList, sch: newSchedule, gpn: groupName};
 
 
     }
@@ -185,8 +185,6 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
     return(
         <div class="body">
             <div class="card">
-                <div class="logo">Crazy Collab</div>
-                <div class="subtext">Find meeting times that actually work for everyone</div>
                 <div class="group-members-title">Group Members</div>
                 <div class="group-members-box">
                     {groupMembers.map((name, i) => <div key={i}>{name}</div>)}
@@ -197,7 +195,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
             <div class="rightcard">
                 <div class="meeting-header">
-                    <div class="meeting-name">Group Meeting: Crazy Testing!</div>
+                    <div class="meeting-name">Group Meeting: {groupName}</div>
                     <div class="meeting-date">March 9-15</div>
                 </div>
                 <div class="schedule-controls">
@@ -262,20 +260,6 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                     </div>
                 </div>
                 <div class="Header2">
-                    <div class="timezone">
-                        <label for="timezone-select">Timezone:</label>
-                        <select id="timezone-select" name="timezone" defaultValue={"PST"}>
-                            <option value="America/Los_Angeles">(PST) Pacific Time</option>
-                            <option value="America/Louisville">(EST) Eastern Time</option>
-                            <option value="America/Mexico_City">(CST) Central Time</option>
-                            <option value="America/Boise">(MST) Mountain Time</option>
-                        </select>
-                    </div>
-
-
-
-
-
 
                     <div className="Export-Calendar">
                         <Popup
