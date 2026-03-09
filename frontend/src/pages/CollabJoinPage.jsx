@@ -104,15 +104,7 @@ function CollabJoinPage({connections, setConnections, username, userSchedule}) {
             <div class="rightcard">
                 <div class="meeting-name">Group Meeting: Crazy Testing!</div>
                 <div class="meeting-date">March 2-9</div>
-                <div class="timezone">
-                    <label for="timezone-select">Timezone:</label>
-                    <select id="timezone-select" name="timezone" defaultValue={"PST"}>
-                        <option value="PST">(PST) Pacific Time</option>
-                        <option value="EST">(EST) Eastern Time</option>
-                        <option value="CST">(CST) Central Time</option>
-                        <option value="MST">(MST) Mountain Time</option>
-                    </select>
-                </div>
+                
 
                 <MeetCalendarCollection schedule={schedule} setSchedule={setSchedule}></MeetCalendarCollection>
             </div>

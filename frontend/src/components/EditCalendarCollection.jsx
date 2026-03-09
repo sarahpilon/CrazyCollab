@@ -1,4 +1,6 @@
 import CalendarGrid from './CalendarGrid';
+import ClearCalendarButton from './ClearCalendarButton';
+import TimezoneSelector from './TimezoneSelector'
 
 function EditCalendarCollection({schedule, setSchedule}){
 
@@ -47,7 +49,9 @@ function EditCalendarCollection({schedule, setSchedule}){
 
     return (
         <>
+            <TimezoneSelector/>
             <CalendarGrid schedule={schedule} setSchedule={setSchedule} onClick={handleScheduleChange}/>
+            <ClearCalendarButton/>
         </>
     )
 }
