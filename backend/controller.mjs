@@ -19,13 +19,18 @@ SentEvent(app);
 
 
 
-// shared emails
+// shared emails and info to send to google API
 let givenEmails = [];
+let givenDay = "";
+let givenStart = "";
+let givenEnd = "";
+let timeZone;
+
 
 const PORT = process.env.PORT;
 
 app.listen(PORT, async () => {
-    await model.connect();
+//    await model.connect();
     console.log(`Server listening on port ${PORT}...`);
 });
 
@@ -75,7 +80,7 @@ app.post('/collab/schedule', asyncHandler( async (req, res) => {
 
 }));
 
-// sending emails to backend
+// sending emails to backend & auth
 app.post('/collab/invite-emails', asyncHandler(async (req, res) => {
     try {
         // taken emails from host page popup
@@ -89,6 +94,20 @@ app.post('/collab/invite-emails', asyncHandler(async (req, res) => {
         console.error("No emails ", err);
     }
 }));
+
+// sending meeting name, date and timezone to funct
+app.post("/google/createEvent", async (req, res) => {
+    const { day, start, end, timezone } = req.body;
+    
+    givenDay = day;
+    givenStart = start;
+    givenEnd = end;
+    timeZone = timezone
+
+
+    res.json({ success: true });
+});
+
 
 // Retrieving your schedule to database
 app.get('/collab/schedule', asyncHandler( async (req, res) => {
@@ -111,4 +130,4 @@ app.get('/collab/#sessionid', asyncHandler( async (req, res) => {
 }));
 
 // sending emails to backend
-export { givenEmails };
+export { givenEmails, givenDay, givenStart, givenEnd, timeZone };

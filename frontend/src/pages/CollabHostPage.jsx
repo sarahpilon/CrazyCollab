@@ -198,19 +198,19 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
             <div class="rightcard">
                 <div class="meeting-header">
                     <div class="meeting-name">Group Meeting: Crazy Testing!</div>
-                    <div class="meeting-date">March 2-9</div>
+                    <div class="meeting-date">March 9-15</div>
                 </div>
                 <div class="schedule-controls">
                     <div class="times-filter">
                         <label for="times-day-select">Times:</label>
                         <select id="times-day-select" name="times-day" defaultValue={"monday"}>
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednesday">Wednesday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="friday">Friday</option>
-                            <option value="saturday">Saturday</option>
-                            <option value="sunday">Sunday</option>
+                            <option value="9">Monday</option>
+                            <option value="10">Tuesday</option>
+                            <option value="11">Wednesday</option>
+                            <option value="12">Thursday</option>
+                            <option value="13">Friday</option>
+                            <option value="14">Saturday</option>
+                            <option value="15">Sunday</option>
                         </select>
                         <select id="times-start-select" name="times-start" defaultValue={"08:00"}>
                             <option value="08:00">8:00 AM</option>
@@ -265,10 +265,10 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                     <div class="timezone">
                         <label for="timezone-select">Timezone:</label>
                         <select id="timezone-select" name="timezone" defaultValue={"PST"}>
-                            <option value="PST">(PST) Pacific Time</option>
-                            <option value="EST">(EST) Eastern Time</option>
-                            <option value="CST">(CST) Central Time</option>
-                            <option value="MST">(MST) Mountain Time</option>
+                            <option value="America/Los_Angeles">(PST) Pacific Time</option>
+                            <option value="America/Louisville">(EST) Eastern Time</option>
+                            <option value="America/Mexico_City">(CST) Central Time</option>
+                            <option value="America/Boise">(MST) Mountain Time</option>
                         </select>
                     </div>
 
@@ -303,6 +303,14 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
                                 <button
                                     onClick={() => {
+
+                                    // read values to send to backend
+                                    const day = document.getElementById("times-day-select").value;
+                                    const start = document.getElementById("times-start-select").value;
+                                    const end = document.getElementById("times-end-select").value;
+                                    const timezone = document.getElementById("timezone-select").value;
+
+
                                     // send emails to backend and remove blank ones
                                     const filtered = attendeeEmails.filter(e => e.trim() !== "");
                                     fetch("http://localhost:3000/collab/invite-emails", {
@@ -312,7 +320,12 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                         body: JSON.stringify({ emails: filtered }),
                                     });
 
-
+                                    // send selected time
+                                    fetch("http://localhost:3000/google/createEvent", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({ day, start, end, timezone }),
+                                    });
 
 
                                     // open authroization

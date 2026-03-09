@@ -16,7 +16,7 @@
  * No user login required for each meeting
  */
 import { google } from "googleapis";
-import { givenEmails } from "./controller.mjs";
+import { givenEmails, givenDay, givenStart, givenEnd } from "./controller.mjs";
 
 
 
@@ -50,11 +50,11 @@ async function SentEvent(app) {
       const event = {
         summary: "Group Meeting",   // <-- this can be made into a variable similar to gmail
         start: {
-          dateTime: "2026-03-10T09:00:00-07:00", // same with this and end time
+          dateTime: `2026-03-${givenDay}T${givenStart}:00-07:00`, // same with this and end time
           timeZone: "America/Los_Angeles",
         },
         end: {
-          dateTime: "2026-03-10T09:00:00-07:00",  // can be changed
+          dateTime: `2026-03-${givenDay}T${givenEnd}:00-07:00`,  // can be changed
           timeZone: "America/Los_Angeles",
         },
         attendees: givenEmails.map(email => ({ email }))   // <-- format of what name and start/end time will look like
