@@ -19,7 +19,7 @@ export default function Authorization() {
     // user has logged in before
     if (code) {
       // Send authorization code to backend to handle information
-      fetch('http://localhost:5173/collab/oauth/callback', {
+      fetch('https://main.d3a17xoen6fcqd.amplifyapp.com/collab/oauth/callback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       // send the code in the request body
@@ -51,7 +51,8 @@ export default function Authorization() {
       // Redirect information
         // CHANGE TO .ENV
       const clientId = '370124012666-uo0pug6llq6skbsug6j2hqb55grbl108.apps.googleusercontent.com';
-      const redirectUri = 'http://localhost:5173/meeting/host/oauth';
+      const redirectUri = `${window.location.origin}/meeting/host/oauth`;
+
       const scope = 'https://www.googleapis.com/auth/calendar.events';
       const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&access_type=offline`;
       
