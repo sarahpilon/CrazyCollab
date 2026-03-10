@@ -15,11 +15,15 @@
 ## Team Contributions
 ### Sarah Pilon
 1. **This Week's Planned Goals:**  
-     1. a
+     1. Finalize Google Calendar API (3 days)
+     2. Work on project poster (1 day)
 2. **Progress and Issues:**  
-     1. a
+     1. Finished implementing Google Calendar
+     2. Added our members as test users
+     3. Deployed our website
+     4. Project Poster was completed and had updated information
 3. **Next Week's Planned Goals:**  
-     1. a
+     1. Complete Final Presentation successfully and fix any bugs if needed :)
 ### Ella Wilkinson
 1. **This Week's Planned Goals:**  
    1. a
