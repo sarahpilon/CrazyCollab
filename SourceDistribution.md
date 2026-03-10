@@ -55,11 +55,11 @@ For our usability testing, we used feedback from user tests to identify pain poi
 
 ### Accessibility Testing
 We use a mix of automatic and manual tests for accessibility testing. 
-## Automated Testing
-	We run a browser extension called WAVE that provides real time feedback on accessibility issues. To use it, download the chrome extension and press Control + Shift + U to activate a report.
-## Manual Testing
-	For manual testing, Aquia is used to simulate visual impairment to identify readability issues.
-## How to Add New Tests
+### Automated Testing
+We run a browser extension called WAVE that provides real time feedback on accessibility issues. To use it, download the chrome extension and press Control + Shift + U to activate a report.
+### Manual Testing
+For manual testing, Aquia is used to simulate visual impairment to identify readability issues.
+### How to Add New Tests
 To add a new test, navigate to the tests folder. Then proceed to the correct unit or integration folder depending on the type you are planning to add. From there follow the steps below:
 It is important your file is named correctly! Jest finds the file automatically as long as it's named correctly! Name your test file as follows:
 function name.test.js
