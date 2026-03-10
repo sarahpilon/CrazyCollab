@@ -9,6 +9,7 @@ export default function Authorization() {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     // http code part
     const code = searchParams.get('code');
 
@@ -25,11 +26,9 @@ export default function Authorization() {
         body: JSON.stringify({ code })
       })
 
-      
-
-      
         .then(res => res.json())
         .then(data => {
+
           console.log("it reaches here at some point");
           // Store token if backend has nothing
           localStorage.setItem('googleAccessToken', data.accessToken);
@@ -40,16 +39,14 @@ export default function Authorization() {
           window.close();
         })
         .catch(err => {
+
           console.error('OAuth failed:', err);
           // navigate back if autorization fails
           navigate('/meeting/host');
         });
 
-
     // no login done before:
     } else {
-
-    
 
       // Redirect information
         // CHANGE TO .ENV
@@ -60,8 +57,6 @@ export default function Authorization() {
       
       // send information back on what to open window to
       window.location.href = googleAuthUrl;
-
-
     }
   }, [searchParams, navigate]);
 

@@ -1,7 +1,7 @@
 
-
 function CalendarTime({time}) {
 
+    // Parses the calendar time from decimal hours to regular time notation
     function parseTime(){
 
         const pm = (time - 12 > 0)

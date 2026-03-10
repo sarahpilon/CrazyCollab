@@ -4,7 +4,6 @@
  * 
  */
 
-
 // const User = require("./database_component.mjs"); 
 import {User} from "./database_component.mjs"; 
 
@@ -31,7 +30,6 @@ async function getUserSchedule(username) {
 
             console.error("User has no schedule or doesn't exist")
             return null;
-    
         }
 
     } catch (error) {
@@ -39,7 +37,6 @@ async function getUserSchedule(username) {
         console.error("Database error", error);
 
         return null;
-
     }
 }
 
@@ -51,6 +48,7 @@ async function getUserSchedule(username) {
  */
 async function getMeetingTimes(userASchedule, userB) {
     try {
+
         // get both added users schedule comparison
         const userBSchedule = await getUserSchedule(userB);
 
@@ -58,13 +56,12 @@ async function getMeetingTimes(userASchedule, userB) {
         if (userBSchedule) {
 
             return schedule.compareUsers(userASchedule, userBSchedule);
-        
         }
+
     } catch (error) {
 
         console.error("Error getting meeting times", error);
         return null;
-
     }
 }
 

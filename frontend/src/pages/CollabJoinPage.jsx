@@ -22,7 +22,9 @@ function CollabJoinPage({connections, setConnections, username, userSchedule, gr
 
     let pc = connections;
 
+    // Setups datachanneling, will send data to the host once the channel opens
     pc.addEventListener('datachannel', event => {
+        
         const channel = event.channel;
         console.log("Connecting to host channel: ", event.channel);
         console.log("data channel opened");
@@ -43,7 +45,7 @@ function CollabJoinPage({connections, setConnections, username, userSchedule, gr
         // to send data, do dataChannel.send(message)
         // this event listener will listen for incoming messages
         channel.addEventListener('message', event => {
-            // recieved data, do ...
+
             const message = JSON.parse(event.data);
             const dns = message.dns;
             const sch = message.sch;
@@ -56,27 +58,6 @@ function CollabJoinPage({connections, setConnections, username, userSchedule, gr
         })
     });
 
-    const handleScheduleAdd = (addSchedule) => {
-
-        console.log("Current schedule:", schedule);
-
-        console.log("New schedule to add: ", addSchedule);
-
-        const newSchedule = schedule.map(dayA => {
-           return {
-                ...dayA,
-                time: [
-                    ...dayA.time,
-                    ...addSchedule[dayA.id].time
-                ]
-           }
-        })
-
-        console.log("new schedule calculated: ", newSchedule);
-
-        setSchedule(newSchedule);
-    }
-
     const handleMemberJoin = (newMemberNames, newMemberSchedule) => {
 
         // Add name to name list
@@ -86,7 +67,6 @@ function CollabJoinPage({connections, setConnections, username, userSchedule, gr
 
         setGroupMembers(newMemberList);
 
-        // setSchedule(newMemberSchedule);
         setSchedule(newMemberSchedule);
     }
 
@@ -101,10 +81,10 @@ function CollabJoinPage({connections, setConnections, username, userSchedule, gr
             </div>
 
             <div class="rightcard">
-                <div class="meeting-name">Group Meeting: {groupName}</div>
-                <div class="meeting-date">March 2-9</div>
-                
-
+                <div class="join-meeting-header">
+                    <div class="meeting-name">Group Meeting: {groupName}</div>
+                    <div class="meeting-date">March 9-15</div>
+                </div>
                 <MeetCalendarCollection schedule={schedule} setSchedule={setSchedule}></MeetCalendarCollection>
             </div>
         </div>

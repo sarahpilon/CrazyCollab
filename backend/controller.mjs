@@ -17,8 +17,6 @@ app.use(express.json());
 
 SentEvent(app);
 
-
-
 // shared emails and info to send to google API
 let givenEmails = [];
 let givenDay = "";
@@ -26,11 +24,12 @@ let givenStart = "";
 let givenEnd = "";
 let timeZone;
 
-
 const PORT = process.env.PORT;
 
+// App start-up
 app.listen(PORT, async () => {
-//    await model.connect();
+    
+    await model.connect(); // Connects to mongodb database
     console.log(`Server listening on port ${PORT}...`);
 });
 
@@ -47,13 +46,11 @@ app.post('/collab/signup', asyncHandler( async (req, res) => {
     }
 }));
 
-// Signing up
+// Logging in
 app.post('/collab/login', asyncHandler( async (req, res) => {
 
     const body = req.body;
     const user = await model.log_in(body);
-
-    console.log("User: ", user);
 
     if (user != null){
         res.status(200).send(user);
@@ -63,7 +60,8 @@ app.post('/collab/login', asyncHandler( async (req, res) => {
 }));
 
 // Saving your schedule to database
-// Shouldn't require username since will only be executed if logged in
+// Doesn't require username since it will only be executed if logged 
+// in and the user info is saved to the database component
 app.post('/collab/schedule', asyncHandler( async (req, res) => {
     
     const body = req.body; // schedule
@@ -76,6 +74,22 @@ app.post('/collab/schedule', asyncHandler( async (req, res) => {
         res.status(200).send(update);
     }  else {
         res.status(404).send("Schedule post failed");
+    }
+
+}));
+
+// Retrieving your schedule to database
+// Doesn't require username since it will only be executed if logged 
+// in and the user info is saved to the database component
+app.get('/collab/schedule', asyncHandler( async (req, res) => {
+
+    const response = await model.get_schedule();
+
+    if (response != null) {
+
+        res.status(200).send(response);
+    } else {
+        res.status(404).send("Failed to get schedule");
     }
 
 }));
@@ -107,27 +121,6 @@ app.post("/google/createEvent", async (req, res) => {
 
     res.json({ success: true });
 });
-
-
-// Retrieving your schedule to database
-app.get('/collab/schedule', asyncHandler( async (req, res) => {
-
-    const response = await model.get_schedule();
-
-    if (response != null) {
-
-        res.status(200).send(response);
-    } else {
-        res.status(404).send("Failed to get schedule");
-    }
-
-}));
-
-// Connecting to a room
-app.get('/collab/#sessionid', asyncHandler( async (req, res) => {
-
-
-}));
 
 // sending emails to backend
 export { givenEmails, givenDay, givenStart, givenEnd, timeZone };

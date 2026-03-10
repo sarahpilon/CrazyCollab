@@ -110,6 +110,14 @@
     margin-left: 3.8%;
 }
 
+.join-meeting-header {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    margin-left: 3.8%;
+    margin-bottom: 15px;
+}
+
 .meeting-name{
     font-size: 20px;
     font-weight: bold;
@@ -305,7 +313,7 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 0px;
     justify-content: center;
     align-items: flex-start;
 }

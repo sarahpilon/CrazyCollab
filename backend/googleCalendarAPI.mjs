@@ -1,15 +1,3 @@
-/**
- *
- * TO DO:
- * - Create frontend to select meeting time
- * - Once meeting time is selected, have new component thing to confirm
- *   attendees and enter their emails, one per line and confirm name of meeting
- * - Sending information back here to send invite
- *
- * - back to frontend with confirmation
- *
- */
-
 
 /**
  * Service Account Auth - server creates events on behalf of host
@@ -24,10 +12,10 @@ import { givenEmails, givenDay, givenStart, givenEnd } from "./controller.mjs";
  * Event with attendees runs only after authorization is already done
  */
 async function SentEvent(app) {
+  
   // linked from controller, because its called from authorization 
   app.post("/collab/oauth/callback", async (req, res) => {
     console.log("Autorization works")
-
 
     try {
       // get code from authorization 
@@ -79,11 +67,5 @@ async function SentEvent(app) {
     }
   });
 }
-
-
-
-
-
-
 
 export {SentEvent}

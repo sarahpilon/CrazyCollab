@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 function CalendarCell({onClick, day, time}){
 
-    const [weight, setWeight] = useState(0);
-
     const buttonNames = ["left", "right", "wheel", "back", "forward"];
     function mouseButtonPressed(event, buttonName) {
         
@@ -28,12 +26,11 @@ function CalendarCell({onClick, day, time}){
         } else if (weight == 3) {
             return '#5b606e'
         }
-
     }
 
     const style = {
         
-        backgroundColor: calcStyle() // day.time.includes(time) != false ? 'lightGray' : 'white'
+        backgroundColor: calcStyle()
     }
 
     return (

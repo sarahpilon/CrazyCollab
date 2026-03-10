@@ -2,30 +2,35 @@ import * as database from './database_component.mjs';
 import * as schedule_component from './schedule_component.mjs';
 import 'dotenv/config';
 
-/**
- * This function connects to the MongoDB server.
- */
+// Connects to mongodb database
 async function connect(){
+    
     return await database.connect();
 }
 
+// Passes data to database component
 async function sign_up(user_info){
+    
     const user = await database.sign_up(user_info);
 
     return user;
 }
 
+// Logs in using username and password, then parses schedule and returns a new object 
+// with user info to be used in the frontend
 async function log_in(user_info){
     
     const user = await database.log_in(user_info);
 
     const parsedSchedule = schedule_component.parseScheduleFrontend(user.schedule);
 
+    // Extracting fields from database object
     const username = user.username;
     const password = user.password;
     const timezone = user.timezone;
     const _id = user._id;
 
+    // Constructs a new object that will be used in the frontend
     const returnedUser = {
         username,
         password,
@@ -35,11 +40,10 @@ async function log_in(user_info){
             parsedSchedule
     }
 
-    console.log("Returned user: ", returnedUser)
-
     return returnedUser;
 }
 
+// Parses and posts the schedule to the currently saved user's database info
 async function post_schedule(newSchedule){
     
     const parsedSchedule = await schedule_component.parseSchedule(newSchedule);
@@ -51,9 +55,10 @@ async function post_schedule(newSchedule){
     }
 
     return await database.update_user(newUserInfo);
-
 }
 
+// Fetches the current user and parses the schedule into a usable format for 
+// the frontend
 async function get_schedule(){
 
     const user = await database.return_current_user();
@@ -64,9 +69,9 @@ async function get_schedule(){
 
         return await schedule_component.parseScheduleFrontend(user.schedule);
     } else {
+        
         return null;
     }
-
 }
 
 export {connect, log_in, sign_up, post_schedule, get_schedule}

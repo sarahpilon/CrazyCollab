@@ -7,8 +7,6 @@ import '../style/join.css';
 
 function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, connections, setConnections, inviteCode, setInviteCode}){
 
-    // const [displayName, setDisplayName] = useState();
-
     const navigate = useNavigate();
 
     async function handleJoin(){
@@ -29,7 +27,6 @@ function JoinPage({username, setUsername, schedule, setSchedule, loggedIn, conne
             
             } else {console.log("Not yet connected")};
         });
-
     }
 
     return (

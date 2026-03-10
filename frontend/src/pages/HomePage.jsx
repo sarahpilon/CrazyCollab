@@ -14,7 +14,6 @@ function HomePage({username, setUsername, password, setPassword, schedule, setSc
        navigate('/signup');
     }
 
-
     const logIn = async () => {
         const account = {username: newUsername, password: newPassword}
 

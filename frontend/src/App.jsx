@@ -8,10 +8,6 @@ import HostPage from './pages/HostPage';
 import SignUpPage from './pages/SignUpPage';
 import Autorization from './pages/Autorization';
 
-
-
-
-
 const identitySchedule = [
     {id: 0, name: "monday", time: []},
     {id: 1, name: "tuesday", time: []},

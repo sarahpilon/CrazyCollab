@@ -21,57 +21,43 @@ const identitySchedule = [
 
 function CollabHostPage({inviteCode, setInviteCode, username, connections, setConnections, userSchedule, groupName, setGroupName}) {
 
-
-    // let pc = connections;
-
-
     const [displayName, setDisplayName] = useState(username);
     const [groupMembers, setGroupMembers] = useState([displayName]);
     const [schedule, setSchedule] = useState(userSchedule);
     const [channels, setChannels] = useState([]);
     const [attendeeEmails, setAttendeeEmails] = useState([]);
 
-
     // update the emails for the form to update
-        function updateEmail(index, value) {
+    function updateEmail(index, value) {
+        
         const copy = [...attendeeEmails];
         copy[index] = value;
         setAttendeeEmails(copy);
-        }
-
+    }
 
     // keep track of popup
     const authWindowRef = useRef(null);
 
-
+    // Host will have multiple peer connections, and for each one it must 
+    // listen to their messages and pass the collective group data
     for (let pc of connections) {
-
 
         // Initialize host's datachannel
         let channel = pc.createDataChannel('channel');
-        let code = inviteCode;
         console.log("Invite code: ", inviteCode);
 
-
         pc.addEventListener("connectionstatechange", event => {
+            
             if (pc.connectionState === 'connected'){
+                
                 console.log("connected to peers! Message coming from page!")
                 setChannels(e => [...channels, channel]);
-                // network.extendConnection();
            
+                // Async function to contain event listeners for peer connection
                 const peerConnect = async () => {
 
-
-                    channel.addEventListener('open', event => {
-
-
-                       
-                    })
-
-
-
-
                     channel.addEventListener('close', event => {
+                        
                         // closed datachannel, do ...
                         console.log("data channel closed :");
                     })
@@ -79,16 +65,11 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                     // to send data, do dataChannel.send(message)
                     // this event listener will listen for incoming messages
                     channel.addEventListener('message', event => {
-                        // recieved data, do ...
+                        
                         const message = JSON.parse(event.data);
                         const dn = message.dn;
                         const sch = message.sch;
-                        //console.log("recieved a message: ", message);
-                        //console.log("Display name: ", dn);
-                        //console.log("Schedule: ", sch);
-                       
-                        //updateSessionMembers(message);
-                        // const message = event.data
+
                         const messageSent = handleMemberJoin(dn, sch, channel);
                         channel.send(JSON.stringify(messageSent));
                         console.log("Sending message to peer: ", messageSent);
@@ -96,34 +77,20 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
                     const newpc = new network.Connection("second");
                     setConnections([...connections, newpc.pc]);
-                    console.log("Creating new peer connetion for next person: ", newpc.pc, "\nWith code: ", inviteCode, "\n\n\n");
                     newpc.createOffer(setInviteCode, username, schedule, false, inviteCode);
                     pc.setup = true;
                 }
 
-
                 peerConnect();
-
-
             }
         })
-
-
-
-
     }
-
 
     const handleScheduleAdd = (addSchedule) => {
 
-
-
-
-        console.log("New schedule to add: ", addSchedule);
-
-
         const newSchedule = schedule.map(dayA => {
-           return {
+           
+            return {
                 ...dayA,
                 time: [
                     ...dayA.time,
@@ -132,56 +99,36 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
            }
         })
 
-
-        console.log("new schedule calculated: ", newSchedule);
-
-
         setSchedule(newSchedule);
-
 
         return newSchedule;
     }
 
-
     // count group members for form count
     useEffect(() => {
-    setAttendeeEmails(groupMembers.map(() => ""));
+        setAttendeeEmails(groupMembers.map(() => ""));
     }, [groupMembers]);
-
 
     const handleMemberJoin = (newMemberName, newMemberSchedule, currentChannel) => {
 
-
-        console.log("HANDLING MEMBER JOIN\N\N");
         // Add name to name list
         const newMemberList = [
             ...groupMembers,
             newMemberName
         ]
 
-
-        console.log("new member list: ", newMemberList)
-
-
         setGroupMembers(newMemberList);
-
 
         const newSchedule = handleScheduleAdd(newMemberSchedule);
 
-
         for (const channel of channels){
-
 
             const message = {dns: newMemberList, sch: newSchedule};
             channel.send(JSON.stringify(message));
         }
 
-
         return {dns: newMemberList, sch: newSchedule, gpn: groupName};
-
-
     }
-
 
     return(
         <div class="body">
@@ -281,9 +228,6 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                     </div>
                                 ))}
 
-
-
-
                                 <button
                                     onClick={() => {
 
@@ -292,7 +236,6 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                     const start = document.getElementById("times-start-select").value;
                                     const end = document.getElementById("times-end-select").value;
                                     const timezone = document.getElementById("timezone-select").value;
-
 
                                     // send emails to backend and remove blank ones
                                     const filtered = attendeeEmails.filter(e => e.trim() !== "");
@@ -310,12 +253,10 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                         body: JSON.stringify({ day, start, end, timezone }),
                                     });
 
-
                                     // open authroization
                                     authWindowRef.current = window.open(
                                         "http://localhost:5173/meeting/host/oauth"
                                     );
-
 
                                     // close the popup
                                     close();
@@ -323,7 +264,6 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                 >
                                     Continue
                                 </button>
-
 
                                 <button onClick={close}>
                                     Cancel

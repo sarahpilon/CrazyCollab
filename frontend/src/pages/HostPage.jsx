@@ -30,9 +30,7 @@ function HostPage({inviteCode, setInviteCode, username, setUsername, schedule, s
         setConnections([...connections, pc.pc]);
         console.log(pc.pc);
         pc.createOffer(setInviteCode, username, schedule);
-        // channel = network.pc.createDataChannel('channel'); // Create new data channel after peer connection is made
-        navigate('/meeting/host')
-    
+        navigate('/meeting/host');
     }
 
     return (

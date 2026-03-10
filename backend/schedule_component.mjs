@@ -1,12 +1,3 @@
-/**
-* Assuming the schedule takes this format as a JSON:
-* {
-*    monday: [8.25, 8.50, 8.75, 9.00, 10.00, 10.25, 10.50, 10.75, 11.00],
-*    tuesday: [2.00, 2.25, 2.50, 2.75, 3.00],
-*    ...
-* }
-*/
-
 
 /**
  * Parses schedule to match database format if taken from
@@ -15,7 +6,9 @@
  * @returns updated schedule
  */
 async function parseSchedule(scheduleJSON, timezone){
+    
     try {
+        
         // taken in scheduleJSON in correct format
         let formattedSchedule = {};
 
@@ -30,20 +23,17 @@ async function parseSchedule(scheduleJSON, timezone){
                     if (Array.isArray(entry.time)) {
 
                         formattedSchedule[entry.name] = entry.time;
-                    
                     } else {
                     
                         formattedSchedule[entry.name] = [];
-                
                     }
                 }
-
             }
-
         }
 
         // if taking data from dataset (already matches expected format)
         else if (typeof scheduleJSON === "object" && scheduleJSON !== null) {
+            
             formattedSchedule = scheduleJSON;
         }
 
@@ -82,18 +72,18 @@ async function parseSchedule(scheduleJSON, timezone){
             }
 
         } else {
+            
             return null;
         }
-        
 
         return schedule;
 
     } catch (error) {
+        
         console.error("Invalid data")
         return null;
     }
 }
-
 
 /**
  * Compares two schedules from two different users
@@ -105,24 +95,23 @@ async function compareUsers(userA, userB) {
 
     try {
 
-    const PasrsedA = await parseSchedule(userA, userA.timezone);
-    const ParsedB = await parseSchedule(userB, userB.timezone);
+        const PasrsedA = await parseSchedule(userA, userA.timezone);
+        const ParsedB = await parseSchedule(userB, userB.timezone);
 
-    return compareSchedules(PasrsedA, ParsedB);
+        return compareSchedules(PasrsedA, ParsedB);
     
     } catch (error) {
+        
         console.error("Schedule issue")
         return null;
     }
 }
-
 
 /*
     Logic / Non-Async Functions
     These functions are pure logic, and do not use await,
     fetch any data, and aren't asynchronous operations
 */
-
 
 /**
  * Compares two schedules and returns conflicting times
@@ -133,6 +122,7 @@ function compareSchedules(UserA, UserB) {
 
     // for loop iterating through each day of the week
     for (const day in UserA) {
+        
         // get user a schedule for that day and set to an array
         ScheduleA = UserA[day] || [];
         // get user b schedule 
@@ -144,35 +134,33 @@ function compareSchedules(UserA, UserB) {
 
     // remove empty days
     for (const day in Timeconflicts) {
+        
         if (Timeconflicts[day].length === 0) {
+            
             delete Timeconflicts[day];
         }
     }
-
-    
    
     // Return array ONLY if its populated, otherwise produce an error
     if (Object.values(Timeconflicts).every(day => day.length === 0)) {
+        
         console.error("No suggested time found")
         return null;
     } else {
-         // array should have conflicts, between the two, as well as the times with conflict
+        
+        // array should have conflicts, between the two, as well as the times with conflict
         // so return array
-            return Timeconflicts;
+        return Timeconflicts;
     }
-
 }
-
 
 /**
  * Function to set the timezone to a universal time
  */
 function universal(time, timezone) {
 
-
     // if the time was invalid, throw an error
     if (time >= 0 && time <= 23.99) {
-
 
     // timezone logic
     // create date for timezone logic
@@ -181,44 +169,37 @@ function universal(time, timezone) {
     const localString = currentTime.toLocaleString("en-US", { timeZone: timezone });
     const dateObject = new Date(localString);
 
-
-    
-
     // set to hh:mm
     dateObject.setMinutes(+time * 60);
+    
     // dateObject.setMinutes(Math.round(time * 60));// dateObject.setMinutes(Math.round(time * 60));
     // set to local time
     const result = dateObject.toLocaleString("en-US",
-                    {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false,
-                        timeZone: timezone
-                    }
-                );
-
-    
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+            timeZone: timezone
+        }
+    );
    
     // return final result
     return result
 
-
     } else {
+        
         console.error("Invalid Time")
         return null;
-
-
-    }
-   
+    }  
 }
 
 function BackToDecimal(t, timezone) {
+    
     // split into hour minute
     const [hour, minute] = t.split(':').map(Number);
 
     // create date for timezone logic
     const currentTime = new Date("2000-01-01T00:00:00");
-
 
     const localTime = currentTime.toLocaleString("en-US", {timeZone: timezone});
     const localDate = new Date(localTime);
@@ -240,16 +221,16 @@ function BackToDecimal(t, timezone) {
 /**
  * Parse schedule from database format into frontend format
  */
-
 function parseScheduleFrontend(schedule, timezone) {
+    
     let formattedSchedule = [
-    {id: 0, name: "monday", time: []},
-    {id: 1, name: "tuesday", time: []},
-    {id: 2, name: "wednesday", time: []},
-    {id: 3, name: "thursday", time: []},
-    {id: 4, name: "friday", time: []},
-    {id: 5, name: "saturday", time: []},
-    {id: 6, name: "sunday", time: []}
+        {id: 0, name: "monday", time: []},
+        {id: 1, name: "tuesday", time: []},
+        {id: 2, name: "wednesday", time: []},
+        {id: 3, name: "thursday", time: []},
+        {id: 4, name: "friday", time: []},
+        {id: 5, name: "saturday", time: []},
+        {id: 6, name: "sunday", time: []}
     ]
 
     // days of the week
@@ -265,25 +246,19 @@ function parseScheduleFrontend(schedule, timezone) {
 
             // if theres times add the times to the formatted schedule
             for (const time of schedule[day]){
+                
                 console.log(time);
                 formattedSchedule[dayIndex].time.push(BackToDecimal(time, timezone)); // NEED TO SET TIME BACK TO DECIMAL AMOUNT
             }
-            // formattedSchedule[dayIndex].time = schedule[day];
-        } else {
 
+        } else {
 
             // set to empty array if day has no times
             formattedSchedule[dayIndex].time = [];
         }
-
     }
 
-    console.log("Formatted schedule: ", formattedSchedule);
-
     return formattedSchedule;
-
 }
-
-// module.exports = {parseSchedule, compareSchedules, compareUsers, universal};
 
 export {parseSchedule, compareSchedules, compareUsers, universal, parseScheduleFrontend};

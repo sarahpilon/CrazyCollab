@@ -4,25 +4,32 @@ import TimezoneSelector from './TimezoneSelector'
 
 function EditCalendarCollection({schedule, setSchedule}){
 
+    // Each cell has a target day and time. This function will be called whenever 
+    // a cell is clicked. It will update the schedule variable and add or remove the respective 
+    // time/day based on the cell clicked.
     function handleScheduleChange(targetTime, targetDay, add) {
 
         const newSchedule = schedule.map(day => {
+            
             if (day.name == targetDay){
+                
                 let match = false;
                 day.time.map(t => {
                     if (t == targetTime){
-                        // console.log("match!");
+
                         match = true;
                     }
                 })
 
                 if (match && add){
+                    
                     return {
                         ...day
                     }
                 }
                 
                 if (!add){
+                    
                     return {
                         ...day,
                         time: day.time.filter(n => {
@@ -30,6 +37,7 @@ function EditCalendarCollection({schedule, setSchedule}){
                         })
                     }
                 } else {
+                    
                     return {
                         ...day,
                         time: [
@@ -39,12 +47,12 @@ function EditCalendarCollection({schedule, setSchedule}){
                     }
                 }
             } else {
+                
                 return day;
             }
         })
 
         setSchedule(newSchedule);
-        // console.log(newSchedule);
     }
 
     return (
