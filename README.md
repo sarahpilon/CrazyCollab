@@ -43,7 +43,7 @@ cd CrazyCollab
 npm run dev
 ```
 
-See the [Setup manuall](Setup.md) for full setup instructions.
+See the [Setup manual](Setup.md) for full setup instructions.
 
 ---
 
