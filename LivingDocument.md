@@ -8,16 +8,15 @@ Our product is a web application that helps groups plan meetings based on overla
 
 * Easy to Navigate UI  
 * WCAG 2.2 compliant accessibility standards  
-* Able to adapt to different time zones   
+* User Login System (MongoDB)  
+* Database to hold user data and available times (mongodb)  
 * Suggested Meeting times   
 * Connect with google calendar to set up meeting times automatically  
-* Cached browser data with Web Storage API
 
 **Stretch Goals:**
 
-* User Login System (MongoDB)  
+* Able to adapt to different time zones   
 * Parser for .ics files, both importing and exporting (with ical.js)  
-* Database to hold user data and available times (mongodb)  
 * Adjustable UI and Font  
 * Support other calendar apps (Outlook, Apple)
 
