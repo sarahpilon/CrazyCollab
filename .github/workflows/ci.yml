@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - Testing
+      - Timezone-Test
   pull_request:
     branches:
       - main
       - Testing
+      - Timezone-Test
 
 jobs:
   build:
