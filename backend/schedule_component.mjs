@@ -162,36 +162,31 @@ function universal(time, timezone) {
     // if the time was invalid, throw an error
     if (time >= 0 && time <= 23.99) {
 
-    // timezone logic
-    // create date for timezone logic
-    const currentTime = new Date("2000-01-01T00:00:00");
+        // Convert decimal → hours + minutes
+        const hours = Math.floor(time);
+        const minutes = Math.round((time - hours) * 60);
 
-    const localString = currentTime.toLocaleString("en-US", { timeZone: timezone });
-    const dateObject = new Date(localString);
+        // Create a UTC date (prevents system timezone issues)
+        const dateObject = new Date(Date.UTC(2000, 0, 1, hours, minutes));
 
-    // set to hh:mm
-    dateObject.setMinutes(+time * 60);
-    
-    // dateObject.setMinutes(Math.round(time * 60));// dateObject.setMinutes(Math.round(time * 60));
-    // set to local time
-    const result = dateObject.toLocaleString("en-US",
-        {
+        // Format it in the target timezone
+        const result = dateObject.toLocaleString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
             hour12: false,
             timeZone: timezone
-        }
-    );
-   
-    // return final result
-    return result
+        });
+
+        // return final result
+        return result;
 
     } else {
-        
-        console.error("Invalid Time")
+
+        console.error("Invalid Time");
         return null;
-    }  
+    }
 }
+
 
 function BackToDecimal(t, timezone) {
     
