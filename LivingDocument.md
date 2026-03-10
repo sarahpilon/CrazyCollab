@@ -733,6 +733,11 @@ Throughout our assignment, we will develop a readme for debugging, and develop a
 
 **\*\*\* Our team is committed to creating a safe, respectful, and inclusive environment for all members. Harassment of any kind will not be tolerated.**
 
+
+# **Reflections**
+
+**Sarah Pilon:** Something I learned from this assignment is that I should mark down deadlines for myself on my calendar to remind myself to have stuff done. I noticed I tended to put other assignments first for the assignment leading me to slack off, and be behind. I also learned I need to be more upfront and if something looks like it needs to be done, don’t wait for someone to ask for help but instead go to them and ask if they need help. I do think spending more significant time providing a clearer use case, and flow chart of how we want the app to go (maybe spending one week on that), and communicating that with the team would have been useful. As there were some miscommunications or forgotten features which led to delays.
+
 ### Resources and Links
 
 **GitHub repository**:  
