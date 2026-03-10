@@ -8,16 +8,15 @@ Our product is a web application that helps groups plan meetings based on overla
 
 * Easy to Navigate UI  
 * WCAG 2.2 compliant accessibility standards  
-* Able to adapt to different time zones   
+* User Login System (MongoDB)  
+* Database to hold user data and available times (mongodb)  
 * Suggested Meeting times   
 * Connect with google calendar to set up meeting times automatically  
-* Cached browser data with Web Storage API
 
 **Stretch Goals:**
 
-* User Login System (MongoDB)  
+* Able to adapt to different time zones   
 * Parser for .ics files, both importing and exporting (with ical.js)  
-* Database to hold user data and available times (mongodb)  
 * Adjustable UI and Font  
 * Support other calendar apps (Outlook, Apple)
 
@@ -733,6 +732,13 @@ Throughout our assignment, we will develop a readme for debugging, and develop a
 – Any conflict related discussions will be documented to ensure transparency and accountability.
 
 **\*\*\* Our team is committed to creating a safe, respectful, and inclusive environment for all members. Harassment of any kind will not be tolerated.**
+
+
+# **Reflections**
+
+**Sarah Pilon:** Something I learned from this assignment is that I should mark down deadlines for myself on my calendar to remind myself to have stuff done. I noticed I tended to put other assignments first for the assignment leading me to slack off, and be behind. I also learned I need to be more upfront and if something looks like it needs to be done, don’t wait for someone to ask for help but instead go to them and ask if they need help. I do think spending more significant time providing a clearer use case, and flow chart of how we want the app to go (maybe spending one week on that), and communicating that with the team would have been useful. As there were some miscommunications or forgotten features which led to delays.
+
+**Dylan Knapp:** Dylan: I learned a lot about the inner workings of a robust full-stack app, more so than what I learned in my coursework. I usually don’t have proper planning for my projects, so our approach for this project was definitely new to me. The process of planning out each step of the project and laying out the whole architecture and all the algorithms felt complicated at the start, but I felt it proved to be very beneficial. I felt very professional as I was making commits to the github and communicating with my team members. Now we’re at the end, I feel very proud of what we accomplished because of all the hard work we put into it. I feel that I will take this experience with me into the future as I continue to grow as a developer and an engineer.
 
 ### Resources and Links
 

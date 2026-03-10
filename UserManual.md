@@ -18,9 +18,7 @@ Our program is a website and does not require any software installation on your 
 
 # How to Run
 
-To run our current work in progress website, navigate to the link:		[https://web.engr.oregonstate.edu/\~wilkinel/crazycollabtesting/public/home.html](https://web.engr.oregonstate.edu/~wilkinel/crazycollabtesting/public/home.html)
-
-*Our final program will be released on AWS on a new link that will replace the link above.*
+To run our current work in progress website, navigate to the link:		[CrazyCollab](https://main.d3a17xoen6fcqd.amplifyapp.com/)
 
 # How to Use
 

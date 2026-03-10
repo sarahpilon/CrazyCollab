@@ -24,6 +24,17 @@ div.body > .container {
     width: 100%;
 }
 
+.rightcard {
+    background-color: #AAB0C0;
+    border: 2px solid #7C8499;
+    padding: 20px;
+    width: 64.66%;
+    min-height: 80vh;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
 .welcome-box {
     font-size: 20px;
     font-weight: bold;
