@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../style/home.css'
 import MeetCalendarCollection from '../components/MeetCalendarCollection';
+import TimezoneSelector from '../components/TimezoneSelector';
 import * as network from '../js/network_component.mjs';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -196,6 +197,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
             <div class="rightcard">
                 <div class="meeting-header">
                     <div class="meeting-name">Group Meeting: {groupName}</div>
+                    <TimezoneSelector/>
                     <div class="meeting-date">March 9-15</div>
                 </div>
                 <div class="schedule-controls">
@@ -258,12 +260,9 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                             <option value="18:30">6:30 PM</option>
                         </select>
                     </div>
-                </div>
-                <div class="Header2">
-
-                    <div className="Export-Calendar">
+                    <div className="export-calendar">
                         <Popup
-                            trigger={<button>Export Calendar</button>}
+                            trigger={<button className="export-calendar-button">Export Calendar</button>}
                             modal
                             nested
                         >
@@ -332,9 +331,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                             </div>
                             )}
                         </Popup>
-                        </div>
-
-
+                    </div>
                 </div>
                 <MeetCalendarCollection schedule={schedule} setSchedule={setSchedule}></MeetCalendarCollection>
             </div>
