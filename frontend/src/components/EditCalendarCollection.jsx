@@ -49,7 +49,6 @@ function EditCalendarCollection({schedule, setSchedule}){
 
     return (
         <>
-            <TimezoneSelector/>
             <CalendarGrid schedule={schedule} setSchedule={setSchedule} onClick={handleScheduleChange}/>
             <ClearCalendarButton/>
         </>
