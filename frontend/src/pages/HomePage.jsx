@@ -62,12 +62,6 @@ function HomePage({username, setUsername, password, setPassword, schedule, setSc
                     </form>
                 </div>
             </div>
-            <div>{loggedIn == false ? <></> : 
-                <div>
-                    <div>Your Current Saved Schedule</div>
-                    <EditCalendarCollection schedule={schedule} setSchedule={setSchedule}></EditCalendarCollection>
-                </div>}
-            </div>
         </div>
     )
 }
