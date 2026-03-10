@@ -129,7 +129,6 @@
     border: 2px solid #7C8499;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px 20px;
-    margin-left: 25px;
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 3px;
@@ -152,8 +151,29 @@
     margin-left: 3.8%;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 16px;
     flex-wrap: wrap;
+}
+
+.export-calendar {
+    display: flex;
+    align-items: center;
+}
+
+.export-calendar-button {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #F5F5F5;
+    border: 2px solid #7C8499;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 15px 15px;
+    cursor: pointer;
+}
+
+.export-calendar-button:hover {
+    background-color: #e2e2e2;
 }
 
 .times-filter label {
