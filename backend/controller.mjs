@@ -110,7 +110,7 @@ app.post('/collab/invite-emails', asyncHandler(async (req, res) => {
 }));
 
 // sending meeting name, date and timezone to funct
-app.post("/google/createEvent", async (req, res) => {
+app.post("/collab/google/createEvent", async (req, res) => {
     const { day, start, end, timezone } = req.body;
     
     givenDay = day;

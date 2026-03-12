@@ -239,7 +239,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
                                     // send emails to backend and remove blank ones
                                     const filtered = attendeeEmails.filter(e => e.trim() !== "");
-                                    fetch("https://main.d3a17xoen6fcqd.amplifyapp.com/collab/invite-emails", {
+                                    fetch("/collab/invite-emails", {
                                         method: "POST",
                                         headers: { "Content-Type": "application/json" },
                                         // formatting it to match the attendees formatting needed
@@ -247,7 +247,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
                                     });
 
                                     // send selected time
-                                    fetch("https://main.d3a17xoen6fcqd.amplifyapp.com/google/createEvent", {
+                                    fetch("/collab/google/createEvent", {
                                         method: "POST",
                                         headers: { "Content-Type": "application/json" },
                                         body: JSON.stringify({ day, start, end, timezone }),
@@ -255,7 +255,7 @@ function CollabHostPage({inviteCode, setInviteCode, username, connections, setCo
 
                                     // open authroization
                                     authWindowRef.current = window.open(
-                                        "https://main.d3a17xoen6fcqd.amplifyapp.com/meeting/host/oauth"
+                                        "/meeting/host/oauth"
                                     );
 
                                     // close the popup
