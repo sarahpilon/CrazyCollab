@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/collab': {
-        target: 'http://localhost:3000'
+        target: 'https://main.d3a17xoen6fcqd.amplifyapp.com'
       }
     }
   }
